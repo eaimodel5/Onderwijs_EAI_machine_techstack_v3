@@ -1,16 +1,6 @@
-export type Band = { code: string; label: string };
-
-// The printer treats SSOT bands as a typed record.
-// Example:
-// {
-//   K: { code: "K2", label: "Procedurele kennis" },
-//   TD: { code: "TD5", label: "Hoge taakdichtheid" },
-//   ...
-// }
-export type BandSelection = Record<string, Band>;
+export type BandSelection = Record<string, { code: string; label: string }>;
 
 function tdRank(code: string): number {
-  // TD1..TD8
   const m = /^TD(\d+)$/.exec(code);
   return m ? Number(m[1]) : 0;
 }

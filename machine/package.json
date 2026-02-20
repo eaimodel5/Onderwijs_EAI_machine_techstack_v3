@@ -1,0 +1,20 @@
+{
+  "name": "onderwijs-eai-machine",
+  "private": true,
+  "version": "2.1.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm -ws run build",
+    "test": "node tests/run_logic_gate_tests.mjs && node tests/run_evidence_tests.mjs",
+    "test:logic": "node tests/run_logic_gate_tests.mjs",
+    "test:evidence": "node tests/run_evidence_tests.mjs",
+    "print-card": "node --loader ts-node/esm tools/print-card.ts tools/examples/example_input.json"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

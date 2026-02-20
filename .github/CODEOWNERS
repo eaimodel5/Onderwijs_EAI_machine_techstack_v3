@@ -1,0 +1,11 @@
+# Governance: SSOT en owner policies mogen niet zonder review
+/ssot/        @eaimodel5
+/owner/       @eaimodel5
+
+# Kerncontracten
+/machine/packages/eai-kernel/   @eaimodel5
+/machine/packages/eai-schemas/  @eaimodel5
+/machine/packages/eai-evidence/ @eaimodel5
+
+# Docs
+/docs/        @eaimodel5
