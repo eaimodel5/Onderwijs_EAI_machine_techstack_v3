@@ -1,0 +1,9 @@
+{"id": "S-NEW", "query": "site:advanziabank.de", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:brimak.com.br", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:amazon.com", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:afternic.com", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:oast.me", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:anadoluportfoyyatirim.com", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:greenpulselife.com", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:pilkanahali.pl", "type": "web", "priority": 0.57, "time_window_days": 60}
+{"id": "S-NEW", "query": "site:github.com github.com token", "type": "code", "priority": 0.6, "time_window_days": 60}

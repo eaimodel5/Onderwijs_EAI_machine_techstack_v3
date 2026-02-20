@@ -1,0 +1,2 @@
+This bundle is assembled from multiple source zips provided by the user.
+Check each subfolder for original LICENSE files where present.

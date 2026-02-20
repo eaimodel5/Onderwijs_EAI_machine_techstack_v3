@@ -1,0 +1,34 @@
+[
+  {
+    "pattern": ["Seed_Nesy_Core_001", "Seed_Nesy_Didactiek_002"],
+    "emotion_flow": ["Rust", "Vertrouwen"],
+    "frequency": 15,
+    "last_occurred": "2025-01-26T14:30:00Z",
+    "next_recommended_seed": "Seed_Nesy_Evaluatie_006",
+    "weight_hint": 0.87
+  },
+  {
+    "pattern": ["Seed_Nesy_Ethiek_003", "Seed_Nesy_Core_001"],
+    "emotion_flow": ["Waakzaamheid", "Rust"],
+    "frequency": 12,
+    "last_occurred": "2025-01-26T13:45:00Z",
+    "next_recommended_seed": "Seed_Nesy_Reflectie_004",
+    "weight_hint": 0.91
+  },
+  {
+    "pattern": ["Seed_Nesy_Motivatie_009", "Seed_Nesy_Personalisatie_007"],
+    "emotion_flow": ["Inspiratie", "Aanpassing"],
+    "frequency": 8,
+    "last_occurred": "2025-01-26T12:20:00Z",
+    "next_recommended_seed": "Seed_Nesy_Feedback_005",
+    "weight_hint": 0.83
+  },
+  {
+    "pattern": ["Seed_Nesy_Samenwerking_008", "Seed_Nesy_Inclusie_010"],
+    "emotion_flow": ["Verbinding", "Gelijkwaardigheid"],
+    "frequency": 6,
+    "last_occurred": "2025-01-26T11:15:00Z",
+    "next_recommended_seed": "Seed_Nesy_Didactiek_002",
+    "weight_hint": 0.89
+  }
+]

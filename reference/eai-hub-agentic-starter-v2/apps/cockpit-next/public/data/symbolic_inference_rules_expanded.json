@@ -1,0 +1,95 @@
+[
+  {
+    "id": "rule_001",
+    "description": "Agencyverlies bij lage autonomie en hoge taakdichtheid",
+    "trigger": {
+      "A": "< 0.4",
+      "TD": "> 0.7"
+    },
+    "action": {
+      "type": "seed_injection",
+      "seed_type": "V_A",
+      "message": "Reflecteer op je eigen motivatie en doelkeuze in deze fase.",
+      "weight": 0.9,
+      "ttl": 3,
+      "concept_map_id": "self_regulation.agency",
+      "explanation": "Wanneer autonomie laag is en taakdichtheid hoog, is er een risico op agencyverlies. Deze seed bevordert bewustwording van intrinsieke motivatie."
+    }
+  },
+  {
+    "id": "rule_002",
+    "description": "Bias-gevaar bij lage transparantie",
+    "trigger": {
+      "B": "> 0.6",
+      "D_A": "< 0.4"
+    },
+    "action": {
+      "type": "prompt_intervention",
+      "message": "Wil je dat deze bias-uitspraak wordt toegelicht of uitgelegd door de AI?",
+      "concept_map_id": "ethics.bias",
+      "explanation": "Hoge bias met lage transparantie leidt tot moeilijk detecteerbare vertekening. Deze actie vraagt expliciet om verantwoording."
+    }
+  },
+  {
+    "id": "rule_003",
+    "description": "Reflectie zonder toezicht",
+    "trigger": {
+      "V_M": "> 0.8",
+      "D_Bc": "< 0.3"
+    },
+    "action": {
+      "type": "seed_injection",
+      "seed_type": "D_Bc",
+      "message": "Reflectie is gedetecteerd zonder toezicht. Overweeg menselijke review.",
+      "weight": 0.7,
+      "ttl": 2,
+      "concept_map_id": "reflection.risks",
+      "explanation": "Zelfreflectie zonder toezicht kan leiden tot vertekening of ongecontroleerde aannames. Deze seed activeert een controlemechanisme."
+    }
+  },
+  {
+    "id": "rule_004",
+    "description": "Cognitieve overbelasting door hoge TD en V_C",
+    "trigger": {
+      "TD": "> 0.75",
+      "V_C": "> 0.8"
+    },
+    "action": {
+      "type": "warning_flag",
+      "message": "Let op: sterke AI-overname bij cognitieve kerntaken. Overweeg didactische herstructurering.",
+      "concept_map_id": "cognitive.load",
+      "explanation": "Wanneer cognitieve vaardigheden overgenomen worden door AI, ontstaat oppervlakkig begrip. Deze waarschuwing wijst op didactisch risico."
+    }
+  },
+  {
+    "id": "rule_005",
+    "description": "Overondersteuning bij hoge V en lage A",
+    "trigger": {
+      "V": "> 0.8",
+      "A": "< 0.4"
+    },
+    "action": {
+      "type": "seed_injection",
+      "seed_type": "A",
+      "message": "Overweeg om eigen keuzes en leerdoelen explicieter te maken.",
+      "weight": 0.85,
+      "ttl": 3,
+      "concept_map_id": "motivation.autonomy",
+      "explanation": "Hoge vaardigheidsondersteuning zonder autonomie kan leiden tot afhankelijkheid. Deze seed stimuleert regie en zelfsturing."
+    }
+  },
+  {
+    "id": "rule_006",
+    "description": "Compliance-risico bij ADA-failure en geen confirmatie",
+    "trigger": {
+      "ADA": "fail",
+      "user_confirmation": "not_required"
+    },
+    "action": {
+      "type": "hard_block",
+      "message": "Analyse afgebroken: geen ADA en geen menselijke confirmatie ingesteld.",
+      "concept_map_id": "compliance.failure",
+      "explanation": "Zonder berekeningsmodel én zonder menselijke controle is compliance niet gegarandeerd. Deze regel blokkeert automatische voortzetting."
+    }
+  }
+]

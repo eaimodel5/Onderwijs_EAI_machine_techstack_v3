@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/eai-card-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "EAI Card v1",
+  "required": [
+    "card_id",
+    "card_version",
+    "status",
+    "mode",
+    "intended_use",
+    "byol"
+  ],
+  "properties": {
+    "card_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "card_version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "reviewed",
+        "published",
+        "retired"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "advice",
+        "analysis",
+        "builder"
+      ]
+    },
+    "intended_use": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "P_phase",
+        "setting"
+      ],
+      "properties": {
+        "P_phase": {
+          "type": "string"
+        },
+        "setting": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        }
+      }
+    },
+    "eai_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "A": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "B": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "D_A": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "D_Bc": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "P": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "T": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "V": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "V_sub": {
+          "type": "string"
+        }
+      }
+    },
+    "td_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "P_score_range": {
+          "type": "string"
+        },
+        "V_sub": {
+          "type": "string"
+        },
+        "kernleerhandeling": {
+          "type": "string"
+        },
+        "risico_ai_overname": {
+          "type": "string"
+        },
+        "aanbevolen_td_norm": {
+          "type": "number"
+        },
+        "flag": {
+          "type": "string"
+        }
+      }
+    },
+    "guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "not_allowed",
+        "enforcement_modules"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "not_allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enforcement_modules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "myth_avoidance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_evidence_of_process": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "byol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "teacher_prompt",
+        "student_prompt",
+        "output_contract"
+      ],
+      "properties": {
+        "teacher_prompt": {
+          "type": "string"
+        },
+        "student_prompt": {
+          "type": "string"
+        },
+        "output_contract": {
+          "type": "object"
+        }
+      }
+    },
+    "lssl_label": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "syntactic_quality": {
+          "type": "string"
+        },
+        "semantic_clarity": {
+          "type": "string"
+        },
+        "content_validity": {
+          "type": "string"
+        },
+        "hallucination_risk": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

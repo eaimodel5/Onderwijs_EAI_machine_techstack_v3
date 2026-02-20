@@ -1,0 +1,26 @@
+[
+  {
+    "name": "K1 clamps TD to TD2",
+    "input_bands": {
+      "K": "K1",
+      "TD": "TD6"
+    },
+    "expected_TD": "TD2"
+  },
+  {
+    "name": "K2 allows up to TD4 (clamp TD7 -> TD4)",
+    "input_bands": {
+      "K": "K2",
+      "TD": "TD7"
+    },
+    "expected_TD": "TD4"
+  },
+  {
+    "name": "K3 clamps TD to TD2",
+    "input_bands": {
+      "K": "K3",
+      "TD": "TD5"
+    },
+    "expected_TD": "TD2"
+  }
+]

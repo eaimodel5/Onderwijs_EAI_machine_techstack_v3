@@ -1,0 +1,4 @@
+{"id": "S-NEW", "query": "site:archive.org", "type": "web", "priority": 0.42000000000000004, "time_window_days": 60}
+{"id": "S-NEW", "query": "github oidc token actions.amazonaws.com", "type": "code", "priority": 0.7, "time_window_days": 60}
+{"id": "S-NEW", "query": "x-amz-signature=", "type": "ti_post", "priority": 0.7, "time_window_days": 60}
+{"id": "S-NEW", "query": "sv= signature= blob.core.windows.net", "type": "ti_post", "priority": 0.7, "time_window_days": 60}

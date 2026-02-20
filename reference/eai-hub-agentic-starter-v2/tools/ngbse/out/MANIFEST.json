@@ -1,0 +1,10 @@
+{
+  "ngbse_version": "17.1",
+  "start_time": "2025-08-17T21:19:44Z",
+  "end_time": "2025-08-17T21:19:44Z",
+  "hashes": {
+    "seeds.jsonl": "acc19812e319374cef9aa4fd49745ae77c32ee9377c83235d5ea5c70f5f7f3cd",
+    "ngbse.config.yml": "7833831cdfc5daed0d9d4290bda86861419e021bc22a3ef9fd02ab551a01921f",
+    "findings.jsonl": "e0cfe905bdb37891dce2ccba18823480daa81dc3a908d2ddec98082baaf7a933"
+  }
+}

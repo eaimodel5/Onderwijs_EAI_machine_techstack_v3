@@ -1,0 +1,6 @@
+requests
+PyYAML
+python-docx
+python-dotenv
+beautifulsoup4
+stix2

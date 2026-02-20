@@ -1,0 +1,7 @@
+project_id = "ngcyfbstajfcfdhlelbz"
+
+[functions.evai-core]
+verify_jwt = false
+
+[functions.evai-admin]
+verify_jwt = false

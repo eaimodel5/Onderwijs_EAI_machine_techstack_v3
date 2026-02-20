@@ -1,0 +1,135 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "D_A",
+      "name": "AI-verwerkingsniveau",
+      "definition": "D_A meet de functionele rol die de AI speelt in het verwerken van informatie tijdens leren - van passief presenteren tot actief probleemoplossen.",
+      "interpretation": "Hoe hoger de D_A-score, hoe meer de AI het denkwerk overneemt of voorstructureert. De rol van de leerling verschuift dan van actief verwerken naar beoordelen of overnemen, wat risico's met zich meebrengt.",
+      "key_points": [
+        "Bij hogere D_A-scores is metacognitieve scaffolding en expliciete leerlingactivatie noodzakelijk om verlies van agency te voorkomen."
+      ],
+      "learning_objectives_link": "Koppeling aan leerdoelen rond functionele rol van AI in informatieverwerking.",
+      "scientific_rationale": [
+        {
+          "source": "Chi, M. T. H., & Wylie, R. (2023). The ICAP framework revisited: AI, cognitive engagement, and automated feedback. Educational Psychology Review.",
+          "relevance": "Classificeert AI-verwerkingsbijdragen op basis van engagementtype in plaats van hiërarchie."
+        },
+        {
+          "source": "Holstein, K., McLaren, B. M., & Aleven, V. (2023). Contextualizing AI support across instructional phases. Journal of Learning Analytics, 10(1), 112–130.",
+          "relevance": "Benadert AI-rollen functioneel over meerdere leerfasen heen."
+        },
+        {
+          "source": "Sweller, J. (2023). Cognitive load theory and generative artificial intelligence. Educational Psychology Review, 35, Article 11.",
+          "relevance": "Waarschuwt voor overload en agencyverlies bij hoge AI-verwerking."
+        },
+        {
+          "source": "Luckin, R., Holmes, W., Griffiths, M., & Forcier, L. B. (2022). Skill-based AI support for learners: Mapping cognitive, metacognitive, and affective domains. UNESCO.",
+          "relevance": "Functionele mapping van AI-bijdragen per domein, zonder normatieve hiërarchie."
+        }
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "De AI presenteert informatie zonder verwerking of interactie.",
+          "microdescriptors": [
+            "Min: Regels weergeven",
+            "Max: Checklists tonen zonder context"
+          ],
+          "examples_ai_role": [
+            "FAQ-bots",
+            "spellingscorrectie",
+            "basic uitlegprompts"
+          ],
+          "examples_learner_behavior": [
+            "Scrollen, klikken, lezen zonder nadenken"
+          ],
+          "risks_flags": [
+            "⚠ Passiviteit",
+            "⚠ Geen denkactivatie"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "De AI haalt bekende informatie op of classificeert zonder verwerking.",
+          "microdescriptors": [
+            "Min: Feitjes herhalen",
+            "Max: Elementen groeperen of benoemen"
+          ],
+          "examples_ai_role": [
+            "Flashcards",
+            "categorisatie-tools",
+            "trefwoordgenerator"
+          ],
+          "examples_learner_behavior": [
+            "Herhalen, herkennen, aanklikken"
+          ],
+          "risks_flags": [
+            "🔍 Oppervlakkige verwerking",
+            "⚠ Overschatting begrip"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "De AI ordent of vat informatie samen, zonder zelf te interpreteren.",
+          "microdescriptors": [
+            "Min: Lijsten presenteren",
+            "Max: Begeleide samenvattingen maken"
+          ],
+          "examples_ai_role": [
+            "Outline-generator",
+            "AI-samenvatter",
+            "conceptstructuurmaker"
+          ],
+          "examples_learner_behavior": [
+            "Selecteren, groeperen, aanvullend noteren"
+          ],
+          "risks_flags": [
+            "⚠ Fragmentatie zonder samenhang",
+            "🔍 Integratie vereist"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "De AI legt verbanden of ondersteunt redeneren binnen gedefinieerde grenzen.",
+          "microdescriptors": [
+            "Min: Oorzaken benoemen",
+            "Max: Scenario’s vergelijken of verklaringen genereren"
+          ],
+          "examples_ai_role": [
+            "Argument-GPT",
+            "vergelijkingstools",
+            "redeneermatrix"
+          ],
+          "examples_learner_behavior": [
+            "Reflecteren, bijsturen, scenario’s beoordelen"
+          ],
+          "risks_flags": [
+            "🔍 Overafhankelijkheid",
+            "⚠ Validatie van AI-logica vereist"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "De AI genereert zelfstandig oplossingen, scenario’s of creatieve voorstellen.",
+          "microdescriptors": [
+            "Min: Ideeën aanreiken",
+            "Max: Volledige oplossingsvoorstellen of creatieve plannen"
+          ],
+          "examples_ai_role": [
+            "Creatie-assistent",
+            "planmatige GPT",
+            "code-oplossers"
+          ],
+          "examples_learner_behavior": [
+            "Meebewegen, beoordelen of direct overnemen"
+          ],
+          "risks_flags": [
+            "🚨 Agencyverlies",
+            "⚠ Black-box denken zonder inzicht of checkmechanismen"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "card_id": "NL-EAI-EXAMPLE-0001",
+  "card_version": "1.0",
+  "status": "draft",
+  "mode": "advice",
+  "intended_use": {
+    "P_phase": "<uit rubrics/P>",
+    "setting": "<in-les|thuis|toets>",
+    "domain": "<vak>",
+    "level": "<niveau>"
+  },
+  "guardrails": {
+    "allowed": [
+      "<uit templates>"
+    ],
+    "not_allowed": [
+      "<uit templates>"
+    ],
+    "enforcement_modules": [
+      "GR_NO_FINAL_ANSWER"
+    ]
+  },
+  "myth_avoidance": [
+    "<module id uit myth_avoidance_modules>"
+  ],
+  "required_evidence_of_process": [
+    "<uit td_flag_controls of curator>"
+  ],
+  "byol": {
+    "teacher_prompt": "<assemble from teacher_prompt_template>",
+    "student_prompt": "<assemble from student_prompt_template>",
+    "output_contract": {
+      "schema_id": "eai_runlog_v1"
+    }
+  }
+}

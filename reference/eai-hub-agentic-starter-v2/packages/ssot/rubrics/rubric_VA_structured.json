@@ -1,0 +1,122 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "V_A",
+      "name": "Motivationele Vaardigheden",
+      "definition": "V_A meet het potentieel van AI om motivationele processen bij de leerling te ondersteunen: van extern aangestuurde inzet tot autonome, langetermijngerichte volharding.",
+      "interpretation": "Een hoge V_A-score betekent dat AI kán bijdragen aan motivatieontwikkeling, maar dit is alleen effectief als de leerling zelf betekenis ontleent aan het leerproces en keuzes maakt.",
+      "key_points": [
+        "Motivatie kan niet van buitenaf worden ‘gegeven’: AI ondersteunt, maar de leerling moet zelf willen.",
+        "Hoge TD + hoge V_A? → gevaar op oppervlakkige gedragsverandering of oversupport (geen duurzaam effect).",
+        "Langetermijnmotivatie vereist eigenaarschap, keuzevrijheid en zelfregulatie."
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI toont nauwelijks potentieel om motivatie te beïnvloeden of richting te geven.",
+          "microdescriptors": [
+            "Min: Alleen reminders of beloning",
+            "Max: Externe triggers zonder inhoud"
+          ],
+          "examples_ai_role": [
+            "Tijdmelders, puntensystemen"
+          ],
+          "examples_learner_behavior": [
+            "Doen om straf of beloning te vermijden"
+          ],
+          "risks_flags": [
+            "⚠ Externe motivatie zonder duurzame betrokkenheid"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI ondersteunt gecontroleerde motivatie via prestatiedoelen of standaardfeedback.",
+          "microdescriptors": [
+            "Min: Resultaatgericht scoren",
+            "Max: Doelen opleggen zonder keuzevrijheid"
+          ],
+          "examples_ai_role": [
+            "Scores, badges, deadline-prompts"
+          ],
+          "examples_learner_behavior": [
+            "Leren om te voldoen aan eisen, geen eigenaarschap"
+          ],
+          "risks_flags": [
+            "🔍 Vervreemding van leerdoelen mogelijk"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI helpt bij het zichtbaar maken van persoonlijke relevantie en keuzes.",
+          "microdescriptors": [
+            "Min: Doelen koppelen aan voorkeuren",
+            "Max: Keuzes binnen structuren aanbieden"
+          ],
+          "examples_ai_role": [
+            "Doelplanner, contextpersonaliser"
+          ],
+          "examples_learner_behavior": [
+            "Doelen kiezen en koppelen aan interesses"
+          ],
+          "risks_flags": [
+            "⚠ Motivatie fragiel bij beperkte autonomie"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI ondersteunt intrinsiek gemotiveerd gedrag door keuzevrijheid en zelfsturing.",
+          "microdescriptors": [
+            "Min: Zelf leerdoelen aanpassen",
+            "Max: Evaluatie van voortgang gekoppeld aan waarden"
+          ],
+          "examples_ai_role": [
+            "Zelfsturingsdashboards, motivatieprompts"
+          ],
+          "examples_learner_behavior": [
+            "Keuzes maken op basis van eigen doelen en feedback"
+          ],
+          "risks_flags": [
+            "🔍 Risico op overbelasting bij zwakke zelfregulatie"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI ondersteunt volharding, langetermijnmotivatie en reflectie op waarden.",
+          "microdescriptors": [
+            "Min: Prompting op doorzetten bij tegenslag",
+            "Max: Eigenaarschap over betekenisvolle doelen"
+          ],
+          "examples_ai_role": [
+            "Persoonlijke groeiplanners, waarde-gedreven reflectiebots"
+          ],
+          "examples_learner_behavior": [
+            "Volhouden bij tegenslag, zelf leerroute sturen"
+          ],
+          "risks_flags": [
+            "🚨 Perfectionisme, faalangst of uitputting → welzijnsbewaking vereist"
+          ]
+        }
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Deci, E. L., & Ryan, R. M. (2000). The “what” and “why” of goal pursuits: Human needs and the self-determination of behavior. Psychological Inquiry, 11(4), 227–268.",
+          "relevance": "Autonome motivatie ontstaat alleen als de leerling zich eigenaar voelt van doelen."
+        },
+        {
+          "source": "Reeve, J. (2012). A Self-Determination Theory Perspective on Student Engagement. In Handbook of Research on Student Engagement. Springer.",
+          "relevance": "Motivatie versterkt door keuzevrijheid, eigenaarschap en zelfregulatie."
+        },
+        {
+          "source": "Vansteenkiste, M., Simons, J., & Lens, W. (2004). Motivatie binnen onderwijs: Zelfdeterminatietheorie toegepast. Acco.",
+          "relevance": "Duurzame motivatie vraagt internalisatie van waarden en doelen."
+        },
+        {
+          "source": "Surma, T., et al. (2019). Wijze lessen: 12 bouwstenen voor effectieve didactiek. Ten Brink Uitgevers.",
+          "relevance": "Motivatie wordt versterkt door duidelijke leerdoelen, feedback en zelfsturing."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan motivatieontwikkeling, zelfdeterminatie en eigenaarschap in leren."
+    }
+  ]
+}

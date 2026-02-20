@@ -1,0 +1,202 @@
+[
+  {
+    "source_id": "SRC_DUNLOSKY_2013",
+    "type": "systematic_review",
+    "authors": [
+      "Dunlosky, J.",
+      "Rawson, K.A.",
+      "Marsh, E.J.",
+      "Nathan, M.J.",
+      "Willingham, D.T."
+    ],
+    "year": 2013,
+    "title": "Improving Students’ Learning With Effective Learning Techniques: Promising Directions From Cognitive and Educational Psychology",
+    "venue": "Psychological Science in the Public Interest"
+  },
+  {
+    "source_id": "SRC_ROEDIGER_KARPICKE_2006",
+    "type": "randomized_trial",
+    "authors": [
+      "Roediger, H.L.",
+      "Karpicke, J.D."
+    ],
+    "year": 2006,
+    "title": "Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention",
+    "venue": "Psychological Science"
+  },
+  {
+    "source_id": "SRC_SWELLER_1988",
+    "type": "theory",
+    "authors": [
+      "Sweller, J."
+    ],
+    "year": 1988,
+    "title": "Cognitive load during problem solving: Effects on learning",
+    "venue": "Cognitive Science"
+  },
+  {
+    "source_id": "SRC_PAAS_RENKL_SWELLER_2003",
+    "type": "theory",
+    "authors": [
+      "Paas, F.",
+      "Renkl, A.",
+      "Sweller, J."
+    ],
+    "year": 2003,
+    "title": "Cognitive Load Theory and Instructional Design: Recent developments",
+    "venue": "Educational Psychologist"
+  },
+  {
+    "source_id": "SRC_HATTIE_TIMPERLEY_2007",
+    "type": "systematic_review",
+    "authors": [
+      "Hattie, J.",
+      "Timperley, H."
+    ],
+    "year": 2007,
+    "title": "The Power of Feedback",
+    "venue": "Review of Educational Research"
+  },
+  {
+    "source_id": "SRC_BLACK_WILIAM_1998",
+    "type": "systematic_review",
+    "authors": [
+      "Black, P.",
+      "Wiliam, D."
+    ],
+    "year": 1998,
+    "title": "Assessment and Classroom Learning",
+    "venue": "Assessment in Education: Principles, Policy and Practice"
+  },
+  {
+    "source_id": "SRC_ROSENSHINE_2012",
+    "type": "handbook",
+    "authors": [
+      "Rosenshine, B."
+    ],
+    "year": 2012,
+    "title": "Principles of Instruction: Research-Based Strategies That All Teachers Should Know",
+    "venue": "American Educator"
+  },
+  {
+    "source_id": "SRC_CHI_WYLIE_2014",
+    "type": "theory",
+    "authors": [
+      "Chi, M.T.H.",
+      "Wylie, R."
+    ],
+    "year": 2014,
+    "title": "The ICAP Framework: Linking Cognitive Engagement to Active Learning Outcomes",
+    "venue": "Educational Psychologist"
+  },
+  {
+    "source_id": "SRC_ZIMMERMAN_2002",
+    "type": "theory",
+    "authors": [
+      "Zimmerman, B.J."
+    ],
+    "year": 2002,
+    "title": "Becoming a Self-Regulated Learner: An Overview",
+    "venue": "Theory Into Practice"
+  },
+  {
+    "source_id": "SRC_BUTLER_WINNE_1995",
+    "type": "theory",
+    "authors": [
+      "Butler, D.L.",
+      "Winne, P.H."
+    ],
+    "year": 1995,
+    "title": "Feedback and self-regulated learning: A theoretical synthesis",
+    "venue": "Review of Educational Research"
+  },
+  {
+    "source_id": "SRC_MAYER_2009",
+    "type": "handbook",
+    "authors": [
+      "Mayer, R.E."
+    ],
+    "year": 2009,
+    "title": "Multimedia Learning (2nd edition)",
+    "venue": "Cambridge University Press"
+  },
+  {
+    "source_id": "SRC_KIRSCHNER_SWELLER_CLARK_2006",
+    "type": "theory",
+    "authors": [
+      "Kirschner, P.A.",
+      "Sweller, J.",
+      "Clark, R.E."
+    ],
+    "year": 2006,
+    "title": "Why minimal guidance during instruction does not work: An analysis of the failure of constructivist, discovery, problem-based, experiential, and inquiry-based teaching",
+    "venue": "Educational Psychologist"
+  },
+  {
+    "source_id": "SRC_ERICSSON_1993",
+    "type": "theory",
+    "authors": [
+      "Ericsson, K.A.",
+      "Krampe, R.T.",
+      "Tesch-Römer, C."
+    ],
+    "year": 1993,
+    "title": "The role of deliberate practice in the acquisition of expert performance",
+    "venue": "Psychological Review"
+  },
+  {
+    "source_id": "SRC_SHUTE_2008",
+    "type": "systematic_review",
+    "authors": [
+      "Shute, V.J."
+    ],
+    "year": 2008,
+    "title": "Focus on Formative Feedback",
+    "venue": "Review of Educational Research"
+  },
+  {
+    "source_id": "SRC_NIST_AIRMF_2023",
+    "type": "policy",
+    "authors": [
+      "National Institute of Standards and Technology"
+    ],
+    "year": 2023,
+    "title": "AI Risk Management Framework (AI RMF 1.0)",
+    "venue": "NIST"
+  },
+  {
+    "source_id": "SRC_UNESCO_2023",
+    "type": "policy",
+    "authors": [
+      "UNESCO"
+    ],
+    "year": 2023,
+    "title": "Guidance for generative AI in education and research",
+    "venue": "UNESCO"
+  },
+  {
+    "source_id": "SRC_CEPEDA_2006",
+    "type": "meta_analysis",
+    "authors": [
+      "Cepeda, N.J.",
+      "Pashler, H.",
+      "Vul, E.",
+      "Wixted, J.T.",
+      "Rohrer, D."
+    ],
+    "year": 2006,
+    "title": "Distributed practice in verbal recall tasks: A review and quantitative synthesis",
+    "venue": "Psychological Bulletin"
+  },
+  {
+    "source_id": "SRC_KARPICKE_BLUNT_2011",
+    "type": "randomized_trial",
+    "authors": [
+      "Karpicke, J.D.",
+      "Blunt, J.R."
+    ],
+    "year": 2011,
+    "title": "Retrieval practice produces more learning than elaborative studying with concept mapping",
+    "venue": "Science"
+  }
+]

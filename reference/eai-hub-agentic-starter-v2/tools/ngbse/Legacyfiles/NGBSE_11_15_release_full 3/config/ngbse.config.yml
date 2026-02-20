@@ -1,0 +1,29 @@
+
+orchestrator:
+  inter_collector_sleep_seconds: 0.2
+  clearnet_only_mode: false
+collectors:
+  enabled: ["censys", "leakix", "shodan", "wayback", "urlscan", "github"]
+scoring:
+  quality_weights:
+    shodan: 1.0
+    censys: 1.0
+    leakix: 0.9
+    github: 0.8
+    urlscan: 0.7
+    wayback: 0.5
+    default: 0.4
+  eai_weights: { w1: 0.3, w2: 0.3, w3: 0.2, w4: 0.15, w5: 0.05 }
+  eai_defaults: { W_V: 0.7, D_A: 0.7, D_B: 0.7, T: 0.7, A: 0.7 }
+predictive_synthesis:
+  enabled: true
+  prior_probability: 0.1
+  llm_endpoint: "http://localhost:11434/api/generate"
+  llm_model: "phi3:mini"
+  themes:
+    Cloud_Token_Leakage: {keywords: ["sv=", "signature=", "blob.core.windows.net"], future_scenario: "Ongeautoriseerde Toegang tot Cloud Data"}
+    Public_Code_Exposure: {keywords: ["github", "oidc", "token"], future_scenario: "Misbruik van Gelekte Credentials"}
+reverse_llm:
+  enabled: true
+validation: { enabled: true, allowlist_file: "config/validation.allowlist.txt" }
+exports: { csv: true, stix21: true }

@@ -1,0 +1,12 @@
+services:
+  ngbse:
+    build: .
+    image: ngbse:17.1
+    container_name: ngbse
+    env_file:
+      - .env
+    volumes:
+      - ./out:/app/out
+      - ./seeds.jsonl:/app/seeds.jsonl
+      - ./ngbse.config.yml:/app/ngbse.config.yml
+    command: ["ngbse", "--config", "ngbse.config.yml", "--seeds", "seeds.jsonl", "--out", "out"]

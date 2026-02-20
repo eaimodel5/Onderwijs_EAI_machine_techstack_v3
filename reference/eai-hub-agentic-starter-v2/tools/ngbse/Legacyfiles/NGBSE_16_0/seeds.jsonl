@@ -1,0 +1,3 @@
+{"id":"S-001","query":"https://industrialcyber.co","type":"news","priority":0.9,"time_window_days":30}
+{"id":"S-002","query":"https://cyble.com","type":"ti_post","priority":0.8,"time_window_days":45}
+{"id":"S-003","query":"https://example.com/security/report.pdf","type":"pdf","priority":0.6,"time_window_days":90}

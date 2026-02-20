@@ -1,0 +1,34 @@
+[
+  {
+    "id": "seed1",
+    "emotion": "verdriet",
+    "type": "reflection",
+    "label": "Reflectievraag",
+    "triggers": ["verdriet", "huil"],
+    "response": { "nl": "Het klinkt alsof je je verdrietig voelt, wil je erover praten?" },
+    "context": { "severity": "medium", "situation": "therapy" },
+    "meta": { "priority": 1, "weight": 1, "confidence": 0.8, "usageCount": 0 },
+    "tags": ["verdriet"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z",
+    "createdBy": "system",
+    "isActive": true,
+    "version": "1.0.0"
+  },
+  {
+    "id": "seed2",
+    "emotion": "boosheid",
+    "type": "suggestion",
+    "label": "Suggestie",
+    "triggers": ["boos", "kwaad"],
+    "response": { "nl": "Het is begrijpelijk dat je boos bent. Probeer diep adem te halen." },
+    "context": { "severity": "medium", "situation": "therapy" },
+    "meta": { "priority": 1, "weight": 1, "confidence": 0.8, "usageCount": 0 },
+    "tags": ["boos"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z",
+    "createdBy": "system",
+    "isActive": true,
+    "version": "1.0.0"
+  }
+]

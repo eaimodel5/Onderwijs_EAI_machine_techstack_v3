@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/eai-tool-spec-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "EAI Tool Spec v1",
+  "required": [
+    "tool_id",
+    "card_id",
+    "ui_flow",
+    "data_contracts"
+  ],
+  "properties": {
+    "tool_id": {
+      "type": "string"
+    },
+    "card_id": {
+      "type": "string"
+    },
+    "ui_flow": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "data_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

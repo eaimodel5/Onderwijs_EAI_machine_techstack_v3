@@ -1,0 +1,126 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "V_M",
+      "name": "Metacognitieve Vaardigheden",
+      "definition": "V_M meet in hoeverre AI de leerling ondersteunt in het volledige proces van zelfstandig plannen, monitoren, evalueren en aanpassen van het leerproces.",
+      "interpretation": "Metacognitieve ondersteuning moet dynamisch zijn: geen losse fases, maar voortdurende cyclische interacties.",
+      "key_points": [
+        "Zonder adaptieve monitoring en actieve bijsturing wordt zelfregulatie ineffectief.",
+        "Plannen, monitoren en reflecteren moeten geïntegreerd ondersteund worden.",
+        "Bij overmatige AI-sturing dreigt afhankelijkheid of agencyverlies."
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI heeft nauwelijks potentieel om zelfregulatie te ondersteunen.",
+          "microdescriptors": [
+            "Min: Alleen eindfeedback",
+            "Max: Geen zicht op leerproces"
+          ],
+          "examples_ai_role": [
+            "Deadlinemeldingen zonder context"
+          ],
+          "examples_learner_behavior": [
+            "Reactief gedrag, werken op het laatste moment"
+          ],
+          "risks_flags": [
+            "⚠ Impulsief leren, kans op burn-out"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI ondersteunt planning of evaluatie, maar zonder verbinding.",
+          "microdescriptors": [
+            "Min: Alleen plannen",
+            "Max: Alleen reflecteren na afloop"
+          ],
+          "examples_ai_role": [
+            "Planningsapps, eenvoudige checklists"
+          ],
+          "examples_learner_behavior": [
+            "Plannen zonder monitoring, reflectie zonder actie"
+          ],
+          "risks_flags": [
+            "🔍 Fragmentatie in zelfregulatiecyclus"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI ondersteunt afzonderlijke stappen van zelfregulatie, met enige integratie.",
+          "microdescriptors": [
+            "Min: Monitoring tijdens taakuitvoering",
+            "Max: Reflectievragen en logboeken"
+          ],
+          "examples_ai_role": [
+            "Dashboard met voortgangsindicatoren"
+          ],
+          "examples_learner_behavior": [
+            "Zelfcheck uitvoeren, oppervlakkig bijsturen"
+          ],
+          "risks_flags": [
+            "⚠ Reflectie zonder diepgaande aanpassing van leerstrategie"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI ondersteunt dynamische regulatie: plannen, monitoren, evalueren en bijstellen in samenhang.",
+          "microdescriptors": [
+            "Min: Adaptieve terugkoppeling per leerfase",
+            "Max: Doorlopende feedback met leeraanpassing"
+          ],
+          "examples_ai_role": [
+            "Adaptieve leerpadbegeleiding, realtime prompts"
+          ],
+          "examples_learner_behavior": [
+            "Bijstellen van aanpak op basis van signalen"
+          ],
+          "risks_flags": [
+            "🔍 Overmatige afhankelijkheid van AI voor zelfinzicht"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI ondersteunt gepersonaliseerde meta-reflectie en autonome leerstrategieën.",
+          "microdescriptors": [
+            "Min: Prompten van zelfgegenereerde strategieën",
+            "Max: Ondersteuning van eigen regulatieroutines"
+          ],
+          "examples_ai_role": [
+            "Metacognitieve coachbots, reflectietrackers"
+          ],
+          "examples_learner_behavior": [
+            "Formuleren van leerstrategieën, bijhouden en aanpassen"
+          ],
+          "risks_flags": [
+            "🚨 Agencyverlies bij oversupport → leerling volgt AI zonder eigenaarschap"
+          ]
+        }
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Zimmerman, B. J. (2002). Becoming a self-regulated learner: An overview. Theory into Practice, 41(2), 64–70.",
+          "relevance": "Zelfregulatie is cyclisch en vereist actieve betrokkenheid."
+        },
+        {
+          "source": "Panadero, E. (2017). A review of self-regulated learning: Six models and four directions for research. Frontiers in Psychology, 8, 422.",
+          "relevance": "Effectieve metacognitieve begeleiding vereist integratie van alle regulatiefasen."
+        },
+        {
+          "source": "Impact at the Core. (2021). Erasmus Universiteit Rotterdam.",
+          "relevance": "Adaptieve zelfregulatie is essentieel voor duurzame leerontwikkeling."
+        },
+        {
+          "source": "Surma, T., et al. (2019). Wijze lessen: 12 bouwstenen voor effectieve didactiek. Ten Brink Uitgevers.",
+          "relevance": "Diepgaande leerstrategieën vereisen beheersing van cognitieve en metacognitieve vaardigheden."
+        },
+        {
+          "source": "SLO & Kennisnet. (2022). Vaardighedenraamwerk PO en VO.",
+          "relevance": "Leerlijnen voor metacognitie omvatten reflectie, sturing en planning als zelfstandige vaardigheid."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan leerdoelen voor zelfregulerend leren en leerstrategieën."
+    }
+  ]
+}

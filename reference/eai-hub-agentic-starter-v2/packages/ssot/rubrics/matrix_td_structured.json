@@ -1,0 +1,222 @@
+[
+  {
+    "P_score_range": "0.1–0.2",
+    "V_sub": "V_C",
+    "Kernleerhandeling": "organisatie van informatiebronnen",
+    "Microdescriptor_min": "selecteert bestanden zonder inhoudelijke afweging",
+    "Microdescriptor_max": "structureert informatie op relevantie",
+    "Didactische_functie": "Versterkt conceptbegrip en maakt transfer naar nieuwe context mogelijk.",
+    "Risico_AI_overname": "AI voert denkhandeling uit → risico op oppervlakkig begrip.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "⚠ TD_agency_risk"
+  },
+  {
+    "P_score_range": "0.1–0.2",
+    "V_sub": "V_M",
+    "Kernleerhandeling": "plannen van leeractiviteiten",
+    "Microdescriptor_min": "volgt opgelegde planning",
+    "Microdescriptor_max": "maakt een eigen leerplan met subdoelen",
+    "Didactische_functie": "Stimuleert zelfregulatie door reflectie op het eigen leerproces.",
+    "Risico_AI_overname": "AI reflecteert in plaats van leerling → agencyverlies bij zelfsturing.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.1–0.2",
+    "V_sub": "V_S",
+    "Kernleerhandeling": "voorbereiden van samenwerking",
+    "Microdescriptor_min": "ontvangt groepsinformatie",
+    "Microdescriptor_max": "neemt initiatief in groepsindeling",
+    "Didactische_functie": "Bevordert interactief leren via samenwerking en perspectiefwisseling.",
+    "Risico_AI_overname": "AI vervangt samenwerking → risico op passieve communicatie en groepsdenken.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.1–0.2",
+    "V_sub": "V_A",
+    "Kernleerhandeling": "initiële motivatie activeren",
+    "Microdescriptor_min": "reageert op externe prikkel",
+    "Microdescriptor_max": "verwoordt persoonlijke leerdoelstelling",
+    "Didactische_functie": "Verankert motivatie door koppeling aan persoonlijke doelen en volharding.",
+    "Risico_AI_overname": "AI bepaalt motivatiekaders → verzwakt persoonlijke betrokkenheid.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.3–0.4",
+    "V_sub": "V_C",
+    "Kernleerhandeling": "activeren van voorkennis",
+    "Microdescriptor_min": "herkent eerder behandelde termen",
+    "Microdescriptor_max": "verbindt voorkennis met nieuw onderwerp",
+    "Didactische_functie": "Versterkt conceptbegrip en maakt transfer naar nieuwe context mogelijk.",
+    "Risico_AI_overname": "AI voert denkhandeling uit → risico op oppervlakkig begrip.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.3–0.4",
+    "V_sub": "V_M",
+    "Kernleerhandeling": "bewustwording van eigen begrip",
+    "Microdescriptor_min": "geeft aan iets wel/niet te kennen",
+    "Microdescriptor_max": "verwoordt sterktes en twijfels",
+    "Didactische_functie": "Stimuleert zelfregulatie door reflectie op het eigen leerproces.",
+    "Risico_AI_overname": "AI reflecteert in plaats van leerling → agencyverlies bij zelfsturing.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.3–0.4",
+    "V_sub": "V_S",
+    "Kernleerhandeling": "delen van perspectieven of ervaringen",
+    "Microdescriptor_min": "vertelt eigen ervaring",
+    "Microdescriptor_max": "vergelijkt ervaringen met anderen",
+    "Didactische_functie": "Bevordert interactief leren via samenwerking en perspectiefwisseling.",
+    "Risico_AI_overname": "AI vervangt samenwerking → risico op passieve communicatie en groepsdenken.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.3–0.4",
+    "V_sub": "V_A",
+    "Kernleerhandeling": "verkennen van persoonlijke relevantie",
+    "Microdescriptor_min": "geeft voorkeur aan",
+    "Microdescriptor_max": "verwoordt waarom dit thema belangrijk is",
+    "Didactische_functie": "Verankert motivatie door koppeling aan persoonlijke doelen en volharding.",
+    "Risico_AI_overname": "AI bepaalt motivatiekaders → verzwakt persoonlijke betrokkenheid.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.5–0.6",
+    "V_sub": "V_C",
+    "Kernleerhandeling": "begrijpen en analyseren van uitleg of voorbeelden",
+    "Microdescriptor_min": "volgt conceptuitleg zonder verdieping",
+    "Microdescriptor_max": "analyseert voorbeelden en benoemt verschillen",
+    "Didactische_functie": "Versterkt conceptbegrip en maakt transfer naar nieuwe context mogelijk.",
+    "Risico_AI_overname": "AI voert denkhandeling uit → risico op oppervlakkig begrip.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "🟡 Underuse_warning"
+  },
+  {
+    "P_score_range": "0.5–0.6",
+    "V_sub": "V_M",
+    "Kernleerhandeling": "toepassen van feedback in het eigen leerproces",
+    "Microdescriptor_min": "leest feedback",
+    "Microdescriptor_max": "past aanpak aan op basis van feedback",
+    "Didactische_functie": "Stimuleert zelfregulatie door reflectie op het eigen leerproces.",
+    "Risico_AI_overname": "AI reflecteert in plaats van leerling → agencyverlies bij zelfsturing.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "✅ TD_balanced"
+  },
+  {
+    "P_score_range": "0.5–0.6",
+    "V_sub": "V_S",
+    "Kernleerhandeling": "uitleg navragen en verduidelijken in samenwerking",
+    "Microdescriptor_min": "stelt verduidelijkingsvraag",
+    "Microdescriptor_max": "bouwt voort op uitleg van ander",
+    "Didactische_functie": "Bevordert interactief leren via samenwerking en perspectiefwisseling.",
+    "Risico_AI_overname": "AI vervangt samenwerking → risico op passieve communicatie en groepsdenken.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "✅ TD_balanced"
+  },
+  {
+    "P_score_range": "0.5–0.6",
+    "V_sub": "V_A",
+    "Kernleerhandeling": "actieve betrokkenheid bij eigen leerdoel",
+    "Microdescriptor_min": "werkt mee aan gedeeld doel",
+    "Microdescriptor_max": "vertaalt doel naar eigen motivatie",
+    "Didactische_functie": "Verankert motivatie door koppeling aan persoonlijke doelen en volharding.",
+    "Risico_AI_overname": "AI bepaalt motivatiekaders → verzwakt persoonlijke betrokkenheid.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "🟤 Dialogic_loss"
+  },
+  {
+    "P_score_range": "0.7–0.8",
+    "V_sub": "V_C",
+    "Kernleerhandeling": "toepassen van kennis op nieuwe situaties",
+    "Microdescriptor_min": "herhaalt bekende oplossing",
+    "Microdescriptor_max": "past concept toe in nieuw voorbeeld",
+    "Didactische_functie": "Versterkt conceptbegrip en maakt transfer naar nieuwe context mogelijk.",
+    "Risico_AI_overname": "AI voert denkhandeling uit → risico op oppervlakkig begrip.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "✅ TD_balanced"
+  },
+  {
+    "P_score_range": "0.7–0.8",
+    "V_sub": "V_M",
+    "Kernleerhandeling": "monitoren en bijsturen van eigen aanpak",
+    "Microdescriptor_min": "herkent fout of vastloper",
+    "Microdescriptor_max": "past strategie doelgericht aan",
+    "Didactische_functie": "Stimuleert zelfregulatie door reflectie op het eigen leerproces.",
+    "Risico_AI_overname": "AI reflecteert in plaats van leerling → agencyverlies bij zelfsturing.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "🚨 AI_dominance"
+  },
+  {
+    "P_score_range": "0.7–0.8",
+    "V_sub": "V_S",
+    "Kernleerhandeling": "constructieve samenwerking en feedback",
+    "Microdescriptor_min": "reageert op idee van ander",
+    "Microdescriptor_max": "verbindt ideeën en formuleert gezamenlijk voorstel",
+    "Didactische_functie": "Bevordert interactief leren via samenwerking en perspectiefwisseling.",
+    "Risico_AI_overname": "AI vervangt samenwerking → risico op passieve communicatie en groepsdenken.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "🚨 AI_dominance"
+  },
+  {
+    "P_score_range": "0.7–0.8",
+    "V_sub": "V_A",
+    "Kernleerhandeling": "volhouden bij weerstand of tegenslag",
+    "Microdescriptor_min": "blijft meedoen ondanks frustratie",
+    "Microdescriptor_max": "herformuleert doel om motivatie vast te houden",
+    "Didactische_functie": "Verankert motivatie door koppeling aan persoonlijke doelen en volharding.",
+    "Risico_AI_overname": "AI bepaalt motivatiekaders → verzwakt persoonlijke betrokkenheid.",
+    "Aanbevolen_TD_norm": 0.5,
+    "F_TD_flag": "🟤 Dialogic_loss"
+  },
+  {
+    "P_score_range": "0.9–1.0",
+    "V_sub": "V_C",
+    "Kernleerhandeling": "evalueren en generaliseren van kennis",
+    "Microdescriptor_min": "vergelijking van meerdere concepten",
+    "Microdescriptor_max": "formuleren van algemene principes",
+    "Didactische_functie": "Versterkt conceptbegrip en maakt transfer naar nieuwe context mogelijk.",
+    "Risico_AI_overname": "AI voert denkhandeling uit → risico op oppervlakkig begrip.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "🚨 AI_dominance"
+  },
+  {
+    "P_score_range": "0.9–1.0",
+    "V_sub": "V_M",
+    "Kernleerhandeling": "meta-reflectie op leerproces",
+    "Microdescriptor_min": "denkt terug op aanpak",
+    "Microdescriptor_max": "formuleert verbeterpunten en leerstrategieën",
+    "Didactische_functie": "Stimuleert zelfregulatie door reflectie op het eigen leerproces.",
+    "Risico_AI_overname": "AI reflecteert in plaats van leerling → agencyverlies bij zelfsturing.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "✅ TD_balanced"
+  },
+  {
+    "P_score_range": "0.9–1.0",
+    "V_sub": "V_S",
+    "Kernleerhandeling": "groepsreflectie en besluitvorming",
+    "Microdescriptor_min": "geeft mening over samenwerking",
+    "Microdescriptor_max": "bouwt mee aan gezamenlijke evaluatie",
+    "Didactische_functie": "Bevordert interactief leren via samenwerking en perspectiefwisseling.",
+    "Risico_AI_overname": "AI vervangt samenwerking → risico op passieve communicatie en groepsdenken.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "✅ TD_balanced"
+  },
+  {
+    "P_score_range": "0.9–1.0",
+    "V_sub": "V_A",
+    "Kernleerhandeling": "bewust herbevestigen van persoonlijke waarden",
+    "Microdescriptor_min": "relateert ervaring aan eigen doelen",
+    "Microdescriptor_max": "stelt nieuwe persoonlijke doelen bij",
+    "Didactische_functie": "Verankert motivatie door koppeling aan persoonlijke doelen en volharding.",
+    "Risico_AI_overname": "AI bepaalt motivatiekaders → verzwakt persoonlijke betrokkenheid.",
+    "Aanbevolen_TD_norm": 0.3,
+    "F_TD_flag": "✅ TD_balanced"
+  }
+]

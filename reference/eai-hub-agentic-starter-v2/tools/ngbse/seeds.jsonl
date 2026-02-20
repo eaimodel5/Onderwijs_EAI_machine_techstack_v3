@@ -1,0 +1,20 @@
+{"id":"S-ZERODAYS-1","query":"https://zerodays.org","type":"web","priority":0.9,"time_window_days":60}
+{"id":"S-ZERODAYS-2","query":"https://zerodays.ro","type":"web","priority":0.8,"time_window_days":60}
+{"query": "domain:example.com", "type": "ti_post", "priority": 0.7, "id": "S-A9DFEE32", "time_window_days": 60}
+{"query": "token actions.amazonaws.com", "type": "code", "priority": 0.7, "id": "S-73BC5D79", "time_window_days": 60}
+{"query": "services.service_name:HTTPS AND location.country:NL", "type": "infra", "priority": 0.7, "id": "S-A345DF53", "time_window_days": 60}
+{"query": "mongodb open", "type": "leak", "priority": 0.7, "id": "S-C9EFF029", "time_window_days": 60}
+{"id": "S-81182198", "query": "title:\"FortiGate SSL VPN\" country:\"NL\"", "type": "infra", "priority": 0.9, "time_window_days": 60}
+{"id": "S-23B50A80", "query": "services.software.vendor:\"Citrix\" AND country:NL", "type": "infra", "priority": 0.8, "time_window_days": 60}
+{"id": "S-49E9928E", "query": "NCSC-NL/citrix-2025 \"live-host-bash-check\"", "type": "code", "priority": 0.7, "time_window_days": 60}
+{"id": "S-F7B55DF1", "query": "blob.core.windows.net?sv=", "type": "ti_post", "priority": 0.9, "time_window_days": 60}
+{"id": "S-684CB2AE", "query": "x-amz-signature=", "type": "ti_post", "priority": 0.7, "time_window_days": 60}
+{"id": "S-1DE6AECF", "query": "X-Goog-Signature=", "type": "ti_post", "priority": 0.7, "time_window_days": 60}
+{"id": "S-630299DD", "query": "\"token.actions.githubusercontent.com\" \"aud\"", "type": "code", "priority": 0.8, "time_window_days": 60}
+{"id": "S-90AAD10F", "query": "\"sts.amazonaws.com\" \"sub\":\"repo:\"", "type": "code", "priority": 0.7, "time_window_days": 60}
+{"id": "S-ADD2A9FE", "query": "openid-configuration", "type": "infra", "priority": 0.6, "time_window_days": 60}
+{"id": "S-B4533423", "query": "port:1883 MQTT country:NL", "type": "infra", "priority": 0.8, "time_window_days": 60}
+{"id": "S-C9E57CF0", "query": "allow_anonymous true", "type": "leak", "priority": 0.7, "time_window_days": 60}
+{"id": "S-2B5EF8F8", "query": "\"Index of\" mqtt", "type": "ti_post", "priority": 0.6, "time_window_days": 60}
+{"id": "S-0DDE2C41", "query": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "type": "archive", "priority": 0.8, "time_window_days": 60}
+{"id": "S-EE83A985", "query": "site:readthedocs.io \"FortiGate\" config", "type": "web", "priority": 0.5, "time_window_days": 60}

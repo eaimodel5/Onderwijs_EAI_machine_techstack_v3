@@ -1,0 +1,114 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "V_C",
+      "name": "Cognitieve Vaardigheden",
+      "definition": "V_C meet het potentieel van AI om cognitieve vaardigheden te ondersteunen, zoals begrijpen, analyseren, redeneren en kritisch toepassen binnen en buiten een vakdomein.",
+      "interpretation": "Cognitief potentieel is alleen waardevol als de leerling zélf de denkhandeling uitvoert. Bij hoge V_C én hoge TD (> 0.6) is sprake van inhoudelijke overname zonder leereffect.",
+      "key_points": [
+        "AI mag cognitief denken ondersteunen, maar niet vervangen.",
+        "Bij hoge TD treedt inhoudelijke vervanging op: overname van redeneringen → geen begripsontwikkeling.",
+        "Score alleen hoog als AI betekenisvol bijdraagt aan denkproces én leerling actief is."
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI toont nauwelijks potentieel om begripsvorming, analyse of toepassing te ondersteunen.",
+          "microdescriptors": [
+            "Min: Statische herhaling van losse feiten",
+            "Max: Geen begripsvorming mogelijk"
+          ],
+          "examples_ai_role": [
+            "Flashcards, opsommingen zonder uitleg"
+          ],
+          "examples_learner_behavior": [
+            "Reproduceren zonder begrip"
+          ],
+          "risks_flags": [
+            "⚠ Geen bijdrage aan cognitieve groei mogelijk"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI ondersteunt beperkte kennisreproductie in herkenbare contexten.",
+          "microdescriptors": [
+            "Min: Herkenning van definities",
+            "Max: Eenvoudige toepassing binnen bekend voorbeeld"
+          ],
+          "examples_ai_role": [
+            "Woordenschattraining, basisquiz"
+          ],
+          "examples_learner_behavior": [
+            "Antwoorden herkennen zonder onderbouwing"
+          ],
+          "risks_flags": [
+            "🔍 Illusie van begrip; structuur zonder inhoud"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI kan verklarend denken en elementaire analyse binnen één domein ondersteunen.",
+          "microdescriptors": [
+            "Min: Verklaringen via vergelijkingen",
+            "Max: Oorzaak-gevolgredenering in beperkte context"
+          ],
+          "examples_ai_role": [
+            "Samenvattende prompts, oorzaak-gevolg uitleg"
+          ],
+          "examples_learner_behavior": [
+            "Verbanden leggen, concepten verklaren"
+          ],
+          "risks_flags": [
+            "⚠ Slechts oppervlakkige conceptontwikkeling zonder transfer"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI ondersteunt domeinoverstijgende analyse, alternatieve verklaringen en redeneringen.",
+          "microdescriptors": [
+            "Min: Twee perspectieven vergelijken",
+            "Max: Scenarioanalyse of tegenargumentatie"
+          ],
+          "examples_ai_role": [
+            "Argument-builder, what-if simulaties"
+          ],
+          "examples_learner_behavior": [
+            "Zelfstandig toetsen en contrasteren van inzichten"
+          ],
+          "risks_flags": [
+            "🔍 Overname redeneerstappen → TD-check vereist"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI faciliteert complexe probleemoplossing, kennisintegratie en toetsing van aannames.",
+          "microdescriptors": [
+            "Min: Strategieontwikkeling",
+            "Max: Hypothesetoetsing in onbekende context"
+          ],
+          "examples_ai_role": [
+            "Probleemoplosrobot, conceptmapper"
+          ],
+          "examples_learner_behavior": [
+            "Zelf opgestelde hypothesen toetsen, redeneringen bouwen"
+          ],
+          "risks_flags": [
+            "🚨 Hoog risico op black-box denken bij passieve leerlingactiviteit"
+          ]
+        }
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75–86.",
+          "relevance": "Zelf nadenken is essentieel voor begripsontwikkeling; AI-ondersteuning mag begeleiding zijn, geen vervanging."
+        },
+        {
+          "source": "De Bruyckere, P., Kirschner, P. A., & Hulshof, C. D. (2016). Urban Myths about Learning and Education. Academic Press.",
+          "relevance": "Creatief en kritisch denken vergt stevige kennisbasis en actieve verwerking door de leerling."
+        }
+      ],
+      "learning_objectives_link": "Linkt aan denkvaardigheden binnen Bloom-taxonomie en kennisoverdracht in curriculumdomeinen."
+    }
+  ]
+}

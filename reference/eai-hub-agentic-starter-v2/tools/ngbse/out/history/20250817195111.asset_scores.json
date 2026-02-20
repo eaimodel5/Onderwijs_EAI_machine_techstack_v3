@@ -1,0 +1,14 @@
+{
+  "shodan.io": {
+    "avg_e_ai_star": 0.4
+  },
+  "urlscan.io": {
+    "avg_e_ai_star": 0.54
+  },
+  "github.com": {
+    "avg_e_ai_star": 0.4000000000000001
+  },
+  "leakix.net": {
+    "avg_e_ai_star": 0.61
+  }
+}

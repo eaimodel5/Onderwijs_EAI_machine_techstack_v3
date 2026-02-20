@@ -1,0 +1,38 @@
+# Owner policy voor de Onderwijs EAI machine
+# Dit bestand is normatief: de printer moet dit afdwingen, ook als een gebruiker iets anders kiest.
+
+version: 2
+date: 2026-02-19
+defaults:
+  locale: nl-NL
+  ssot_version: "15.0.0"
+
+constraints:
+  # extra bovenop SSOT interaction_protocol.logic_gates
+  max_td_by_k:
+    K1: TD2
+    K2: TD4
+    K3: TD2
+    K4: TD8
+
+  # wanneer output altijd in een streng format moet
+  strict_output_contract_when:
+    - condition:
+        epistemic_reliability_min: E3
+      contract: "process_evidence_table_v1"
+
+  # minimale transparantie
+  trace_level:
+    default: "standard"
+    when_td_gte: TD5
+    level: "high"
+
+certification:
+  labels:
+    - id: "CERT_CLASSROOM_PRACTICE"
+      description: "Oefenen in de les, docent aanwezig, lage stakes"
+    - id: "CERT_HOMEWORK"
+      description: "Huiswerk, medium stakes, extra transparantie vereist"
+    - id: "CERT_ASSESSMENT_PREP"
+      description: "Toetsvoorbereiding, hoge stakes, expliciete verificatie en runlog verplicht"
+

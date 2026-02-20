@@ -1,0 +1,116 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "T",
+      "name": "Technologische integratie",
+      "definition": "T meet de mate waarin AI-technologie is geïntegreerd in de bestaande onderwijsinfrastructuur én daadwerkelijk didactisch ondersteunend is.",
+      "interpretation": "Technologische integratie is essentieel voor effectiviteit en gebruiksgemak. Zonder goede integratie kan AI ondanks inhoudelijke kwaliteit onderbenut raken.",
+      "key_points": [
+        "Bij volledige integratie (T ≥ 0.7) moeten expliciete privacybescherming, transparantie en adaptieve verantwoording geborgd zijn."
+      ],
+      "learning_objectives_link": "Koppeling aan leerdoelen rond infrastructuur, toegankelijkheid en didactische bruikbaarheid van AI.",
+      "scientific_rationale": [
+        {
+          "source": "Kirschner, P., & Selinger, M. (2003). The state of affairs in the integration of ICT in education: An international perspective. Technology, Pedagogy and Education, 12(1), 5–17.",
+          "relevance": "Technologie moet het leerproces ondersteunen zonder zichtbare frictie."
+        },
+        {
+          "source": "Salomon, G., & Perkins, D. N. (2005). Do technologies make us smarter? In D. Jonassen (Ed.), Handbook of research on educational communications and technology.",
+          "relevance": "Technologie versterkt leren alleen als het is ingebed in doelgerichte processen."
+        },
+        {
+          "source": "European Parliament. (2018). General Data Protection Regulation (GDPR).",
+          "relevance": "Privacy by design is verplicht bij verwerking van leerlingdata."
+        }
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI-toepassing werkt volledig los van bestaande onderwijssystemen.",
+          "microdescriptors": [
+            "Min: Alleen via externe website",
+            "Max: Handmatige aparte accounts vereist"
+          ],
+          "examples_ai_role": [
+            "Losse AI-tool zonder LMS-integratie"
+          ],
+          "examples_learner_behavior": [
+            "Moeite met toegang, lage gebruiksfrequentie"
+          ],
+          "risks_flags": [
+            "⚠ Hoge kans op afhakende gebruikers"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI kan handmatig gekoppeld worden aan onderwijsprocessen.",
+          "microdescriptors": [
+            "Min: Export/import nodig",
+            "Max: Koppeling via e-mail, losse bestanden"
+          ],
+          "examples_ai_role": [
+            "Exporteerbare rapportages, losse quiz-apps"
+          ],
+          "examples_learner_behavior": [
+            "Bestanden downloaden, resultaten apart verwerken"
+          ],
+          "risks_flags": [
+            "🔍 Efficiëntieverlies, foutgevoeligheid"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI integreert technisch in bestaande systemen, maar zonder didactische koppeling.",
+          "microdescriptors": [
+            "Min: API-koppeling beschikbaar",
+            "Max: Embedded content zonder adaptatie"
+          ],
+          "examples_ai_role": [
+            "Ingebouwde quizmodules, LMS-plugins zonder feedbackloop"
+          ],
+          "examples_learner_behavior": [
+            "Toegang via schoolplatform, maar zonder maatwerk"
+          ],
+          "risks_flags": [
+            "⚠ Kans op oppervlakkige toepassing"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI integreert naadloos én ondersteunt didactische workflows.",
+          "microdescriptors": [
+            "Min: Automatische datastroom naar leermanagementsystemen",
+            "Max: Gepersonaliseerde terugkoppeling mogelijk"
+          ],
+          "examples_ai_role": [
+            "Adaptieve AI in ELO, automatische voortgangsmonitoring"
+          ],
+          "examples_learner_behavior": [
+            "Feedback ontvangen en verwerken in eigen leerproces"
+          ],
+          "risks_flags": [
+            "🔍 Verhoogde databelasting vereist dataprivacy-check"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI is diep verweven met onderwijskundig ontwerp en leerdoelen.",
+          "microdescriptors": [
+            "Min: Dynamische koppeling leerdoel → AI-interventie",
+            "Max: Continue aanpassing op klas- en individueel niveau"
+          ],
+          "examples_ai_role": [
+            "Volledig geïntegreerde adaptieve leeromgeving"
+          ],
+          "examples_learner_behavior": [
+            "Geïndividualiseerde leerpaden volgen"
+          ],
+          "risks_flags": [
+            "🚨 Hoog risico op dataverslaving → sterke ethische borging nodig"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+# EAI Model 6.5 - Master Configuration
+# Nederlandse Configuratie voor Onderwijscontext
+
+eai_runtime:
+  version: "6.5"
+  language: "nl"
+  context: "onderwijs"
+  
+reflection_engine:
+  name: "EAI_ReflectRuntime"
+  max_depth: 3
+  timeout_seconds: 300
+  
+seed_management:
+  default_ttl_days: 30
+  max_active_seeds: 50
+  cleanup_interval: "daily"
+  
+didactic_framework:
+  focus: "leerling_centraal"
+  ai_role: "ondersteunend"
+  transparency: "volledig"
+  
+compliance:
+  framework: "EU_AI_Act"
+  education_specific: true
+  dutch_privacy_law: true
+  sal_layer_enabled: true
+  
+parameters:
+  core_parameters:
+    - P  # Procesfase-specificiteit
+    - V  # Vaardigheidsondersteuning (V_C, V_M, V_S, V_A)
+    - D_A  # AI-verwerkingsniveau
+    - D_Bc # Correctietoezicht
+    - T  # Technologische integratie
+    - A  # Autonomiecoëfficiënt
+    - B  # Biascorrectie
+  
+  derived_parameters:
+    - TD  # Taakdichtheid
+    - F_TD # Taakdichtheidscorrectie
+    - C  # Compliance factor
+    - W_V # Gewogen vaardigheid
+    
+chain_of_thought:
+  default_steps:
+    - Explain
+    - Validate
+    - Assumptions
+    - Alternatives
+    - Contextualize
+  
+  optional_steps:
+    - Counterfactuals
+    - Recursive_Critique
+    - Domain_Frameworks
+    - Roleplay
+    
+flags_system:
+  stop_flags:
+    symbol: "🚫"
+    description: "Kritieke tekortkoming"
+    conditions:
+      - "D_A < 0.2"
+      - "B > 0.7"
+      - "A < 0.3 and P > 0.8"
+  
+  warning_flags:
+    symbol: "⚠️"
+    description: "Aandachtspunten"
+    conditions:
+      - "0.2 <= D_A < 0.5"
+      - "0.5 < B <= 0.7"
+      - "A < 0.5 and P > 0.6"
+  
+  success_flags:
+    symbol: "✅"
+    description: "Didactisch verantwoord"
+    
+branding:
+  system_name: "EAI Model 6.5"
+  runtime_name: "EAI Runtime"
+  primary_color: "lime"
+  theme_support: true
+  
+user_roles:
+  admin:
+    permissions:
+      - full_access
+      - user_management
+      - system_config
+      - audit_trail
+  docent:
+    permissions:
+      - create_evaluations
+      - view_analytics
+      - manage_students
+      - seed_management
+  onderzoeker:
+    permissions:
+      - advanced_analytics
+      - export_data
+      - research_access
+      - pattern_analysis
+  leerling:
+    permissions:
+      - basic_access
+      - self_evaluation
+      - view_own_seeds
+      - reflection_tools
+
+analysis_workflow:
+  blocks:
+    - context_collection
+    - rubric_loading
+    - lssl_analysis
+    - chain_of_thought_flow
+    - flags_detection
+    - td_analysis
+    - compliance_check
+    - eai_score_calculation
+    - parameter_relations_analysis
+    - sal_reflection
+    - advice_generation
+    - lim_profiel
+    - rapportage_generatie
+
+reporting:
+  formats:
+    - html
+    - docx
+    - json
+  include_audit_trail: true
+  include_lim_profile: true
+  multilingual_support: false
+  default_language: "nl"

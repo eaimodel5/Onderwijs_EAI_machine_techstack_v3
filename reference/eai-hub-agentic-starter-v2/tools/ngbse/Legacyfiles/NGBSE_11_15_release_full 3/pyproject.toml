@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ngbse"
+version = "11.15"
+description = "NGBSE — Next-Gen Baseline Security Engine (11.15, online-only LLM)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name="NGBSE Team"}]
+license = {text = "Proprietary"}
+dependencies = [
+  "requests>=2.31.0",
+  "PyYAML>=6.0.1",
+  "python-docx>=1.0.0",
+  "python-dotenv>=1.0.1",
+  "beautifulsoup4>=4.12.3",
+  "stix2>=3.0.1"
+]
+
+[project.scripts]
+ngbse = "engine.cli:main"
+
+[tool.setuptools.package-data]
+"*" = ["*.yml","*.yaml","*.txt","*.md"]
+
+[tool.setuptools]
+packages = {find = {}}

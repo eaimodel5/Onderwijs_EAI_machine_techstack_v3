@@ -1,0 +1,126 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "V_S",
+      "name": "Sociale Vaardigheden",
+      "definition": "V_S meet het potentieel van AI om sociale interactievaardigheden te ondersteunen: van luistervaardigheid en constructieve feedback tot groepsreflectie, empathie en conflicthantering.",
+      "interpretation": "Een hoge V_S-score betekent dat AI kan bijdragen aan sociale interactie, maar het is cruciaal dat de leerling zelf actief deelneemt aan perspectiefwisseling en samenwerking.",
+      "key_points": [
+        "AI mag samenwerking ondersteunen, maar mag het sociale leerproces nooit overnemen.",
+        "Bij hoge TD én hoge V_S: verhoogd risico op conformisme, dominantie of afname van kritisch dialooggedrag.",
+        "Sociaal leren vereist co-regulatie en intentionele samenwerking."
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI biedt nauwelijks ondersteuning voor sociale interactie of samenwerking.",
+          "microdescriptors": [
+            "Min: Monologische communicatie",
+            "Max: Geen respons op sociale input"
+          ],
+          "examples_ai_role": [
+            "Alleen zenden, geen interactie mogelijk"
+          ],
+          "examples_learner_behavior": [
+            "Reageren zonder afstemming of luisteren"
+          ],
+          "risks_flags": [
+            "⚠ Echokamer-activiteit, geen interactief leren"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI ondersteunt basale dialogen, maar mist diepgang of perspectiefwisseling.",
+          "microdescriptors": [
+            "Min: Vraag-antwoord",
+            "Max: Eenvoudige feedbackcyclus"
+          ],
+          "examples_ai_role": [
+            "Chatbot met standaardantwoorden"
+          ],
+          "examples_learner_behavior": [
+            "Antwoord geven zonder luisteren of reageren"
+          ],
+          "risks_flags": [
+            "🔍 Oppervlakkige interactie, bevestiging zoeken"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI ondersteunt betekenisvolle dialogische communicatie met wederkerigheid.",
+          "microdescriptors": [
+            "Min: Doorvragen op inhoud",
+            "Max: Voorbeeld van perspectiefwisseling"
+          ],
+          "examples_ai_role": [
+            "Reflectiebots, AI-feedback op argumentatie"
+          ],
+          "examples_learner_behavior": [
+            "Kritisch luisteren, perspectieven benoemen"
+          ],
+          "risks_flags": [
+            "⚠ Gedeeltelijke afhankelijkheid van AI-sturing"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI ondersteunt constructieve samenwerking en perspectiefintegratie in groepsprocessen.",
+          "microdescriptors": [
+            "Min: Feedback vergelijken",
+            "Max: Argumenten integreren vanuit meerdere posities"
+          ],
+          "examples_ai_role": [
+            "Groepsfeedbacktools, AI-discussiebegeleider"
+          ],
+          "examples_learner_behavior": [
+            "Ideeën combineren, conflict bespreekbaar maken"
+          ],
+          "risks_flags": [
+            "🔍 Conflictmijding of dominantie via AI-sturing"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI bevordert adaptieve groepsdynamiek, empathie en onderhandelen.",
+          "microdescriptors": [
+            "Min: Empathische dialoog simuleren",
+            "Max: Onderhandeling met bots of peers"
+          ],
+          "examples_ai_role": [
+            "Dialoogbots met rolwissel, samenwerkingstutors"
+          ],
+          "examples_learner_behavior": [
+            "Rollen wisselen, onderhandelen, samen beslissen"
+          ],
+          "risks_flags": [
+            "🚨 Groepsdenken of conformisme → agencyverlies bij AI-dominantie"
+          ]
+        }
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Mercer, N. (2016). Dialogue, thinking together and digital technology in the classroom. International Journal of Educational Research, 75, 193–204.",
+          "relevance": "Dialogisch en polylologisch denken zijn cruciaal voor diep leren in groepen."
+        },
+        {
+          "source": "Vygotsky, L. S. (1978). Mind in society: The development of higher psychological processes. Harvard University Press.",
+          "relevance": "Sociale interactie is de motor voor cognitieve ontwikkeling."
+        },
+        {
+          "source": "SLO & Kennisnet. (2022). Vaardighedenraamwerk PO en VO.",
+          "relevance": "Sociale vaardigheden omvatten samenwerken, perspectiefnemen en conflictoplossing."
+        },
+        {
+          "source": "Surma, T., et al. (2019). Wijze lessen: 12 bouwstenen voor effectieve didactiek. Ten Brink Uitgevers.",
+          "relevance": "Effectief samenwerken vereist cognitieve activering en taakrelevantie."
+        },
+        {
+          "source": "Slavin, R. E. (1996). Research on cooperative learning and achievement: What we know, what we need to know. Contemporary Educational Psychology, 21(1), 43–69.",
+          "relevance": "Samenwerkend leren werkt alleen bij wederzijdse afhankelijkheid en individuele verantwoordelijkheid."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan leerlijnen voor samenwerkend leren en sociaal-communicatieve competenties."
+    }
+  ]
+}

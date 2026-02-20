@@ -1,0 +1,33 @@
+[
+  {
+    "id": "rule_001",
+    "description": "Agencyverlies bij lage autonomie en hoge taakdichtheid",
+    "timestamp": "2025-01-27T10:30:15Z",
+    "triggered_by": {
+      "A": 0.35,
+      "TD": 0.75
+    },
+    "action": {
+      "type": "seed_injection",
+      "seed_type": "V_A",
+      "message": "Reflecteer op je eigen motivatie en doelkeuze in deze fase.",
+      "weight": 0.9,
+      "ttl": 3
+    },
+    "status": "executed"
+  },
+  {
+    "id": "rule_004",
+    "description": "Cognitieve overbelasting door hoge TD en V_C",
+    "timestamp": "2025-01-27T10:30:15Z",
+    "triggered_by": {
+      "TD": 0.75,
+      "V_C": 0.85
+    },
+    "action": {
+      "type": "warning_flag",
+      "message": "Let op: sterke AI-overname bij cognitieve kerntaken. Overweeg didactische herstructurering."
+    },
+    "status": "executed"
+  }
+]

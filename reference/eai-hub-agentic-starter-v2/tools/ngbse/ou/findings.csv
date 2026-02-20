@@ -1,0 +1,2 @@
+asset,enrich,enrich_asset_len,enrich_has_title,quality,raw_title,score,score_e_ai_star,seed_id,source_domain,source_type,source_url,timestamps
+archive.org,"{'has_title': False, 'asset_len': 11, 'source_type': 'archive'}",11,False,"{'q': 0.6, 'notes': 'HTTP fetch'}",,"{'M': 0.6, 'C': 0.0, 'Q': 0.3, 'V': 1.0, 'e_ai_star': 0.42000000000000004}",0.42000000000000004,S-0DDE2C41,archive.org,archive,https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json,"{'observed': '2025-08-17T20:34:05.010258Z', 'collected': '2025-08-17T20:34:05.010258Z'}"

@@ -1,0 +1,125 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "B",
+      "name": "Biascorrectie",
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI negeert bias volledig; er is geen mechanismen om vertekeningen te detecteren of corrigeren.",
+          "microdescriptors": [
+            "Min: Bias ontstaat door trainingsdata",
+            "Max: Bias versterkt via output zonder waarschuwing"
+          ],
+          "examples_ai_role": [
+            "AI geeft systematisch bevooroordeelde antwoorden"
+          ],
+          "examples_learner_behavior": [
+            "Onkritisch accepteren van stereotype of partijdige info"
+          ],
+          "risks_flags": [
+            "⚠ Structurele misvorming van kennis"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI signaleert incidenteel bias, maar corrigeert niet actief.",
+          "microdescriptors": [
+            "Min: Enkele biasmeldingen zonder automatische correctie",
+            "Max: Alleen waarschuwing na vragen"
+          ],
+          "examples_ai_role": [
+            "Biasdetector die melding geeft na output"
+          ],
+          "examples_learner_behavior": [
+            "Sporadische bewustwording van mogelijke bias"
+          ],
+          "risks_flags": [
+            "🔍 Illusie van neutraliteit"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI detecteert bekende vormen van bias en ondersteunt handmatige correctie.",
+          "microdescriptors": [
+            "Min: Bias herkend in standaarddomeinen",
+            "Max: Handmatige suggesties voor alternatieve formuleringen"
+          ],
+          "examples_ai_role": [
+            "Biasrapport na gegenereerde output"
+          ],
+          "examples_learner_behavior": [
+            "Kritische reflectie na opdracht"
+          ],
+          "risks_flags": [
+            "⚠ Gaten in minder bekende biasdomeinen blijven bestaan"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI detecteert én corrigeert proactief meerdere vormen van bias tijdens outputgeneratie.",
+          "microdescriptors": [
+            "Min: Real-time waarschuwingen en herformuleringen",
+            "Max: Alternatieven aanbieden met uitleg"
+          ],
+          "examples_ai_role": [
+            "Real-time biasfeedback, herformulatiehulpen"
+          ],
+          "examples_learner_behavior": [
+            "Actief bijsturen van teksten en inzichten"
+          ],
+          "risks_flags": [
+            "🔍 Cognitieve belasting door continue correcties"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI voorkomt structureel bias via adaptieve zelfcorrectie en uitleg over fairnessmechanismen.",
+          "microdescriptors": [
+            "Min: Automatische biascorrectie met uitleg",
+            "Max: Transparant maken van fairnesskeuzes"
+          ],
+          "examples_ai_role": [
+            "Fairness by Design AI-architecturen, transparante modelcards"
+          ],
+          "examples_learner_behavior": [
+            "Begrijpen en verklaren van biasmechanismen"
+          ],
+          "risks_flags": [
+            "🚨 Vertrouwen op AI zonder eigen kritische controle vermijden"
+          ]
+        }
+      ],
+      "definition": "B meet hoe effectief een AI-systeem bias kan signaleren, minimaliseren en structureel corrigeren.",
+      "interpretation": "Biascorrectie gaat verder dan detectie: het vereist actieve bijsturing én uitleg over keuzes.",
+      "key_points": [
+        "Zonder actieve biascorrectie vergroot AI-systematiek bestaande ongelijkheden en vertekeningen.",
+        "Opmerking: Hoewel AI meerdere afwijkingsvormen kent (zoals hallucinatie, echoing of overconfidence), is er bewust gekozen om alléén 'bias' als afzonderlijke rubric te formuleren. Dit is wetenschappelijk onderbouwd: bias heeft een systemisch karakter, beïnvloedt vaak andere afwijkingen, en heeft disproportioneel grote maatschappelijke gevolgen."
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Fazil, A. W., Hakimi, M., & Shahidzay, A. K. (2024). A Comprehensive Review of Bias in AI Algorithms. Nusantara Hasana Journal.",
+          "relevance": "Bias is wijdverspreid en moeilijk te corrigeren zonder expliciete maatregelen."
+        },
+        {
+          "source": "Mehrabi, N., et al. (2021). A Survey on Bias and Fairness in Machine Learning. ACM Computing Surveys.",
+          "relevance": "Bias beïnvloedt fairness, veiligheid en vertrouwen in AI."
+        },
+        {
+          "source": "Fu, R., Huang, Y., & Singh, P. V. (2020). AI and Algorithmic Bias. SSRN.",
+          "relevance": "Bias heeft diepgaande maatschappelijke implicaties."
+        },
+        {
+          "source": "Jain, L. R., & Menon, V. (2023). AI Algorithmic Bias: Causes and Implications. IEEE ICTAI.",
+          "relevance": "Bias versterkt bestaande ongelijkheden in data-gedreven besluitvorming."
+        }
+      ],
+      "legal_rationale": {
+        "source": "According to the EU AI Act (2024, Annex III and IV): - High-risk AI moet uitlegbaar, toetsbaar en niet-discriminerend zijn. - Biasmitigatie moet zichtbaar en navolgbaar zijn. - AI die beslissingen beïnvloedt (zoals leerdoelen, feedback of beoordeling) valt onder verscherpt toezicht.",
+        "relevance": "High-risk AI moet uitlegbaar, toetsbaar en niet-discriminerend zijn; biasmitigatie moet zichtbaar en navolgbaar zijn; AI die beslissingen beïnvloedt valt onder verscherpt toezicht."
+      },
+      "learning_objectives_link": "Koppeling aan leerdoelen rond fairness en ethiek."
+    }
+  ]
+}

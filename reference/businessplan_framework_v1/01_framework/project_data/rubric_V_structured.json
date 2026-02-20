@@ -1,0 +1,123 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "V",
+      "name": "Vaardigheidspotentieel (Algemeen)",
+      "definition": "De parameter V meet het potentieel van AI om de ontwikkeling van leerlingvaardigheden te ondersteunen: cognitieve (V_C), metacognitieve (V_M), sociale (V_S) en motivationele (V_A).",
+      "interpretation": "Een hoge V-score betekent dat de AI krachtige ondersteuning zou kunnen bieden bij de ontwikkeling van één of meer vaardigheden. Maar dit potentieel is alleen didactisch waardevol als de leerling zelf de bijbehorende leerhandeling uitvoert.",
+      "key_points": [
+        "Een hoge V-score zonder actieve leerlingbetrokkenheid leidt zelden tot duurzame vaardigheidsontwikkeling.",
+        "Gebruik daarom altijd de TD-score als controlemiddel: bij TD > 0.6 vervalt het leereffect, ook bij hoge V.",
+        "Hoge V zonder agency leidt tot 'overcoaching': een leerling lijkt bekwaam, maar leert niet zelfstandig."
+      ],
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI heeft nauwelijks potentieel om vaardigheden te ondersteunen; er is geen betekenisvolle koppeling met leerlingontwikkeling",
+          "microdescriptors": [
+            "Min: Alleen basisresponsen mogelijk",
+            "Max: Geen actieve vaardigheidsontwikkeling ondersteund"
+          ],
+          "examples_ai_role": [
+            "Spellingcorrectie zonder uitleg"
+          ],
+          "examples_learner_behavior": [
+            "Passief fouten corrigeren zonder inzicht"
+          ],
+          "risks_flags": [
+            "⚠ Geen vaardigheidswinst mogelijk, ook niet bij actieve leerling."
+          ],
+          "learner_condition": "Leerling moet volledige regie nemen; AI biedt enkel minimale reacties."
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI ondersteunt beperkt één type vaardigheid, zonder adaptatie of diepgang. Potentieel blijft smal en contextarm",
+          "microdescriptors": [
+            "Min: Eenzijdige ondersteuning (bijv. alleen reproductie)",
+            "Max: Geringe stimulans tot verdieping"
+          ],
+          "examples_ai_role": [
+            "Flashcards zonder aanpassing aan leerlingniveau"
+          ],
+          "examples_learner_behavior": [
+            "Feiten stampen zonder begrip"
+          ],
+          "risks_flags": [
+            "🔍 Oppervlakkige kennisstructuren, risico op schijnparticipatie."
+          ],
+          "learner_condition": "Leerling moet expliciet zelf linken leggen en actief toepassen."
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI biedt gericht potentieel voor ontwikkeling van meerdere vaardigheden met enige afstemming op de leerling.",
+          "microdescriptors": [
+            "Min: Gerichte prompts per vaardigheidstype",
+            "Max: Stimuleren van eerste reflectie- of communicatievormen"
+          ],
+          "examples_ai_role": [
+            "Samenvattingsopdrachten, begeleide groepsdiscussie"
+          ],
+          "examples_learner_behavior": [
+            "Reflectie, eerste samenwerkingservaringen"
+          ],
+          "risks_flags": [
+            "⚠ Fragmentarische ontwikkeling; TD > 0.6 → risico op misvatting van groei."
+          ],
+          "learner_condition": "Leerling moet actief wisselen tussen vaardigheden, feedback verwerken."
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI biedt hoog potentieel voor geïntegreerde ondersteuning van samenhangende vaardigheden.",
+          "microdescriptors": [
+            "Min: Complexe opdrachten combineren meerdere vaardigheden",
+            "Max: Adaptieve feedback per vaardigheidsdimensie"
+          ],
+          "examples_ai_role": [
+            "Projectmatige opdrachten met reflectie, feedbackcycli"
+          ],
+          "examples_learner_behavior": [
+            "Zelfregulatie, samenwerken, probleemoplossen"
+          ],
+          "risks_flags": [
+            "🔍 Agency-check vereist bij TD > 0.6 → overondersteuning."
+          ],
+          "learner_condition": "Leerling moet zelfstandig reguleren, reflecteren, samenwerken."
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI biedt diepgaande, gepersonaliseerde ondersteuning op meerdere vaardigheidsdomeinen tegelijk.",
+          "microdescriptors": [
+            "Min: Gepersonaliseerde vaardigheidstrajecten",
+            "Max: Continue coördinatie tussen cognitief, metacognitief, sociaal en motivationeel"
+          ],
+          "examples_ai_role": [
+            "Dynamische AI-tutors, skill-scoringsystemen"
+          ],
+          "examples_learner_behavior": [
+            "Zelfstandig leertraject volgen en bijsturen"
+          ],
+          "risks_flags": [
+            "🚨 Hoog risico op 'overcoaching' → bij TD > 0.6 treedt agencyverlies op, F_TD-correctie noodzakelijk."
+          ],
+          "learner_condition": "Leerling moet leerproces autonoom aansturen, keuzes maken en bijsturen."
+        }
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Zimmerman, B. J. (2002). Becoming a self-regulated learner: An overview. Theory into Practice, 41(2), 64–70.",
+          "relevance": "Zelfregulerend leren vereist dat de leerling zelf plant, monitort en bijstuurt. AI kan dit ondersteunen, maar niet vervangen."
+        },
+        {
+          "source": "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75–86.",
+          "relevance": "Minimale begeleiding werkt niet; effectieve ondersteuning vereist actieve deelname van de leerling."
+        },
+        {
+          "source": "Deci, E. L., & Ryan, R. M. (2000). The “what” and “why” of goal pursuits: Human needs and the self-determination of behavior. Psychological Inquiry, 11(4), 227–268.",
+          "relevance": "Autonomie en eigenaarschap zijn cruciaal voor duurzame motivatie en vaardigheidsontwikkeling."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan leerlijnen voor vaardigheidsgroei binnen VO/HO: V_C, V_M, V_S, V_A."
+    }
+  ]
+}

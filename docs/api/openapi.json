@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Onderwijs-EAI card printer API",
+    "version": "2.1.0",
+    "description": "Vendor-neutrale API die een EAI-card print op basis van SSOT en een inputcontext. De LLM wordt niet geleverd; alleen contracten en printer." 
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {"type": "boolean"},
+                    "ssot_version": {"type": "string"},
+                    "generator": {"type": "string"}
+                  },
+                  "required": ["ok", "ssot_version", "generator"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/print-card": {
+      "post": {
+        "summary": "Print een EAI-card",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Card input: context + bands (en optioneel evidence_pack)."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "EAI-card",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "card": {"type": "object"}
+                  },
+                  "required": ["card"]
+                }
+              }
+            }
+          },
+          "400": {"description": "Validatie faalde"},
+          "500": {"description": "Server error"}
+        }
+      }
+    }
+  }
+}

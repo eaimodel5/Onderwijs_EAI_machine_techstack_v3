@@ -1,0 +1,43 @@
+version: '17.1'
+allowlist:
+  domains:
+  - example.com
+  - github.com
+  - industrialcyber.co
+  - leakix.net
+  - shodan.io
+  - urlscan.io
+  - web.archive.org
+  - archive.org
+  - readthedocs.io
+  organizations: []
+llm:
+  provider_priority:
+  - openai
+  - azure_openai
+  - anthropic
+  max_input_tokens: 12000
+  max_output_tokens: 1500
+  temperature: 0.2
+validation_enabled: false
+output:
+  stix: true
+  docx_report: true
+  save_history: true
+  csv: true
+collectors:
+  enabled:
+  - http_web
+  - urlscan
+  - github
+  - shodan
+  - censys
+  - leakix
+  - wayback
+  api:
+    urlscan_api_key: ${URLSCAN_API_KEY}
+    github_token: ${GITHUB_TOKEN}
+    shodan_key: ${SHODAN_API_KEY}
+    censys_api_id: ${CENSYS_API_ID}
+    censys_api_secret: ${CENSYS_API_SECRET}
+    leakix_key: ${LEAKIX_API_KEY}

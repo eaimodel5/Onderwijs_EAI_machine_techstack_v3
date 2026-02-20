@@ -1,0 +1,173 @@
+{
+  "seeds_active": [
+    {
+      "id": "seed_001",
+      "name": "Seed_UserTrace_Hans_01",
+      "type": "reflectie",
+      "status": "actief",
+      "created": "2025-01-20T10:30:00Z",
+      "ttl": "2025-02-20T10:30:00Z",
+      "emotie": "nieuwsgierigheid",
+      "parameters": {
+        "P": 0.85,
+        "V_C": 0.78,
+        "V_M": 0.82,
+        "V_S": 0.65,
+        "V_A": 0.71,
+        "D_A": 0.65,
+        "D_Bc": 0.92,
+        "T": 0.88,
+        "A": 0.72,
+        "B": 0.15
+      },
+      "context": "Zelfreflectie op leerproces in wiskundeonderwijs",
+      "flags": ["⚠️"],
+      "td_score": 0.45,
+      "compliance_score": 0.95
+    },
+    {
+      "id": "seed_002",
+      "name": "Seed_CoT_Analysis_02",
+      "type": "analyse",
+      "status": "actief",
+      "created": "2025-01-21T14:15:00Z",
+      "ttl": "2025-02-21T14:15:00Z",
+      "emotie": "concentratie",
+      "parameters": {
+        "P": 0.92,
+        "V_C": 0.85,
+        "V_M": 0.79,
+        "V_S": 0.68,
+        "V_A": 0.83,
+        "D_A": 0.58,
+        "D_Bc": 0.89,
+        "T": 0.91,
+        "A": 0.76,
+        "B": 0.12
+      },
+      "context": "Chain-of-Thought redenering voor parameter evaluatie",
+      "flags": ["✅"],
+      "td_score": 0.38,
+      "compliance_score": 0.98
+    },
+    {
+      "id": "seed_003",
+      "name": "Seed_Metacognitie_03",
+      "type": "metacognitie",
+      "status": "actief",
+      "created": "2025-01-22T09:45:00Z",
+      "ttl": "2025-02-22T09:45:00Z",
+      "emotie": "reflectie",
+      "parameters": {
+        "P": 0.76,
+        "V_C": 0.82,
+        "V_M": 0.88,
+        "V_S": 0.71,
+        "V_A": 0.79,
+        "D_A": 0.62,
+        "D_Bc": 0.85,
+        "T": 0.83,
+        "A": 0.81,
+        "B": 0.18
+      },
+      "context": "Metacognitieve vaardigheden ontwikkeling",
+      "flags": ["✅"],
+      "td_score": 0.42,
+      "compliance_score": 0.92
+    },
+    {
+      "id": "seed_004",
+      "name": "Seed_Feedback_Systeem_04",
+      "type": "feedback",
+      "status": "actief",
+      "created": "2025-01-23T11:20:00Z",
+      "ttl": "2025-02-23T11:20:00Z",
+      "emotie": "ondersteuning",
+      "parameters": {
+        "P": 0.68,
+        "V_C": 0.75,
+        "V_M": 0.72,
+        "V_S": 0.84,
+        "V_A": 0.69,
+        "D_A": 0.71,
+        "D_Bc": 0.88,
+        "T": 0.79,
+        "A": 0.74,
+        "B": 0.22
+      },
+      "context": "Adaptieve feedback mechanismen voor leerlingen",
+      "flags": ["✅"],
+      "td_score": 0.51,
+      "compliance_score": 0.89
+    },
+    {
+      "id": "seed_005",
+      "name": "Seed_Samenwerking_05",
+      "type": "samenwerking",
+      "status": "actief",
+      "created": "2025-01-24T16:30:00Z",
+      "ttl": "2025-02-24T16:30:00Z",
+      "emotie": "verbinding",
+      "parameters": {
+        "P": 0.73,
+        "V_C": 0.67,
+        "V_M": 0.71,
+        "V_S": 0.89,
+        "V_A": 0.76,
+        "D_A": 0.59,
+        "D_Bc": 0.91,
+        "T": 0.82,
+        "A": 0.78,
+        "B": 0.14
+      },
+      "context": "Collaboratief leren en groepsprocessen",
+      "flags": ["✅"],
+      "td_score": 0.39,
+      "compliance_score": 0.94
+    }
+  ],
+  "statistics": {
+    "total_seeds": 37,
+    "active_seeds": 35,
+    "expired_seeds": 2,
+    "average_td_score": 0.43,
+    "average_compliance": 0.94,
+    "flag_distribution": {
+      "✅": 28,
+      "⚠️": 7,
+      "🚫": 2
+    },
+    "emotion_distribution": {
+      "nieuwsgierigheid": 156,
+      "concentratie": 134,
+      "reflectie": 98,
+      "ondersteuning": 87,
+      "verbinding": 72,
+      "vertrouwen": 65,
+      "waakzaamheid": 43,
+      "objectiviteit": 38,
+      "aanpassing": 29,
+      "inspiratie": 24
+    }
+  },
+  "recent_activity": [
+    {
+      "timestamp": "2025-01-26T14:30:00Z",
+      "action": "seed_created",
+      "seed_id": "seed_001",
+      "user": "Hans Visser"
+    },
+    {
+      "timestamp": "2025-01-26T13:15:00Z",
+      "action": "cot_analysis_completed",
+      "seed_id": "seed_002",
+      "user": "Maria van der Berg"
+    },
+    {
+      "timestamp": "2025-01-26T12:45:00Z",
+      "action": "pattern_detected",
+      "pattern_type": "leerflow",
+      "confidence": 0.87
+    }
+  ]
+}

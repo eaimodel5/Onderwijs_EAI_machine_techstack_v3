@@ -1,0 +1,6 @@
+{
+  "name": "@eai/eai-evidence",
+  "version": "2.1.0",
+  "type": "module",
+  "main": "./index.js"
+}

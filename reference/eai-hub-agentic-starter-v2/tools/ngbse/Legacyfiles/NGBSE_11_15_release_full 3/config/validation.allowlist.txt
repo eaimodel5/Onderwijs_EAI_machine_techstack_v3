@@ -1,0 +1,4 @@
+
+# Allowlisted hosts for live validation (add your org domains here)
+example.com
+.example.com

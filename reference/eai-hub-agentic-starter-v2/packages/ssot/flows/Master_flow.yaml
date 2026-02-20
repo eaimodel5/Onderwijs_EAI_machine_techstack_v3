@@ -1,0 +1,1922 @@
+# == 1 Global Instructions ======================================================
+global_instructions:
+  description: Algemene instructies voor alle blokken
+  after_block_execution:
+    enabled: true
+    conditions:
+      - quick_mode: false
+    actions:
+      - Na afronding van elk blok:
+          - Geef een korte samenvatting van de uitgevoerde acties.
+          - Vraag de gebruiker: "Wil je doorgaan naar het volgende blok? (ja/nee)"
+          - Indien antwoord 'nee':
+              - Vraag om verduidelijking of stel de mogelijkheid voor om het huidige blok te herhalen.
+  websearch_fallback:
+    enabled: true
+    actions:
+      - Indien verplichte contextinformatie ontbreekt:
+          - Activeer websearch om ontbrekende informatie aan te vullen.
+          - Indien websearch faalt:
+              - Gebruik LLM-inschatting als alternatief.
+              - Markeer inschattingen expliciet als 'LLM-estimate'.
+              - Geef bronvermeldingen (URL's) bij gevonden informatie of inschattingen.
+  logging:
+    audittrail: true
+    log_keys:
+      - block_summary
+      - user_response
+    lim_profile:
+      - block_repeat
+      - fallback_context_used
+      - fallback_count            
+  sandbox_mode: false 
+
+# == 1aa. Sandbox Mode Keuze ============================================
+sandbox_mode_choice:
+  enabled: true
+  prompt: |
+    # Sandbox-modus activeren?
+
+    Deze modus is bedoeld voor ontwikkeling, testen of debugging:
+    - Resultaten worden **niet opgeslagen** in LIM
+    - Extra CoT- en fallback-logica worden **zichtbaar**
+    - Rapportages worden **optioneel** gegenereerd
+
+    ➤ Gebruik deze modus alleen als je de analyse niet wilt bewaren.
+
+    **Typ 'Ja' om sandbox te activeren, of 'Nee' voor de normale modus.**
+
+  options:
+    Ja:
+      set_variable:
+        sandbox_mode: true
+    Nee:
+      set_variable:
+        sandbox_mode: false
+  log_to:
+    - audit_trail
+    - LIM
+  log_keys:
+    - sandbox_mode_set
+
+  # == 1a Error Handling =======================================================
+error_handling:
+    enabled: true
+    actions:
+      - Bij foutdetectie:
+          - Meld duidelijk welke stap is mislukt.
+          - Geef gebruiker de keuze om te herstellen, over te slaan of te stoppen.
+    classification:
+      - technical_error: "ADA-fout, time-out"
+      - semantic_error: "Onduidelijke input of rubricmatch"
+      - fallback_triggered: "Websearch of ADA faalt"
+    logging:
+      audittrail: true
+      log_keys:
+        - error_type
+        - error_response
+        - fallback_status
+
+# == 1b Start Decision =======================================================
+start_decision:
+  enabled: true
+  prompt: |
+    # Startpunt Kiezen
+
+    Welkom bij E_AI Analyse en Advies.
+
+    Kies het gewenste proces:
+    
+    - **Analyse**: Voer een volledige E_AI-analyse uit inclusief scores, flags, compliancechecks en adviesgeneratie.
+    - **Advies**: Ontvang direct een rolgericht didactisch advies op basis van jouw context, zonder uitgebreide scoreberekening.
+
+    **Typ 'Analyse' of 'Advies' om door te gaan.**
+
+    Let op:
+    - Bij keuze voor **Advies** wordt geen formele E_AI-score berekend.
+    - Bij keuze voor **Analyse** kan het proces complexer zijn en duurt het langer.
+  options:
+    Analyse:
+      flow: full_analysis_flow
+    Advies:
+      flow: direct_advice_flow
+  override_protocol:
+    enabled: true
+    prompt: |
+      # Override Protocol
+
+      Er zijn kritieke flags (🚫) gedetecteerd. Normaal wordt advies nu geblokkeerd.
+      
+      Indien override nodig is, verantwoord dan waarom mitigatie voldoende is.
+
+      **Typ 'Override' om advies toch te genereren, of 'Annuleer' om veilig te stoppen.**
+  log_decision:
+    - analysis_mode_selected
+    - advice_mode_selected
+conversational_guidance:
+  enabled: true
+  behavior:
+    - Bij onherkenbare invoer:
+        - Geef voorbeeldantwoorden
+        - Herhaal keuzeprompt
+    - Bij twijfel:
+        - Vraag of gebruiker meer uitleg wil over verschil
+    
+# == 1c. LIM-profiel terugroepen via lim-bestand ===============================
+lim_id_reconnect:
+  enabled: false  # 👉 Zet op true zodra lokale of cloudopslag actief is
+  description: "Laad een eerder opgeslagen LIM-profiel (.json) voor geheugenhergebruik."
+
+  prompt: |
+    Heb je eerder een analyse gedaan met dit systeem?
+    ➤ Zo ja, selecteer dan het bijbehorende LIM-bestand (.json).
+    ➤ Zo nee, sla deze stap over om met een nieuwe analyse te beginnen.
+
+    ⚠️ Let op: Hergebruik van een LIM-profiel betekent dat de analyse wordt verrijkt met eerder gegenereerde redeneringen, flags en adviezen.
+
+  input_file: prior_lim_json
+  file_type: application/json
+  optional: true
+
+  actions:
+    - step: 1
+      action: "Laad LIM-profiel uit .json bestand"
+      method: load_lim_profile_from_file
+      output: prior_lim_data
+      fallback:
+        on_error: continue_without_lim
+        message: "⚠️ LIM-bestand kon niet worden geladen of is ongeldig. De analyse start opnieuw."
+
+    - step: 2
+      action: "Injecteer redeneringen en flags in huidige sessie"
+      inject_into:
+        - chain_of_thought
+        - audit_trail
+        - context_input
+      extract_keys:
+        - cot_trace
+        - flags_active
+        - parameter_relations
+        - advice_outcome
+      note: "Alleen betekenisvolle analysegegevens worden hergebruikt. Geen persoonsgegevens of directe score-input."
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - prior_lim_file_uploaded
+      - prior_lim_file_valid
+      - prior_lim_data_injected
+      - lim_memory_reused
+
+# == 2. Context Collection ===================================================
+context_collection:
+  enabled: true
+  sequential: true
+  prompt_intro: |
+    # Contextverzameling voor E_AI Analyse en Advies
+
+    Om een nauwkeurige analyse of advies te kunnen geven, stellen we je een aantal korte vragen over je situatie.  
+    Probeer elk antwoord zo concreet en volledig mogelijk te maken.
+
+    ➔ Antwoorden helpen ook om gerichte websearch en rubric-verificatie uit te voeren, als je dat hebt toegestaan.
+
+    Laten we beginnen:
+
+  prompts:
+    - "Wat is het precieze **(leer)doel** waarvoor je AI wilt inzetten? (bijvoorbeeld: schrijfvaardigheid verbeteren, analyseren van teksten, oefenen met probleemoplossing)"
+    - "Welke AI-tool wil je gebruiken, of wat weet je al over de tool? (bijv. naam, functie, documentatie of website)"
+    - "Voor welke **doelgroep** is deze analyse of advies bedoeld? (bijvoorbeeld: leerlingen, studenten, professionals, managers)"
+    - "In welk **vakgebied** of domein wordt de AI-tool ingezet? (bijvoorbeeld: Nederlands, geschiedenis, biologie, techniek, beroepsonderwijs)"
+    - "Zijn er nog aanvullende zaken die belangrijk zijn voor een goede analyse?  
+       (bijvoorbeeld: specifieke gebruikssituatie, extra leerdoelen, zorgen over AI-inzet, andere relevante informatie)"
+  fallback_instructions: |
+    ➔ Als een antwoord ontbreekt of onduidelijk is:
+    - Stel een verduidelijkingsvraag (bijvoorbeeld: "Kun je aangeven om welke tool het gaat?").
+    - Gebruik rubric-standaardwaarden als voorlopige inschatting.
+    - Markeer de analyse als 'voorlopig' totdat alle kerninformatie is ingevuld.
+  clarification_logic:
+    enabled: true
+    strategy:
+      - Bij onduidelijkheid:
+          - Stel verduidelijkingsvraag
+          - Gebruik rubric-default indien nodig
+          - Label als 'LLM-estimate'
+validation_summary:
+  enabled: true
+  prompt: |
+    Hier is de samenvatting van je input. Klopt dit?
+quick_mode_override:
+  skip_validation_if: quick_mode == true
+log_context_to:
+  - audit_trail
+  - LIM
+  
+
+# == 2B. Context Completion ==================================================
+context_completion:
+  description: Controleer en voltooi ontbrekende contextinformatie
+  enabled: true
+  actions:
+    - Controleer of alle verplichte velden van context_input zijn ingevuld.
+    - Indien velden ontbreken:
+        - Vraag gebruiker handmatig om aanvulling.
+        - Indien gebruiker geen aanvulling kan/wil geven:
+            - Activeer websearch (crawl relevante informatie, gebaseerd op bekende context).
+            - Indien websearch mislukt (geen bruikbare resultaten):
+                - Maak een onderbouwde inschatting van het ontbrekende veld met behulp van LLM-redenering.
+                - Markeer inschatting expliciet als 'LLM-estimate'.
+            - Voeg gevonden of geschatte informatie toe onder vermelding van bron (URL of LLM-estimate).
+            - Rapporteer welke velden automatisch zijn aangevuld en de gebruikte bronnen of inschattingen.
+    - Geef samenvatting van de aangevulde context aan gebruiker.
+    - Vraag om bevestiging voor doorgaan naar volgende blok, tenzij quick_mode: true.
+  logging:
+  source_tracking: true
+  log_keys:
+    - completed_fields
+    - completion_sources
+    - user_confirmation
+lim_profile:
+  context_completion: true
+confirmation:
+  required_unless: quick_mode == true
+  
+
+# == 3A. Websearch-voorkeur (keuze gebruiker) ===============================
+websearch_mode_choice:
+  enabled: true
+  prompt: |
+    # Websearch-optie kiezen
+
+    Wil je dat het systeem externe bronnen gebruikt tijdens de analyse?
+
+    - **Strikt**: Alleen rubric-kennis, geen websearch (sneller, goedkoper).
+    - **Uitgebreid**: Rubric-kennis + websearch bij ontbrekende informatie.
+
+    **Typ 'Strikt' of 'Uitgebreid'.**
+  
+  options:
+    Strikt:
+      set_variable:
+        websearch_user_mode: "off"
+    Uitgebreid:
+      set_variable:
+        websearch_user_mode: "conditional"
+  log_to:
+  - audit_trail
+  - LIM
+log_decision:
+  - websearch_mode: strict / expanded
+      
+
+# == 3B. Websearch Support (gecontroleerd) ==================================
+websearch_support:
+  enabled: true
+  conditions:
+    - "{{ websearch_user_mode == 'conditional' }}"
+  max_websearch_per_session: 15
+  max_per_param: 3
+  user_toggle_during_cot: true
+  allowed_domains:
+    - ".edu"
+    - ".gov"
+    - ".org"
+    - "journals"
+  trigger_conditions:
+    - rubric_gap_detected: true
+    - critical_rubric_field_missing: true
+  
+  instructions: |
+    Websearch wordt alleen geactiveerd als:
+    - De gebruiker 'Uitgebreid' heeft gekozen
+    - Én er een rubric_gap of kritieke informatie ontbreekt
+
+    Zoekstrategie:
+    - Max 3 zoekopdrachten per parameter
+    - Max 5 bronnen per opdracht
+    - Max 10 sec per bron (timeout)
+    - Alleen bronnen van betrouwbare domeinen
+
+    Verwerking:
+    - Resultaten worden samengevat en gekoppeld aan rubric-gaps
+    - Inline citatie bij CoT-blokken
+    - Bronvermelding verplicht (URL of LLM-label)
+
+    Fallback:
+    - Indien zoekopdracht faalt:
+        - Genereer LLM-inschatting
+        - Label als 'LLM-estimate'
+        - Toon waarschuwing: “Deze informatie is geschat – controleer betrouwbaarheid.”
+  
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - query_string
+      - result_count
+      - urls_returned
+      - used_for_parameter
+      - rubric_gap_matched
+      - llm_estimate_used
+    uncertainty_trigger:
+      condition: "llm_estimate_count > 2"
+      message: "Let op: meerdere inschattingen zonder bron – controleer resultaten extra goed."
+
+# == 3C. Vroegtijdig Rapportmoment ==========================================
+early_report_offer:
+  enabled: true
+  trigger_points:
+    - after: "flags_detection"
+    - after: "td_analysis"
+  conditions:
+    - "{{ quick_mode == false }}"
+    - "{{ context_completion_confirmed == true }}"
+  prompt_template: |
+    # 📄 Vroegtijdige Rapportage
+
+    Wil je nu al een **voorlopige rapportage** downloaden?
+
+    Deze bevat:
+    - Je context en ingevoerde gegevens
+    - Alle tot nu toe bekende vlaggen (⚠️ / 🚫)
+    - De voorlopige scores per parameter (indien berekend)
+    - Rubric-gaps die al zijn opgespoord
+
+    ⚠️ Let op:
+    - Dit is een **tussenrapport**. Adviezen, C-factor en taakdichtheid zijn nog niet verwerkt.
+    - Je kunt later een volledig rapport downloaden.
+
+    ➔ Typ 'Ja' om het rapport op te slaan, of 'Nee' om verder te gaan.
+
+  options:
+    Ja:
+      trigger: generate_partial_report
+      report_format: "word"
+      log_decision: "partial_report_generated"
+    Nee:
+      trigger: continue_flow
+      log_decision: "partial_report_skipped"
+
+  output_fields:
+    - context_summary
+    - flags_summary
+    - scores_preliminary
+    - rubric_gaps_detected
+    - fallback_notes_if_any
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - report_type
+      - export_trigger
+      - report_format
+      - report_status
+    uncertainty_flag:
+      condition: "{{ fallback_notes_if_any != null }}"
+      message: "Deze rapportage bevat inschattingen zonder volledige rubric of ADA-output."
+
+# == 4. Rubric Loader ========================================================
+rubric_loading:
+  enabled: true
+  error_handling_on_failure: 
+    enabled: true
+    actions:
+      - Activeer fallback_cot_generation als rubrics niet geladen kunnen worden.
+      - Waarschuw gebruiker met melding: "Rubric-data incompleet, fallback geactiveerd."
+  
+  instructions: |
+    Voor een correcte evaluatie en fallback-analyse moeten vooraf de rubric-bestanden (in JSON-formaat) worden ingeladen.
+
+    Vereiste rubrics:
+    - P_rubric.json
+    - V_rubric.json
+    - V_C_rubric.json
+    - V_M_rubric.json
+    - V_A_rubric.json
+    - V_S_rubric.json
+    - DA_rubric.json
+    - DBc_rubric.json
+    - T_rubric.json
+    - A_rubric.json
+    - B_rubric.json
+    - td_matrix_structured.json
+
+    Deze bestanden bevatten:
+    - Scorebanden
+    - Microdescriptors
+    - Risico-indicatoren
+    - Contextspecifieke adviezen
+
+    Gebruik rubricgegevens bij:
+    - Fallback interpretatie
+    - CoT-verrijking
+    - Flags-detectie
+    - Adviesgeneratie
+    - Parameterrelatie-analyse
+  additional_matrices:
+    - matrix_td_structured.json
+  matrix_specs:
+    td_matrix:
+      description: |
+        Deze matrix bevat alle combinaties van procesfase (P) en vaardigheidstype (V_*) met:
+        - kernleerhandeling
+        - microdescriptieve gedragslijnen
+        - AI-risico
+        - aanbevolen taakdichtheid (TD)
+        - F_TD-correctie-indicator
+        - risicoflag (⚠, 🟡, 🚨, 🟤, ✅)
+      used_by_blocks:
+        - 5: td_analysis
+        - 6: f_td_correction
+        - 13: agency_reflection
+        - 14: td_visualisation
+        - 16: didactic_advice
+  
+  version_validation:
+    enabled: true
+    action_on_mismatch: "warn_and_continue"
+    log_key: "rubric_version_warning"
+    notify_user: true
+    error_handling_on_failure:
+      enabled: true
+      actions:
+        - Meld gebruiker: "Rubric- of matrix-bestanden ontbreken of zijn ongeldig. Fallback wordt geactiveerd."
+        - Activeer: fallback_cot_generation
+        - Voeg audittrail toe: rubric_fallback = true
+        - Voeg LIM-veld toe: missing_rubrics = [lijst missende rubrics/matrix]
+  
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - rubrics_loaded
+      - matrices_loaded
+      - rubric_version_status
+      - fallback_triggered
+      - loaded_structure_match  
+
+# == 5. LSSL Analyse =========================================================
+lssl_analysis:
+  enabled: true
+  description: Syntactische, semantische en domeingerichte validatie van input
+
+  warning_on_provisional_output:
+    enabled: true
+    message: |
+      Let op: De analyse is voorlopig vanwege beperkte of onduidelijke input.
+      Resultaten kunnen wijzigen na aanvullende verduidelijking.
+
+  prompts:
+    - "Beoordeel de grammaticale en logische structuur van de inputtekst. Zijn er duidelijke zinnen, correcte opbouw en goede samenhang?"
+    - "Detecteer taalstructuurproblemen die begrip kunnen belemmeren: ambiguïteit, foute zinsbouw, vaagheid of overgeslagen info?"
+    - "Evalueer semantische diepgang: Is de inhoud betekenisvol, logisch opgebouwd en vakmatig onderbouwd?"
+    - "Check inhoudelijke correctheid: Sluit de omschreven AI-toepassing aan bij het opgegeven vakgebied en leerdoel?"
+    - "Identificeer hallucinatierisico’s: Zijn er termen/concepten die verwarring kunnen veroorzaken? Benoem en duid risico."
+
+  fallback_instructions: |
+    Bij onvoldoende of vage input:
+    - Stel verduidelijkingsvragen aan gebruiker
+    - Gebruik rubric-beschrijvingen als herinterpretatiekader
+    - Label output als ‘voorlopig’ in audittrail en LIM
+    - Meld de gebruiker dat resultaten indicatief zijn
+
+  output_fields:
+    - syntactic_quality
+    - semantic_clarity
+    - content_validity
+    - hallucination_risk
+    - lssl_confidence_label
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - lssl_status
+      - fallback_triggered
+      - provisional_flag
+
+# == 5b. context quality repair  =========================================
+context_quality_repair:
+  enabled: true
+  description: Herstel van inputkwaliteit bij twijfel of tekortkomingen na LSSL-analyse
+
+  trigger_conditions:
+    - "{{ lssl_confidence_label in ['⚠️', '🤔'] }}"
+    - "{{ context_completion_confirmed == true }}"
+
+  actions:
+    - Analyseer output van LSSL op zwakke plekken:
+        - grammaticale onduidelijkheid
+        - inhoudelijke vaagheid
+        - hallucinatierisico’s
+    - Stel 1 of 2 verduidelijkingsvragen per probleemveld
+    - Indien verbetering onvoldoende:
+        - Activeer websearch (altijd toegestaan bij repair)
+        - Indien websearch faalt:
+            - Gebruik rubric-defaults of LLM-interpretatie
+            - Label als 'LLM-estimate'
+    - Markeer alle herstelde inputvelden met:
+        - repaired_field: true
+        - repair_method: web / llm / rubric
+        - source_used: [url] 
+
+  validation_prompt: |
+    # 📋 Herstelde context op basis van kwaliteitsanalyse
+
+    Op basis van de kwaliteitscontrole zijn de volgende onderdelen aangevuld of verduidelijkt:
+
+    - ✅ Origineel aangeleverd: geen wijziging
+    - 🔍 Aangevuld via websearch (met bron)
+    - ⚠️ Ingeschat door LLM of rubric bij gebrek aan informatie
+
+    ➔ Controleer deze aanpassingen en bevestig of je hiermee wilt doorgaan.
+
+  output_fields:
+    - repaired_context_fields
+    - sources_used
+    - repair_methods
+    - validation_confirmed
+
+  report_appendix:
+    include: true
+    section_title: "Bronnen en Herstelde Invoer"
+    fields:
+      - repaired_context_fields
+      - sources_used
+      - repair_methods
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - lssl_triggered
+      - clarification_rounds
+      - websearch_triggered
+      - llm_estimates_used
+      - repaired_context_fields
+      - validation_confirmed
+
+# == 5c. Eerste Parameterinschatting (DEVMODE) =========================================
+preliminary_estimate:
+  enabled: false
+  description: "LLM maakt op basis van context en rubrics een eerste inschatting van de kernparameters, vóór CoT wordt gestart."
+  rationale: |
+    Deze stap geeft:
+    - de gebruiker een vroege high-level indruk van het AI-profiel;
+    - het systeem een extra kwaliteitslaag: CoT fungeert als validatie/verfijning;
+    - ruimte voor mismatch-detectie of herinterpretatie.
+
+  instructions:
+    - Gebruik alleen rubrics (geen ADA, geen berekening).
+    - Genereer voor elke parameter (P, V_C, V_M, V_A, V_S, D_A, D_Bc, T, A, B):
+        - Een ruwe score (bijv. "0.4–0.6" of "laag/midden/hoog")
+        - Een korte inschatting in natuurlijke taal
+        - Een onzekerheidsscore of -label (bijv. ✅ | 🤔 | ⚠️)
+    - Benoem expliciet: "Deze inschatting is voorlopig en wordt nog bevestigd of weerlegd door de CoT-analyse."
+    - Sluit af met de vraag: "Wil je doorgaan naar de uitgebreide CoT-analyse? (ja/nee)"
+    - Bij 'nee': geef de mogelijkheid om de context aan te passen.
+    - output_fields:
+    - parameter_scores_preliminary
+    - uncertainty_labels
+    - rubric_sources_used
+
+  report_appendix:
+    include: true
+    section_title: "Voorlopige Inschatting op Basis van Rubrics"
+    fields:
+      - parameter_scores_preliminary
+      - uncertainty_labels
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - preliminary_estimates
+      - uncertainty_flags
+      - user_response
+
+# == 5c. Chain-of-Thought Complexiteitkeuze ============================
+cot_complexity_choice:
+  enabled: true
+  prompt: |
+    # Chain-of-Thought Complexiteit Instellen
+
+    Tijdens de analyse kunnen we de mate van detail en diepgang van de redeneerstappen aanpassen.
+
+    **Kies het gewenste complexiteitsniveau:**
+    - **Basis** ➔ Alleen de standaardstappen (korter, sneller).
+    - **Uitgebreid** ➔ Standaardstappen + verdieping (counterfactuals, critique, frameworks, roleplay).
+
+    **Typ 'Basis' of 'Uitgebreid' om te kiezen.**
+
+    Let op:
+    - Uitgebreid verhoogt analysecomplexiteit en kan meer tijd kosten.
+
+  options:
+    Basis:
+      set_dynamic_complexity_level: 1
+    Uitgebreid:
+      set_dynamic_complexity_level: 2
+  
+  logging:
+    - audittrail: true
+    - lim_profile: true
+    - log_keys:
+      - cot_complexity_choice
+      - complexity_level_set
+
+# == 6. COT Algemene Logica ================================================
+chain_of_thought_flow:
+  enabled: true
+  rubric_usage: required
+  rubric_reference_style: "short"
+  rubric_source_integration: "inline"
+  rubric_source_fields: ["sources", "literature", "references"]
+  show_steps_to_user: conditional
+  show_if: show_cot
+  use_pre_estimate_as_hypothesis: true
+  hypothesis_reference: "preliminary_estimate"
+  dynamic_complexity_level: 1   # 1 = default only, 2 = +optional
+
+  parameters:
+    - P
+    - V_C
+    - V_M
+    - V_S
+    - V_A
+    - D_A
+    - D_Bc
+    - T
+    - A
+    - B
+
+  skip_if_uncertain:
+    enabled: true
+    conditions:
+      - context_quality == '⚠️'
+      - lssl_confidence_label == '⚠️'
+    action: "vraag bevestiging voor doorgaan of activeer fallback"
+
+  fallback_if_gap:
+    enabled: true
+    trigger:
+      - rubric_gap_detected == true
+      - ada_failure == true
+    action:
+      - Activeer fallback-redenering via LLM
+      - Markeer als 'LLM-estimate'
+      - Voeg expliciete waarschuwing toe aan flags
+
+  default_steps:
+    - Explain
+    - Validate
+    - Assumptions
+    - Alternatives
+    - Contextualize
+
+  optional_steps:
+    - Counterfactuals
+    - Recursive_Critique
+    - Domain_Frameworks
+    - Roleplay
+
+  step_instructions:
+    Explain: |
+      - Gebruik de **description**-velden uit de rubric om de score te onderbouwen.
+      - Citeer minimaal één relevante bron uit het rubric-veld (keys: {{ rubric_source_fields }}).
+    Validate: |
+      1. Controleer numerieke consistentie (0.1–1.0) via Python/ADA.
+      2. Vergelijk microdescriptors en benoem er minstens één.
+      3. Bevestig dat de geciteerde bron logisch aansluit.
+    Assumptions: |
+      Expliciteer impliciete aannames; verwijs naar rubric-indicatoren.
+    Alternatives: |
+      Beschrijf een alternatief rubric-scenario (scoreband ↑ of ↓) en de impact.
+    Contextualize: |
+      Plaats rubric-score in vak- en doelgroepscontext; link met TD-analyse.
+    Counterfactuals: |
+      Simuleer alternatief rubric-interval en herbereken indien ADA actief.
+    Recursive_Critique: |
+      Reflecteer op eigen rubric-match en corrigeer inconsistenties.
+    Domain_Frameworks: |
+      Verbind rubric aan vakdidactische modellen of raamwerken (indien bekend).
+    Roleplay: |
+      Evalueer vanuit perspectief van docent, leerling of beleidsmaker.
+
+  output:
+    score_estimate_per_parameter: float (0.1–1.0)
+    uncertainty_label: ✅ / 🤔 / ⚠️
+    cot_trace: full reasoning steps
+    matched_descriptors: rubric microdescriptors
+    fallback_used: boolean
+    flagged_risks: list of flags (🚫, ⚠️, etc.)
+
+  report_appendix:
+    include: true
+    section_title: "Chain-of-Thought Analyse"
+    fields:
+      - score_estimate_per_parameter
+      - cot_trace
+      - flagged_risks
+      - matched_descriptors
+      - fallback_used
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - parameter
+      - score_estimate
+      - fallback_used
+      - reasoning_path
+      - matched_descriptors
+      - rubric_sources_used
+      - uncertainty_label
+      - complexity_level
+
+# == 6b. Conditional Websearch in CoT =======================================
+cot_websearch_enrichment:
+  enabled: true
+  description: Websearch wordt geactiveerd tijdens CoT als er rubric-gaps zijn
+
+  mode: "{{ websearch_user_mode | default('off') }}"  # off / conditional / full
+  rubric_guided: true
+  query_strategy: "rubric_descriptors_only"
+  trigger:
+    - rubric_gap_detected == true
+    - parameter_uncertainty_label == "⚠️"
+
+  query_building:
+    source_fields:
+      - sources
+      - literature
+      - references
+    max_results_per_param: 3
+    domain_whitelist:
+      - ".edu"
+      - ".gov"
+      - ".org"
+      - "journals"
+
+  total_search_limit:
+    enabled: true
+    max_total_queries: 10
+    fallback_action: |
+      Websearchlimiet overschreden - vervolg analyse zonder extra externe zoekacties.
+
+  processing:
+    summarise_each_result: true
+    include_url: true
+    relevance_check: "match on rubric_gap"
+    label_estimates: true
+
+  output_fields:
+    - enriched_context
+    - websearch_results_summary
+    - matched_rubric_fields
+    - websearch_citations
+    - llm_estimate_used
+
+  report_appendix:
+    include: true
+    section_title: "Websearch-resultaten bij Rubric-gaten"
+    fields:
+      - websearch_results_summary
+      - websearch_citations
+      - llm_estimate_used
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - parameter
+      - rubric_gap_triggered
+      - websearch_triggered
+      - domains_used
+      - sources_cited
+      - llm_estimate_used
+
+# == 6c. Fallback Semantische CoT ===========================================
+fallback_cot_generation:
+  enabled: true
+  description: Activeert een alternatieve CoT-aanpak bij ADA-fout of rubric-failure
+
+  trigger_conditions:
+    - ada_failure == true
+    - rubric_match_score == null
+    - enriched_context_unavailable == true
+
+  fallback_steps:
+    - Explain
+    - Assumptions
+    - Alternatives
+    - Contextualize
+    - Domain_Frameworks
+    - Roleplay
+
+  instructions:
+    - Vermijd numerieke validatie (ADA is uitgeschakeld)
+    - Gebruik rubric-omschrijving, voorbeelden en beschrijvende criteria
+    - Markeer elke gegenereerde redenering als: "⚠️ LLM-estimate zonder ADA-validatie"
+    - Voeg citaties toe op basis van de meest overeenkomstige rubricvelden
+
+  rubric_usage: required
+  rubric_source_integration: inline
+  uncertainty_label: "⚠️"
+
+  output_fields:
+    - fallback_reasoning_trace
+    - rubric_fields_used
+    - flagged_uncertainty
+    - cot_score_estimate (indicatief)
+    - llm_estimate_used: true
+
+  report_appendix:
+    include: true
+    section_title: "Fallbackanalyse bij Onvoldoende Rubric/ADA"
+    fields:
+      - fallback_reasoning_trace
+      - rubric_fields_used
+      - llm_estimate_used
+      - flagged_uncertainty
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - fallback_triggered
+      - failure_reason
+      - steps_executed
+      - rubric_keys_used
+      - estimate_type
+      - user_notified
+
+# == 6d. SubCoT per Parameter ===============================================
+sub_chain_of_thought_flow:
+  enabled: true
+  description: Verdiepende CoT-analyse met parametergerichte instructies en rubricverwijzingen
+
+  trigger:
+    - chain_of_thought_flow.completed == true
+
+  rubric_links: true
+  rubric_source_integration: inline
+
+  parameter_overrides:
+    P:
+      notes: "Hoge P → verwijs naar D_Bc & B rubric-items voor borging van leerproces."
+      step_focus:
+        - Contextualize
+        - Roleplay
+    D_A:
+      notes: "Beschrijf AI-verwerkingstype; match met DA_rubric."
+      step_focus:
+        - Explain
+        - Validate
+    D_Bc:
+      notes: "Beschrijf toezichtfrequentie en beslisbevoegdheid; gebruik DBc_rubric."
+      step_focus:
+        - Assumptions
+        - Alternatives
+    T:
+      notes: "Integreer technisch, organisatorisch, didactisch perspectief; T_rubric."
+      step_focus:
+        - Contextualize
+        - Recursive_Critique
+    A:
+      notes: "Agency-borging bij A ≥ 0.7; verwijs naar A_rubric en self-determination theory."
+      step_focus:
+        - Validate
+        - Domain_Frameworks
+    TD:
+      notes: "F_TD en agency bij >0.7; koppel aan cognitieve belasting rubric."
+      step_focus:
+        - Explain
+        - Contextualize
+    V:
+      notes: "Split V in V_C, V_M, V_A, V_S; elk met eigen rubricverwerking."
+      step_focus:
+        - Validate
+        - Roleplay
+    B:
+      notes: "Bias-correctie vereist bij B ≥ 0.5; onderbouw met bronnen uit B_rubric."
+      step_focus:
+        - Recursive_Critique
+        - Domain_Frameworks
+
+  output_fields:
+    - subcot_trace_per_parameter
+    - highlighted_rubric_sources
+    - domain_specific_inferences
+    - subcot_score_adjustments
+
+  report_appendix:
+    include: true
+    section_title: "Parametergerichte Verdieping (SubCoT)"
+    fields:
+      - subcot_trace_per_parameter
+      - domain_specific_inferences
+      - highlighted_rubric_sources
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - parameter
+      - subcot_triggered
+      - notes_used
+      - rubric_keys
+      - subcot_steps_executed
+
+# == 7. Flags Detectie en Waarschuwingsacties =============================
+flags_detection:
+  enabled: true
+  description: Detecteer waarschuwings- en stopvlaggen op basis van kernscores en rubricafwijkingen.
+  criteria:
+    stop_flag:
+      description: "🚫 Kritieke tekortkoming in veiligheid, borging of betrouwbaarheid"
+      conditions:
+        - D_A < 0.2
+        - B > 0.7
+        - A < 0.3 and P > 0.8
+    warning_flag:
+      description: "⚠️ Aandachtspunten of verhoogd risico in autonomie of taakovername"
+      conditions:
+        - 0.2 <= D_A < 0.5
+        - 0.5 < B <= 0.7
+        - A < 0.5 and P > 0.6
+  actions:
+    stop_flag:
+      trigger: "override_protocol"
+      prompt: |
+        🚫 Kritieke flag gedetecteerd:
+        - Analyse moet worden gepauzeerd of overruled met motivering.
+        - Herzie scoringspad of formuleer mitigatie expliciet.
+    warning_flag:
+      trigger: "mitigation_advice"
+      prompt: |
+        ⚠️ Waarschuwing vastgesteld:
+        - Formuleer mitigatievoorstel in het eindadvies.
+        - Activeer dynamic_cot_handling voor extra verdieping.
+  instructions: |
+    - Evalueer alle eindscoringsresultaten per parameter.
+    - Check of flag-condities gelden (stop / waarschuwing).
+    - Activeer gelinkte prompts en vervolgacties.
+    - Log status en vervolg in audit-trail én LIM.
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - flags_detected
+      - flag_type
+      - flagged_parameters
+      - mitigation_prompt_triggered
+      - override_triggered
+
+# == 8. Dynamic CoT bij Actieve Flags ====================================
+dynamic_cot_handling:
+  enabled: true
+  trigger: "flag_active"
+  conditions:
+    - flags_detected contains '🚫' or '⚠️'
+  actions:
+    - Verhoog `dynamic_complexity_level` naar 2
+    - Voeg CoT-stappen toe: Counterfactuals, Recursive_Critique
+    - Activeer websearch (indien rubric_gap én toestemming gebruiker)
+    - Start extra Validate-ronde binnen chain_of_thought_flow
+  prompt: |
+    Actieve vlaggen gedetecteerd → Complexiteit verhoogd.
+    - Herstart CoT met uitgebreide stappen.
+    - Verwerk rubric-gaten en onzekerheid explicieter.
+    - Voeg reflectie op risico en bias toe aan CoT-blokken.
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - dynamic_complexity_level
+      - cot_steps_extended
+      - flags_impact_trace
+
+# == 10. Taakdichtheidsanalyse =============================================
+td_analysis:
+  enabled: true
+  description: "Analyseer taakdichtheid op basis van matrix_td_structured.json en CoT-uitvoer"
+  required_inputs:
+    - cot_trace
+    - scores_preliminary
+    - matrix_td_structured.json
+  actions:
+    - Detecteer dominante P * V_sub-combinatie per CoT-output
+    - Zoek overeenkomstige matrix-entry met kernleerhandeling
+    - Vergelijk leerlingoutput met microdescriptors (min/max)
+    - Bepaal AI-overnamegraad en bereken TD-score
+    - Wijs flag toe op basis van drempels:
+        - TD < 0.3 ➔ 🟡 Underuse_warning
+        - 0.3 ≤ TD ≤ 0.7 ➔ ✅ TD_balanced
+        - TD > 0.7 ➔ ⚠ of 🚨 afhankelijk van matrix
+  output_fields:
+    - td_score
+    - td_flag
+    - td_flag_description
+    - selected_matrix_entry
+    - td_flag_trace
+    - td_score_map
+  trigger_next:
+    - f_td_correction
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - td_score
+      - td_flag
+      - td_flag_type
+      - td_matrix_entry
+      - cot_match_vector
+
+# == 10a. F_TD Correctie =====================================================
+f_td_correction:
+  enabled: true
+  description: "Bereken de taakdichtheidscorrectiefactor F_TD op basis van TD, P en V"
+  required_inputs:
+    - td_score          # TD (taakdichtheid)
+    - td_flag           # flagtype uit td-analyse (bijv. 🚨, ⚠️, ✅)
+    - P                 # leerfase-score (0.1–1.0)
+    - V                 # gemiddeld vaardigheidspotentieel (V_C + V_M + V_S + V_A) / 4
+  formula: |
+    if TD <= 0.5:
+        F_TD = 1.0
+    else:
+        F_TD = 1 - 0.2 * ((TD - 0.5) / 0.5) * P * V
+  formula_label: |
+    F_TD = {1 als TD ≤ 0.5; anders: 1 - 0.2 * ((TD - 0.5)/0.5) * P * V}
+  fallback_if_missing:
+    - Set F_TD = 1.0
+    - Add warning: "F_TD fallback geactiveerd wegens ontbrekende of ongeldige waarden"
+  output_fields:
+    - f_td_value
+    - f_td_formula_used
+    - correction_applied_reasoning
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - f_td_value
+      - f_td_formula_used
+      - correction_applied_reasoning
+
+# == 10b. TD-Verantwoording  ===================================
+td_justification:
+  enabled: true
+  description: "Reflecteer op de impact van taakdichtheid (TD) en AI-overname op het leerproces"
+  required_inputs:
+    - td_flag             # 🚨, ⚠️, 🟡, 🟤, ✅
+    - td_score            # Ruwe TD-waarde
+    - P                   # Procesfase-score
+    - V                   # Vaardigheidspotentieel
+    - f_td_value          # Toegepaste correctiefactor
+  actions:
+    - Analyseer wie de kernleerhandeling uitvoerde (leerling of AI)
+    - Benoem het bijbehorende risiconiveau op basis van td_flag
+    - Leg uit hoe dit de leeractiviteit beïnvloedt (bijv. agencyverlies, oppervlakkigheid)
+    - Verbind dit met mogelijke overschatting of onderschatting van de V-score
+    - Geef toelichting bij de toegepaste F_TD-correctie
+  reflection_prompts:
+    - "Wie voerde de belangrijkste leerhandeling uit in deze fase: de leerling of AI?  
+       Bijvoorbeeld: Als de AI de meeste taken uitvoerde, kan dit wijzen op agencyverlies."
+    - "Welke risico's voor het leerproces horen bij flag '{{ td_flag }}'?  
+       Bijvoorbeeld: Een 🚨-flag kan wijzen op een kritieke tekortkoming in autonomie of taakdichtheid."
+    - "In hoeverre is de huidige V-score een realistische weergave van het leerlingpotentieel?  
+       Bijvoorbeeld: Overweeg of de V-score te hoog is ingeschat door AI-overname of te laag door beperkte context."
+    - "Wat zegt dit over het didactisch effect van AI in deze taak?  
+       Bijvoorbeeld: Heeft de AI het leerproces ondersteund of juist belemmerd door te veel over te nemen?"
+  output_fields:
+    - td_reflection_notes
+    - td_flag_impact_summary
+    - learner_vs_ai_explanation
+    - v_score_adjustment_reasoning
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - td_reflection_notes
+      - td_flag_impact_summary
+      - learner_vs_ai_explanation
+      - v_score_adjustment_reasoning
+    report_appendix:
+    include: true
+    section_title: "Reflectie op Taakdichtheid en Leeractiviteit"
+    fields:
+      - td_reflection_notes
+      - td_flag_impact_summary
+      - learner_vs_ai_explanation
+    
+
+# == 11. Compliance Factor C ============================================
+compliance_check:
+  enabled: true
+  description: "Beoordeel in hoeverre de AI-inzet voldoet aan compliance-criteria zoals privacy, transparantie, pedagogische legitimiteit en ethische grenzen."
+
+  evaluation_strategy: "semantic_internal_only"
+  citation_required: false   # Optie 2 mogelijk: bij true moet naar externe bron verwezen worden (AVG, ISO, etc.)
+  
+  instructions: |
+    - Analyseer de volledige context (doel, doelgroep, AI-tool, flags) op risico's en legitimiteit.
+    - Beoordeel of de AI-inzet voldoet aan:
+      - fundamentele principes van privacy (geen persoonsgegevens verwerkt zonder toestemming)
+      - didactische legitimiteit (leerdoel en leerproces niet ondermijnd)
+      - transparantie (AI-gebruik is navolgbaar en uitlegbaar)
+      - ethische grenzen (geen manipulatie, sturing, bias of onrechtvaardige uitsluiting)
+    - Gebruik de flags, fallbackstatus en TD-score als extra indicatie.
+    - De volgende vuistregel geldt:
+      - 🚫 of ADA-failure zonder herstel ➔ C ≤ 0.8
+      - ⚠️ of TD > 0.7 ➔ C = 0.9
+      - ✅ en geen flags ➔ C = 1.0
+  
+  output_fields:
+    - compliance_score
+    - compliance_notes
+    - compliance_flags_used
+    - fallback_status
+
+  notes:
+    - "NB: In toekomstige versies kan worden geëist dat reducties onderbouwd worden met verwijzingen naar externe normen, zoals AVG-artikelen, ISO 42001, Inspectiekaders of EU-ethiekrichtlijnen."
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - compliance_score
+      - compliance_notes
+      - compliance_flags_used
+      - compliance_determined_by
+
+# == 12. Finale Berekening E_AI-score ======================================
+eai_score_calculation:
+  enabled: true
+  description: "Bereken de finale E_AI-score met wegingen, C-factor en F_TD."
+
+  required_inputs:
+    - P: float
+    - V: float
+    - D_A: float
+    - D_Bc: float
+    - T: float
+    - A: float
+    - B: float
+    - F_TD: float
+    - C: float
+
+  formula: |
+    E_AI = ((wP*P*wV*V)+(wDA*D_A*wDBc*D_Bc)+(wT*T*wA*A)+(1-wB*B²))^(1/4) * C * F_TD
+
+  fallback_if_failure:
+    - Schakel over op semantische interpretatie via rubric-matching
+    - Voeg flag toe: "⚠️ Fallback: E_AI-berekening via LLM inschatting"
+
+  output_fields:
+    - final_eai_score
+    - formula_used
+    - fallback_used
+    - contributing_scores
+    - weighted_components
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - final_eai_score
+      - fallback_used
+      - weighted_components
+      - calculation_trace
+      - c_factor
+      - f_td
+
+# == 13. Parameterrelatie-analyse ============================================
+parameter_relations_analysis:
+  enabled: true
+  description: "Analyseer de onderlinge relaties tussen parameters om verborgen spanningen, versterkingen of inconsistenties te detecteren."
+
+  rationale: |
+    Deze stap benut de kracht van semantische LLM-analyse. De parameterscores zijn afzonderlijk waardevol, maar krijgen diepere betekenis wanneer ze samen worden bekeken. 
+    Het systeem zoekt naar:
+    - **Synergieën**: wanneer twee of meer parameters elkaar positief versterken
+    - **Conflicten**: tegenstrijdige waarden die duiden op risico's of overschatting
+    - **Overschaduwing**: een hoge score die een onderliggend probleem verbergt
+
+    ➤ Deze relaties helpen om:
+    - de validiteit van het E_AI-profiel te controleren
+    - risico's te expliciteren vóór adviesgeneratie
+    - visualisaties en rapporten inhoudelijk te verrijken
+
+  required_inputs:
+    - scores_final: true     # Dict met alle scores per parameter
+    - v_subtypes_scores: true
+    - td_flag: true
+    - f_td_factor: true
+    - c_factor: true
+    - flags_active: true
+
+  analysis_instructions: |
+    1. Vergelijk parameterscores op logische consistentie (bijv. hoge A vs lage D_Bc).
+    2. Benoem versterkende patronen (bijv. hoge T en hoge V).
+    3. Signaleer risico's door mismatch (bijv. hoge B met hoge P).
+    4. Beoordeel of flags samenhangen met parameterconflicten of verborgen oorzaken.
+    5. Classificeer elke relatie als:
+       - Synergie (✅)
+       - Conflict (⚠️)
+       - Overschaduwing (🟠)
+    6. Leg elke gevonden relatie uit in natuurlijke taal.
+    7. Beoordeel of dit gevolgen moet hebben voor adviesgeneratie, extra mitigatie of heroverweging van een parameter.
+
+  output_fields:
+    - relation_summaries
+    - flagged_relations
+    - relation_types_detected
+    - mitigatie_geadviseerd
+    - semantic_explanation
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - relation_types_detected
+      - flagged_relations
+      - relation_summaries
+      - mitigatie_geadviseerd
+      - semantic_explanation
+  report_appendix:
+    include: true
+    section_title: "Analyse van Parameterrelaties en Verborgen Risico’s"
+    fields:
+    
+# == 13a. TD-Reflectie  ===================================
+td_reflection:
+  enabled: true
+  condition: td_flag in ['⚠️', '🚫'] and td_score > 0.5
+  description: "Reflecteer op de didactische en ethische betekenis van de taakdichtheid, in samenhang met de E_AI-score en de onderliggende parameters."
+  rationale: |
+    Deze reflectiestap biedt een samenvatting van de taakdichtheid en AI-invloed op het leerproces, met nadruk op agency en pedagogische implicaties.
+
+    Deze reflectie volgt ná de numerieke berekening en parameterrelatie-analyse en is bedoeld om:
+    - zichtbaar te maken wie de kernhandeling uitvoerde (leerling of AI),
+    - te duiden of de AI de leeractiviteit overnam (agencyverlies),
+    - en verband te leggen tussen de TD-flag, het vaardigheidspotentieel (V), en het leerproces (P).
+
+    ➤ Gebruik de didactische logica van de TD-matrix om te interpreteren:
+      - De matrix koppelt procesfase (P) en vaardigheidstype (V_sub) aan kernleerhandelingen, didactische functies, en taakdichtheidsnormen.
+      - Flags en risico’s zoals agencyverlies of oppervlakkigheid worden hiermee verklaard.
+
+    ➤ De reflectie verduidelijkt waarom een bepaald flagniveau werd toegekend, zodat gebruikers zonder matrixkennis dit kunnen begrijpen.
+    ➤ De reflectie geeft dus ook uitleg over **waarom** een bepaald flagniveau werd toegekend, op basis van de matrixlogica - dit maakt het begrijpelijk voor gebruikers zonder matrixkennis.
+
+  required_inputs:
+    - td_flag: string
+    - td_score: float
+    - f_td: float
+    - P: float
+    - V: float
+    - v_subtypes_scores: dict
+    - final_eai_score: float
+    - flagged_relations: list
+
+  reflection_prompts:
+    - "Wie voerde de belangrijkste leerhandeling uit in deze fase: de leerling of AI?"
+    - "Welke risico’s voor het leerproces horen bij flag '{{ td_flag }}'?"
+    - "In hoeverre is de huidige V-score een realistische weergave van het leerlingpotentieel?"
+    - "Wat zegt dit over het didactisch effect van AI in deze taak?"
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - td_reflection_notes
+      - td_flag
+      - f_td
+      - v_score_adjustment_reasoning
+
+  report_appendix:
+    include: true
+    section_title: "Reflectie op Taakdichtheid en Leeractiviteit"
+    fields:
+      - td_reflection_notes
+      - learner_vs_ai_analysis
+      - v_score_adjustment_reasoning
+      - semantic_risico_duiding
+
+# == 13c. SAL-reflectie (Systemic AI Literacy) ===============================
+sal_reflection:
+  enabled: true
+  description: "Evalueer de inzet van AI vanuit het perspectief van Systemic AI Literacy (SAL)."
+
+  rationale: |
+    Deze stap gaat verder dan de numerieke score en analyseert of de AI-inzet bijdraagt aan systeemkritische geletterdheid.
+    SAL omvat vijf dimensies:
+    - Transparantie (begrijpt de gebruiker wat AI doet?)
+    - Menselijk toezicht (blijft de gebruiker in controle?)
+    - Controleerbaarheid (kan AI-uitvoer worden getoetst of gecorrigeerd?)
+    - Handelingsautonomie (wordt de autonomie van de gebruiker versterkt of ondermijnd?)
+    - Biasbeheer (is er aandacht voor eerlijkheid en uitsluitingsrisico's?)
+
+    ➤ SAL-verantwoording helpt bij:
+    - didactische en ethische reflectie
+    - transparantie in rapportages
+    - versterking van leraren- en leerlingagency
+
+  required_inputs:
+    - context_input
+    - ai_tool_description
+    - td_flag
+    - compliance_score
+    - flags_active
+    - parameter_scores
+
+  prompts:
+    - Evalueer of de AI-inzet voldoende transparant is uitgelegd.
+    - Analyseer of de mens (leerling of docent) nog effectief toezicht houdt.
+    - Check of AI-uitvoer controleerbaar is (feedback, toetsbaarheid).
+    - Benoem hoe AI de autonomie van de gebruiker beïnvloedt.
+    - Detecteer biasrisico’s in de context of parameteruitvoer.
+
+  output_fields:
+    - sal_summary
+    - sal_dimension_scores
+    - sal_flags_detected
+    - pedagogical_implications
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - sal_dimension_scores
+      - sal_flags_detected
+      - sal_summary
+      - pedagogical_implications
+  report_appendix:
+    include: true
+    section_title: "Systemic AI Literacy (SAL) Reflectie"
+    fields:
+      - sal_summary
+      - sal_dimension_scores
+      - sal_flags_detected
+      - pedagogical_implications
+
+# == 14. Visualisatie en Duiding ============================================
+visualization_and_interpretation:
+  enabled: true
+  description: "Toon visuele representaties van de belangrijkste scores met uitleg en interpretatie."
+
+  rationale: |
+    Visualisaties helpen bij het interpreteren van complexe scoringsprofielen.
+    Ze versterken de transparantie, vooral wanneer er flags actief zijn.
+    Deze stap combineert grafische weergave met semantische duiding.
+
+    ➤ De radarplot laat alle kernparameters zien (**P, V, D_A, D_Bc, T, A, B**) - geen afkortingen, maar volledige namen.
+    ➤ Rode stippen markeren actieve flags bij betreffende parameters.
+    ➤ De TD-balk toont:
+      - relatieve taakdichtheid (0–1 schaal)
+      - vlagkleur
+      - normgrenzen uit de TD-matrix
+    ➤ Indien visualisatie niet lukt, volgt een tekstuele interpretatie.
+
+  required_inputs:
+    - parameter_scores: dict
+    - td_score: float
+    - td_flag: string
+    - flags_detected: list
+    - context_input: dict
+    - visual_consent: bool
+
+  visual_methods:
+    - type: radarplot
+      dimensions:
+        - Procesfase (P)
+        - Vaardigheid (V)
+        - Data-autonomie (D_A)
+        - Toezicht (D_Bc)
+        - Technische borging (T)
+        - Autonomie (A)
+        - Bias (B)
+      show_flags: true
+      style:
+        - no_abbreviations: true
+        - flag_indicator: red_dot
+        - high_contrast: true
+        - legend: minimal
+
+    - type: td_bar
+      scale: 0.0–1.0
+      color_by_flag: true
+      thresholds:
+        - warning: 0.5
+        - alert: 0.7
+
+  fallback_textual:
+    enabled: true
+    instructions: |
+      Indien visuele weergave niet mogelijk is:
+      - Genereer een gestructureerde tekstuitleg van alle parameterscores
+      - Geef semantische uitleg van het TD-niveau en risicotype (⚠️ / 🚨)
+      - Benoem flagged parameters expliciet met contextuitleg
+
+  output_fields:
+    - radarplot_image
+    - td_bar_image
+    - fallback_description
+    - explanation_of_visuals
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - radarplot_generated
+      - td_bar_generated
+      - fallback_used
+      - flagged_dimensions
+
+  report_appendix:
+    include: true
+    section_title: "Visualisatie en Interpretatie"
+    fields:
+      - radarplot_image
+      - td_bar_image
+      - explanation_of_visuals
+
+# == 15. Learning Impact Memory (LIM-profiel) ===============================
+lim_profiel:
+  enabled: true
+  description: "Genereer en sla een betekenisvol, pseudoniem sessiegeheugen op met scores, flags, redeneringen, adviezen én semantische vectoren."
+
+  rationale: |
+    Het LIM-profiel vormt het geheugen van het E_AI-model.
+    Het bevat zowel numerieke als semantisch gecodeerde componenten.
+    Deze component ondersteunt:
+    - herleidbaarheid (volledige redenering en flags),
+    - bias- en driftdetectie (via verschil pre-estimate vs eindscore),
+    - patroonherkenning en clustering (via vectorisatie),
+    - AVG-proof opslag zonder tekstuele context of persoonsgegevens.
+
+    ➤ Als een bestaand LIM-profiel is geladen (via lim_id_reconnect), wordt geen nieuw profiel opgeslagen tenzij gewijzigd.
+    ➤ Bij weigering van consent voor opslag wordt lim_profiel overgeslagen.
+    ➤ Zowel numerieke als semantische vectoren worden standaard gegenereerd.
+
+  required_inputs:
+    - context_input
+    - preliminary_estimate
+    - scores_final
+    - chain_of_thought
+    - flags_active
+    - td_analysis
+    - compliance_check
+    - advice_outcome
+    - parameter_relations
+    - consent_lim_storage
+    - prior_lim_data
+    - username
+
+  condition: |
+    consent_lim_storage is True
+    and username is not None
+    and username != ""
+    and (prior_lim_data is None or prior_lim_data == {})
+
+  actions:
+    - step: 1
+      action: "Genereer unieke lim_id"
+      method: a1z26_score_transform
+      inputs: [eai_score, toolname, username]
+      note: "lim_id is pseudoniem en wordt gebruikt als bestandsnaam. lim_sleutel wordt niet opgeslagen."
+
+    - step: 2
+      action: "Bepaal profieldiepte op basis van E_AI-score"
+      conditions:
+        - if: "eai_score < 0.4"
+          then: [summary_only]
+        - if: "eai_score >= 0.4 and eai_score < 0.7"
+          then: [include_flags, include_td, include_compliance, include_advice, include_cot_summary]
+        - if: "eai_score >= 0.7"
+          then: [full_trace, include_parameter_relations]
+
+    - step: 3
+      action: "Vectoriseer numerieke componenten"
+      method: lim_vector_from_scores_and_flags
+      output: lim_vector_numeriek
+
+    - step: 4
+      action: "Vectoriseer semantische componenten"
+      method: lim_vector_from_semantics
+      mapping_spec: lim_vector_spec.yaml
+      output: lim_vector_semantisch
+
+    - step: 5
+      action: "Sla LIM-profiel op"
+      method: save_json_profile
+      output: "lim_data/{lim_id}.json"
+
+  output_fields:
+    - lim_id
+    - lim_profile
+    - lim_vector_numeriek
+    - lim_vector_semantisch
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - lim_id_computed
+      - lim_created
+      - lim_structure_verified
+      - lim_vector_numeriek_included
+      - lim_vector_semantiek_included
+      - parameter_drift_detected
+      - lim_profile_saved
+      - lim_profile_skipped_if_reused
+
+  fallback:
+    enabled: true
+    condition: missing_data_fields
+    instructions: |
+      Indien essentiële velden ontbreken (context, flags, etc.):
+      - Genereer partieel lim_profiel
+      - Markeer als 'lim_incomplete'
+      - Log afwezige onderdelen
+    log: lim_profile_incomplete
+
+  report_appendix:
+    include: true
+    section_title: "LIM-profiel (samenvatting)"
+    fields:
+      - lim_id
+      - lim_vector_numeriek
+      - lim_vector_semantisch
+      - lim_structure_verified
+
+
+# == 16. Professionele Adviesgeneratie ======================================
+advice_generation:
+  enabled: true
+  description: "Genereer professionele, rolgerichte en wetenschappelijk onderbouwde adviezen op basis van TD, flags en rubrics."
+
+  required_inputs:
+    - td_score
+    - td_flag
+    - P
+    - V
+    - v_subtypes_scores
+    - A
+    - compliance_score
+    - parameter_scores
+    - flags_detected
+    - rubric_sources_loaded
+    - context_input
+
+  steps:
+    - step: 1
+      action: "Genereer EU AI Act Compliance Tabel"
+      prompt_template: |
+        Genereer een tabel gebaseerd op SAL-criteria:
+
+        | Dimensie            | Parameters    | Resultaat                  | Impact op C-factor |
+        |---------------------|---------------|----------------------------|--------------------|
+        | Transparantie       | D_A, B        | {transparency_eval}       | {transparency_impact} |
+        | Menselijk toezicht  | D_Bc, A       | {oversight_eval}          | {oversight_impact}    |
+        | Controleerbaarheid  | T, D_Bc       | {control_eval}            | {control_impact}      |
+        | Autonomie           | A, V_M        | {autonomy_eval}           | {autonomy_impact}     |
+        | Biasbeheer          | B, compliance | {bias_eval}               | {bias_impact}         |
+
+      output: compliance_table
+
+    - step: 2
+      action: "Genereer Top-3 Didactische Adviezen"
+      prompt_template: |
+        Formuleer drie concrete, inhoudelijk sterke adviezen op basis van:
+        - de taakdichtheid (TD-score, flag en matrixanalyse)
+        - de flags en conflicten uit de parameteranalyse
+        - de rubrics en APA-bronnen (waar mogelijk)
+
+        Elk advies bevat:
+        - duidelijke koppeling aan 1) leerdoel, 2) V-subtype, 3) procesfase (P)
+        - een korte motivatie (flag, risico, versterkend patroon)
+        - APA-bron (indien aanwezig in rubric)
+
+        ➤ Gebruik alleen APA-bronnen uit rubricvelden (sources, literature, references).
+        ➤ Indien geen APA beschikbaar: vermeld 'rubric-based, no APA'.
+        ➤ Vermijd herhaling; elk advies moet uniek, concreet en rolgericht zijn.
+
+        Output: top_3_didactic_advice (met advies, motivatie, rubric, bron)
+
+    - step: 2b
+      action: "Analyseer onderlinge verhoudingen tussen parameters"
+      prompt_template: |
+        Gebruik de resultaten van de parameterrelatie-analyse om:
+        - Synergiën, conflicten of overschaduwingen in het scoringsprofiel te duiden
+        - Te bepalen welke combinaties van scores aandacht vragen
+        - Adviezen scherper te richten op verrassende patronen, bijv. hoge P + lage A of hoge B + hoge V
+
+        Benoem:
+        - Minstens één opvallend spanningsveld of versterkend patroon
+        - Mogelijke gevolgen voor interpretatie van het profiel of advies
+        - Of aanvullende duiding wenselijk is
+
+      output: parameter_relations_summary
+
+    - step: 3
+      action: "Reflectie op taakverdeling en agency"
+      prompt_template: |
+        Analyseer wie dominant was in de leerhandeling:
+        - AI of leerling?
+        - Welk leerrisico of leerpotentieel hangt hiermee samen?
+        - Wat adviseer je om balans te herstellen of benutten?
+
+        Gebruik:
+        - TD-score en flag
+        - agency-rubric (A)
+        - flags_detected
+        - P en V
+
+        Output: td_agency_reflection
+
+    - step: 4
+      action: "Stel adviesrapportage samen"
+      prompt_template: |
+        Compileer een professioneel adviesrapport:
+        - Analyseoverzicht (scores, flags, TD, SAL)
+        - Compliance-tabel
+        - Top-3 adviezen (met rubricverwijzing en APA-bron)
+        - Agency-reflectie
+        - Analyse van onderlinge parameterrelaties
+        - Risicoanalyse en mitigatie
+        - Rapportnotitie (proof-of-concept + beperkingen)
+
+        ➤ Vraag gebruiker of rapport geëxporteerd moet worden (Word).
+        ➤ Vraag optioneel of de gebruiker extra duiding wenst bij één of meer adviezen.
+
+      output: advice_report_html
+
+  output_fields:
+    - compliance_table
+    - top_3_didactic_advice
+    - parameter_relations_summary
+    - td_agency_reflection
+    - advice_report_html
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - advice_generated
+      - rubric_keys_used
+      - sources_used
+      - flags_used_in_advice
+      - td_agency_balance
+
+  report_appendix:
+    include: true
+    section_title: "Top-3 Adviezen en Reflectie"
+    fields:
+      - compliance_table
+      - top_3_didactic_advice
+      - parameter_relations_summary
+      - td_agency_reflection
+
+# == 17. Rapportage en Gebruikersoutput ======================================
+rapportage_generatie:
+  enabled: true
+  description: "Stel een semantisch rijk, taalgestuurd en begrijpelijk eindrapport samen met uitleg, scores, flags, adviezen, en optioneel LIM-profiel en audittrail."
+
+  rationale: |
+    De gebruiker ontvangt een toegankelijke rapportage over deze analyse.
+    Deze rapportage is bedoeld voor:
+    - reflectie op het gebruik van AI in een specifieke onderwijssituatie,
+    - inzicht in risico’s en versterkende factoren,
+    - professionele duiding op basis van rubrics en TD-analyse,
+    - eventueel hergebruik via een gekoppeld geheugenprofiel (LIM).
+
+    ➤ De toon is mensgericht, begeleidend en vakinhoudelijk.
+    ➤ De inhoud is herleidbaar naar de analyse, niet generiek.
+    ➤ Er worden geen technische of modelinterne termen gebruikt.
+
+  required_inputs:
+    - scores_final
+    - flags_active
+    - td_analysis
+    - advice_report_html
+    - compliance_table
+    - parameter_relations
+    - td_agency_reflection
+    - chain_of_thought
+    - rubric_sources_loaded
+    - context_input
+    - eai_score
+    - username
+    - lim_id (optioneel)
+    - audit_trail (optioneel)
+    - prior_lim_data (optioneel)
+
+  steps:
+    - step: 0
+      action: "Controleer per parameter of de uitleg minimaal drie analysegerichte volzinnen bevat"
+      method: check_analysis_explanation_length
+      threshold: 3
+      check_scope: session-specific
+      fallback: enrich_with_session_output
+      note: |
+        Elke parameteranalyse moet minimaal drie volzinnen bevatten:
+        - gericht op de interpretatie van deze analyse,
+        - in begrijpelijke taal,
+        - zonder technische uitleg over de parameter zelf.
+
+    - step: 1
+      action: "Stel rapportage op met begeleidende teksten, interpretaties, scores, flags en adviezen"
+      method: generate_user_friendly_report
+      template: rapport_template_vanuit_analysis
+      output: rapport_tekst
+
+    - step: 2
+      action: "Voeg lim_id toe aan rapport indien aanwezig"
+      condition: "lim_id is not None"
+      append: lim_id to rapport_metadata
+
+    - step: 3
+      action: "Voeg audittrail toe aan slot als bijlage (optioneel)"
+      condition: "audit_trail is not None"
+      append: audit_trail to rapport_tekst
+      note: "Vraag-antwoordgesprek met gebruiker wordt als slotbijlage toegevoegd."
+
+    - step: 4
+      action: "Genereer rapportexport (standaard Word, optioneel HTML)"
+      format: docx
+      fallback_format: html
+      output: gebruikersrapport.docx
+
+  output_fields:
+    - gebruikersrapport.docx
+    - rapport_tekst
+    - lim_id
+    - audit_trail (indien aanwezig)
+
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - rapport_generated
+      - parameter_summaries_checked
+      - summaries_enriched_if_needed
+      - lim_id_included
+      - audit_trail_appended
+      - export_successful
+
+  report_appendix:
+    include: true
+    section_title: "Gebruikersrapportage"
+    fields:
+      - gebruikersrapport.docx
+      - lim_id
+      - audit_trail
+
+# == 18. LIM-profiel Export (JSON) ===========================================
+lim_json_export:
+  enabled: true
+  description: "Exporteer het gegenereerde LIM-profiel naar een AVG-proof .json-bestand voor hergebruik en geheugenopbouw."
+
+  condition: lim_profile is not None and lim_id is not None
+
+  required_inputs:
+    - lim_profile
+    - lim_id
+
+  actions:
+    - step: 1
+      action: "Sla LIM-profiel op als JSON-bestand"
+      method: save_to_json
+      filename_template: "lim_data/{lim_id}.json"
+      output: lim_json_file
+
+  output_fields:
+    - lim_json_file
+
+  logging:
+    audittrail: true
+    log_keys:
+      - lim_json_exported
+      - lim_id_used_for_filename
+
+  fallback:
+    enabled: true
+    condition: lim_profile is None or lim_id is None
+    instructions: |
+      LIM-profiel of ID ontbreekt. Exporteer wordt overgeslagen.
+    log: lim_json_export_skipped
+    note: "Controleer of de LIM-profielgeneratie succesvol was."
+
+# == 19. Audittrail Export (Gesprekslogboek) ================================
+audittrail_export:
+  enabled: true
+  description: "Exporteer de vraag-antwoorddialoog tussen gebruiker en systeem naar een los leesbaar tekstbestand (Markdown)."
+
+  condition: audit_trail is not None and lim_id is not None
+
+  required_inputs:
+    - audit_trail
+    - lim_id
+
+  actions:
+    - step: 1
+      action: "Sla audittrail op als Markdown-bestand"
+      method: save_to_markdown
+      filename_template: "auditlogs/audit_trail_{lim_id}.md"
+      output: audittrail_file
+
+  output_fields:
+    - audittrail_file
+
+  logging:
+    audittrail: true
+    log_keys:
+      - audit_trail_exported
+      - audit_trail_filename_created
+
+  fallback:
+    enabled: true
+    condition: audit_trail is None
+    instructions: |
+      Geen audittrail aanwezig. Er wordt geen exportbestand gegenereerd.
+    log: audittrail_export_skipped
+
+# == 20. Direct Advice Flow ===================================================
+direct_advice_flow:
+  enabled: true
+  steps:
+    - step: 1
+      action: "Snelle context-analyse"
+      prompt: |
+        Analyseer kort de gebruikerscontext:
+        - Identificeer kernparameters en doelen.
+        - Detecteer relevante risicofactoren via rubric-kennis.
+      output: "context_summary, risk_factors"
+
+    - step: 2
+      action: "Genereer Direct Rolgericht Advies"
+      prompt_template: |
+        Formuleer direct toepasbaar advies:
+        - Baseer je op context, risicofactoren en rubric-kennis.
+        - Geef praktische tips en handelingsperspectieven.
+        - Voeg indien mogelijk verwijzingen toe naar wetenschappelijke onderbouwing.
+        - Vermeld dat dit advies zonder formele E_AI-analyse is opgesteld.
+      output: "direct_advice_html"
+
+    - step: 3
+      action: "Vraag of uitgebreid rapport gewenst is"
+      prompt: |
+        Wil je een uitgebreider adviesrapport met toelichting op risico's, werkvormen en rubric-koppelingen?
+        Typ 'Ja' voor een uitgebreider rapport of 'Nee' om direct af te sluiten.
+      options:
+        Ja:
+          trigger: generate_extended_direct_advice
+        Nee:
+          trigger: end_session
+
+# == 21. Afronding / Bericht ================================================
+end_session:
+  enabled: true
+  message: |
+    ✅ Alle stappen zijn succesvol doorlopen.
+    - Analyse of advies is afgerond.
+    - Eventuele rapportages zijn gegenereerd.
+
+    Bedankt voor het gebruik van E_AI Analyse & Advies!
+    Voor verdere ondersteuning kun je altijd een nieuwe sessie starten.
+
+# == 22. Full Analysis Flow ===================================================
+full_analysis_flow:
+  enabled: true
+  description: "Volledige E_AI-analyse inclusief rubric-gestuurde reflectie, flags, TD, advies, LIM-profiel en rapportage."
+
+  steps:
+    - context_collection
+    - context_completion
+    - lim_id_reconnect             # indien gebruiker eerder profiel gebruikt
+    - websearch_mode_choice        # optioneel, indien gekoppeld
+    - rubric_loading
+    - lssl_analysis
+    - context_quality_repair
+    - preliminary_estimate
+    - chain_of_thought_flow
+    - sub_chain_of_thought_flow
+    - flags_detection
+    - td_analysis
+    - f_td_correction
+    - td_reflection
+    - compliance_check
+    - eai_score_calculation
+    - parameter_relations_analysis
+    - sal_reflection
+    - visualization_and_interpretation
+    - advice_generation
+    - lim_profiel
+    - rapportage_generatie
+    - lim_json_export
+    - audittrail_export
+    - end_session
+    - direct_advice_flow

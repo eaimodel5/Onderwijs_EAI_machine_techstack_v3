@@ -1,0 +1,79 @@
+{
+  "⚠ TD_agency_risk": {
+    "risk_summary": "Risico dat AI de denkhandeling overneemt, waardoor oppervlakkig leren ontstaat.",
+    "required_process_evidence": [
+      "ai_vrije_eerste_poging",
+      "keuze_toelichting",
+      "versie_vergelijking"
+    ],
+    "byol_guardrail_modules": [
+      "GR_NO_FINAL_ANSWER",
+      "GR_ONE_HINT_PER_TURN",
+      "GR_ASK_FOR_CHOICE_AND_REASON"
+    ],
+    "teacher_controls": [
+      "check_reconstructie",
+      "check_bronkeuze_vergelijking"
+    ]
+  },
+  "🚨 AI_dominance": {
+    "risk_summary": "AI dreigt dominant te worden in kernleerhandeling. Leerling agency en bewijswaarde dalen sterk.",
+    "required_process_evidence": [
+      "ai_vrije_eerste_poging",
+      "reconstructie",
+      "versie_vergelijking",
+      "mondelinge_uitleg_kort"
+    ],
+    "byol_guardrail_modules": [
+      "GR_REFUSE_TO_WRITE_CORE_PRODUCT",
+      "GR_FORCE_STUDENT_WORK_FIRST",
+      "GR_TRACE_BACK_EVERY_3_TURNS"
+    ],
+    "teacher_controls": [
+      "human_gate_verplicht",
+      "beperkte_ai_rol_instructie"
+    ]
+  },
+  "🟤 Dialogic_loss": {
+    "risk_summary": "Risico op verlies van dialoog en sociale leerwerking door AI als gesprekspartner in plaats van mensen.",
+    "required_process_evidence": [
+      "keuze_toelichting",
+      "peer_feedback_min_1",
+      "versie_vergelijking"
+    ],
+    "byol_guardrail_modules": [
+      "GR_AI_AS_QUESTIONER_NOT_AUTHORITY",
+      "GR_REQUIRE_PEER_STEP"
+    ],
+    "teacher_controls": [
+      "organisatie_peer_review",
+      "klassikale_check_vragen"
+    ]
+  },
+  "🟡 Underuse_warning": {
+    "risk_summary": "AI wordt zo beperkt ingezet dat ondersteuning van relevante tussenstappen mogelijk onbenut blijft.",
+    "required_process_evidence": [
+      "keuze_toelichting"
+    ],
+    "byol_guardrail_modules": [
+      "GR_SUGGEST_TWO_STRATEGIES",
+      "GR_FEEDBACK_ON_INTERMEDIATE_STEPS_ONLY"
+    ],
+    "teacher_controls": [
+      "kies_1_ondersteuningsmoment"
+    ]
+  },
+  "✅ TD_balanced": {
+    "risk_summary": "Taakdichtheid in balans. AI ondersteunt, maar kernhandeling blijft bij leerling.",
+    "required_process_evidence": [
+      "keuze_toelichting"
+    ],
+    "byol_guardrail_modules": [
+      "GR_NO_FINAL_ANSWER",
+      "GR_ASK_DIAGNOSTIC_QUESTION_FIRST"
+    ],
+    "teacher_controls": [
+      "light_check"
+    ]
+  }
+}

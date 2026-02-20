@@ -1,0 +1,26 @@
+# Safe NL‑focused dorks & pivots (clearnet only)
+
+# Official & policy
+site:rijksoverheid.nl filetype:pdf AI onderwijs
+site:overheid.nl "AI" onderwijs
+site:kamerstukken.nl "kunstmatige intelligentie" onderwijs
+site:autoriteitpersoonsgegevens.nl AI onderwijs
+site:onderwijsinspectie.nl AI OR algoritme
+
+# Education sector
+site:surf.nl AI onderwijs
+site:kennisnet.nl AI kader
+site:duo.nl "algoritme" OR "beslisboom"
+site:ocw.nl AI
+site:universiteit *.nl "AI beleid" filetype:pdf
+
+# Procurement & projects
+site:tenderned.nl AI onderwijs
+site:pianoo.nl "algoritme" onderwijs
+
+# Risk & incidents
+site:ictrecht.nl AI onderwijs
+site:veiligheidsregio*.nl "digitale" "onderwijs"
+
+# Archives / mirrors
+site:web.archive.org onderwijs AI nederland

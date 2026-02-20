@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/eai-runlog-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "EAI Run Log v1",
+  "required": [
+    "run_id",
+    "card_id",
+    "card_version",
+    "timestamp",
+    "output_type",
+    "artefacts"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "card_id": {
+      "type": "string"
+    },
+    "card_version": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "output_type": {
+      "type": "string",
+      "enum": [
+        "prompt_pack",
+        "lesson_pack",
+        "tool_spec",
+        "research_brief",
+        "policy_text"
+      ]
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "artefacts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

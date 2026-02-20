@@ -1,0 +1,104 @@
+{"ts": "2025-08-17T19:50:35Z", "level": "WARN", "event": "allowlist.blocked", "seed": "S-0DDE2C41", "error": "Domain not on allowlist: archive.org"}
+{"ts": "2025-08-17T19:50:35Z", "level": "WARN", "event": "allowlist.blocked", "seed": "S-EE83A985", "error": "Domain not on allowlist: readthedocs.io"}
+{"ts": "2025-08-17T19:50:35Z", "level": "INFO", "event": "enrich.done", "n": 12}
+{"ts": "2025-08-17T19:51:11Z", "level": "WARN", "event": "allowlist.blocked", "seed": "S-0DDE2C41", "error": "Domain not on allowlist: archive.org"}
+{"ts": "2025-08-17T19:51:11Z", "level": "WARN", "event": "allowlist.blocked", "seed": "S-EE83A985", "error": "Domain not on allowlist: readthedocs.io"}
+{"ts": "2025-08-17T19:51:11Z", "level": "INFO", "event": "enrich.done", "n": 12}
+{"ts": "2025-08-17T19:51:11Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:11:11Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:11:11Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:11:11Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:18:40Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:18:40Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:18:40Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:23:18Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:23:18Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:23:18Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:24:16Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:24:16Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:24:16Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:32:08Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:32:08Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:32:08Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:35:14Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:35:14Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:35:14Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:41:47Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:41:47Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:41:48Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:42:49Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:42:49Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:42:49Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:45:43Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:45:43Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:45:43Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:50:01Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:50:01Z", "level": "INFO", "event": "enrich.done", "n": 1}
+{"ts": "2025-08-17T20:50:01Z", "level": "INFO", "event": "forecast.done", "n_assets": 6}
+{"ts": "2025-08-17T20:57:19Z", "level": "INFO", "event": "collector.http", "seed": "S-ZERODAYS-1", "url": "https://zerodays.org", "status": 200}
+{"ts": "2025-08-17T20:57:19Z", "level": "WARN", "event": "collector.http_error", "seed": "S-ZERODAYS-2", "url": "https://zerodays.ro", "error": "HTTPSConnectionPool(host='zerodays.ro', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1068174d0>: Failed to resolve 'zerodays.ro' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"ts": "2025-08-17T20:57:20Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T20:57:20Z", "level": "INFO", "event": "enrich.done", "n": 2}
+{"ts": "2025-08-17T20:57:20Z", "level": "INFO", "event": "forecast.done", "n_assets": 7}
+{"ts": "2025-08-17T21:02:40Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:03:35Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:03:35Z", "level": "INFO", "event": "forecast.done", "n_assets": 7}
+{"ts": "2025-08-17T21:06:01Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:06:02Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:06:03Z", "level": "INFO", "event": "enrich.done", "n": 14}
+{"ts": "2025-08-17T21:06:04Z", "level": "INFO", "event": "forecast.done", "n_assets": 14}
+{"ts": "2025-08-17T21:07:17Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:07:17Z", "level": "INFO", "event": "forecast.done", "n_assets": 14}
+{"ts": "2025-08-17T21:11:15Z", "level": "INFO", "event": "collector.http", "seed": "S-ZERODAYS-1", "url": "https://zerodays.org", "status": 200}
+{"ts": "2025-08-17T21:11:15Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:11:15Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:11:15Z", "level": "WARN", "event": "collector.http_error", "seed": "S-ZERODAYS-2", "url": "https://zerodays.ro", "error": "HTTPSConnectionPool(host='zerodays.ro', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x107165810>: Failed to resolve 'zerodays.ro' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"ts": "2025-08-17T21:11:21Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T21:11:22Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:11:22Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:11:22Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:11:22Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:11:22Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:11:23Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:11:23Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:11:23Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:11:23Z", "level": "INFO", "event": "enrich.done", "n": 62}
+{"ts": "2025-08-17T21:11:24Z", "level": "INFO", "event": "enrich.done", "n": 62}
+{"ts": "2025-08-17T21:11:25Z", "level": "INFO", "event": "forecast.done", "n_assets": 35}
+{"ts": "2025-08-17T21:12:23Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:12:25Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:12:25Z", "level": "INFO", "event": "forecast.done", "n_assets": 35}
+{"ts": "2025-08-17T21:14:15Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:14:15Z", "level": "INFO", "event": "collector.leakix.request", "params": {"q": "mongodb open", "page": 1}}
+{"ts": "2025-08-17T21:14:16Z", "level": "INFO", "event": "collector.leakix.done", "n": 0}
+{"ts": "2025-08-17T21:14:16Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:14:16Z", "level": "INFO", "event": "forecast.done", "n_assets": 35}
+{"ts": "2025-08-17T21:18:33Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:18:33Z", "level": "INFO", "event": "collector.shodan.request", "params": {"key": "2UlJYMg5PbtCjhO5Wh6sSdGSC0NOEpvZ", "query": "http.title:\"Index of\" country:NL port:80"}}
+{"ts": "2025-08-17T21:18:33Z", "level": "INFO", "event": "enrich.done", "n": 0}
+{"ts": "2025-08-17T21:18:34Z", "level": "INFO", "event": "forecast.done", "n_assets": 35}
+{"ts": "2025-08-17T21:19:32Z", "level": "INFO", "event": "collector.http", "seed": "S-ZERODAYS-1", "url": "https://zerodays.org", "status": 200}
+{"ts": "2025-08-17T21:19:32Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:19:32Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:19:33Z", "level": "WARN", "event": "collector.http_error", "seed": "S-ZERODAYS-2", "url": "https://zerodays.ro", "error": "HTTPSConnectionPool(host='zerodays.ro', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x106e65950>: Failed to resolve 'zerodays.ro' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"ts": "2025-08-17T21:19:34Z", "level": "INFO", "event": "collector.http", "seed": "S-0DDE2C41", "url": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "status": 200}
+{"ts": "2025-08-17T21:19:35Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:19:35Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:19:35Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:19:35Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:19:35Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.urlscan.request", "params": {"q": "domain:*"}}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.urlscan.done", "n": 10}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "enrich.done", "n": 72}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.shodan.request", "params": {"key": "2UlJYMg5PbtCjhO5Wh6sSdGSC0NOEpvZ", "query": "title:\"FortiGate SSL VPN\" country:\"NL\""}}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.shodan.request", "params": {"key": "2UlJYMg5PbtCjhO5Wh6sSdGSC0NOEpvZ", "query": "services.software.vendor:\"Citrix\" AND country:NL"}}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.shodan.request", "params": {"key": "2UlJYMg5PbtCjhO5Wh6sSdGSC0NOEpvZ", "query": "port:1883 MQTT country:NL"}}
+{"ts": "2025-08-17T21:19:36Z", "level": "INFO", "event": "collector.shodan.request", "params": {"key": "2UlJYMg5PbtCjhO5Wh6sSdGSC0NOEpvZ", "query": "services.service_name:HTTPS AND location.country:NL"}}
+{"ts": "2025-08-17T21:19:37Z", "level": "INFO", "event": "collector.leakix.request", "params": {"q": "mongodb open", "page": 1}}
+{"ts": "2025-08-17T21:19:37Z", "level": "INFO", "event": "collector.leakix.done", "n": 0}
+{"ts": "2025-08-17T21:19:37Z", "level": "INFO", "event": "collector.leakix.request", "params": {"q": "allow_anonymous true", "page": 1}}
+{"ts": "2025-08-17T21:19:38Z", "level": "INFO", "event": "collector.leakix.done", "n": 0}
+{"ts": "2025-08-17T21:19:38Z", "level": "INFO", "event": "collector.shodan.request", "params": {"key": "2UlJYMg5PbtCjhO5Wh6sSdGSC0NOEpvZ", "query": "openid-configuration"}}
+{"ts": "2025-08-17T21:19:38Z", "level": "INFO", "event": "enrich.done", "n": 72}
+{"ts": "2025-08-17T21:19:38Z", "level": "INFO", "event": "forecast.done", "n_assets": 50}

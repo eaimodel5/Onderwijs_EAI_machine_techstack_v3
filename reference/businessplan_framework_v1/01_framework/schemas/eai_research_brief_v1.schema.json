@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/eai-research-brief-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "EAI Research Brief v1",
+  "required": [
+    "research_id",
+    "question",
+    "design",
+    "measures"
+  ],
+  "properties": {
+    "research_id": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "design": {
+      "type": "object"
+    },
+    "measures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ethics_privacy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

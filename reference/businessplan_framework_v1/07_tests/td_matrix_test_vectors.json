@@ -1,0 +1,242 @@
+[
+  {
+    "case_id": "TD_01",
+    "input": {
+      "P_score_range": "0.1–0.2",
+      "V_sub": "V_C",
+      "kernleerhandeling": "organisatie van informatiebronnen"
+    },
+    "expected": {
+      "flag": "⚠ TD_agency_risk",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_02",
+    "input": {
+      "P_score_range": "0.1–0.2",
+      "V_sub": "V_M",
+      "kernleerhandeling": "plannen van leeractiviteiten"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_03",
+    "input": {
+      "P_score_range": "0.1–0.2",
+      "V_sub": "V_S",
+      "kernleerhandeling": "voorbereiden van samenwerking"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_04",
+    "input": {
+      "P_score_range": "0.1–0.2",
+      "V_sub": "V_A",
+      "kernleerhandeling": "initiële motivatie activeren"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_05",
+    "input": {
+      "P_score_range": "0.3–0.4",
+      "V_sub": "V_C",
+      "kernleerhandeling": "activeren van voorkennis"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_06",
+    "input": {
+      "P_score_range": "0.3–0.4",
+      "V_sub": "V_M",
+      "kernleerhandeling": "bewustwording van eigen begrip"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_07",
+    "input": {
+      "P_score_range": "0.3–0.4",
+      "V_sub": "V_S",
+      "kernleerhandeling": "delen van perspectieven of ervaringen"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_08",
+    "input": {
+      "P_score_range": "0.3–0.4",
+      "V_sub": "V_A",
+      "kernleerhandeling": "verkennen van persoonlijke relevantie"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_09",
+    "input": {
+      "P_score_range": "0.5–0.6",
+      "V_sub": "V_C",
+      "kernleerhandeling": "begrijpen en analyseren van uitleg of voorbeelden"
+    },
+    "expected": {
+      "flag": "🟡 Underuse_warning",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_10",
+    "input": {
+      "P_score_range": "0.5–0.6",
+      "V_sub": "V_M",
+      "kernleerhandeling": "toepassen van feedback in het eigen leerproces"
+    },
+    "expected": {
+      "flag": "✅ TD_balanced",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_11",
+    "input": {
+      "P_score_range": "0.5–0.6",
+      "V_sub": "V_S",
+      "kernleerhandeling": "uitleg navragen en verduidelijken in samenwerking"
+    },
+    "expected": {
+      "flag": "✅ TD_balanced",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_12",
+    "input": {
+      "P_score_range": "0.5–0.6",
+      "V_sub": "V_A",
+      "kernleerhandeling": "actieve betrokkenheid bij eigen leerdoel"
+    },
+    "expected": {
+      "flag": "🟤 Dialogic_loss",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_13",
+    "input": {
+      "P_score_range": "0.7–0.8",
+      "V_sub": "V_C",
+      "kernleerhandeling": "toepassen van kennis op nieuwe situaties"
+    },
+    "expected": {
+      "flag": "✅ TD_balanced",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_14",
+    "input": {
+      "P_score_range": "0.7–0.8",
+      "V_sub": "V_M",
+      "kernleerhandeling": "monitoren en bijsturen van eigen aanpak"
+    },
+    "expected": {
+      "flag": "🚨 AI_dominance",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_15",
+    "input": {
+      "P_score_range": "0.7–0.8",
+      "V_sub": "V_S",
+      "kernleerhandeling": "constructieve samenwerking en feedback"
+    },
+    "expected": {
+      "flag": "🚨 AI_dominance",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_16",
+    "input": {
+      "P_score_range": "0.7–0.8",
+      "V_sub": "V_A",
+      "kernleerhandeling": "volhouden bij weerstand of tegenslag"
+    },
+    "expected": {
+      "flag": "🟤 Dialogic_loss",
+      "aanbevolen_td_norm": 0.5
+    }
+  },
+  {
+    "case_id": "TD_17",
+    "input": {
+      "P_score_range": "0.9–1.0",
+      "V_sub": "V_C",
+      "kernleerhandeling": "evalueren en generaliseren van kennis"
+    },
+    "expected": {
+      "flag": "🚨 AI_dominance",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_18",
+    "input": {
+      "P_score_range": "0.9–1.0",
+      "V_sub": "V_M",
+      "kernleerhandeling": "meta-reflectie op leerproces"
+    },
+    "expected": {
+      "flag": "✅ TD_balanced",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_19",
+    "input": {
+      "P_score_range": "0.9–1.0",
+      "V_sub": "V_S",
+      "kernleerhandeling": "groepsreflectie en besluitvorming"
+    },
+    "expected": {
+      "flag": "✅ TD_balanced",
+      "aanbevolen_td_norm": 0.3
+    }
+  },
+  {
+    "case_id": "TD_20",
+    "input": {
+      "P_score_range": "0.9–1.0",
+      "V_sub": "V_A",
+      "kernleerhandeling": "bewust herbevestigen van persoonlijke waarden"
+    },
+    "expected": {
+      "flag": "✅ TD_balanced",
+      "aanbevolen_td_norm": 0.3
+    }
+  }
+]

@@ -1,0 +1,120 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "P",
+      "name": "Procesfase-specificiteit",
+      "definition": "P meet hoe dicht een AI-toepassing zich bevindt bij kernmomenten van het leren: instructie, oefenen, toepassen en toetsen.",
+      "interpretation": "Hoe hoger de P-score, hoe kritischer de impact van AI en hoe strikter borging via toezicht (D_Bc) en biascorrectie (B) noodzakelijk is.",
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI ondersteunt enkel voorbereidende taken zonder directe leerinhoud.",
+          "microdescriptors": [
+            "Min: Alleen organiseren",
+            "Max: Planning zonder inhoudelijke keuzes"
+          ],
+          "examples_ai_role": [
+            "Roosters, reminders, bestandsbeheer"
+          ],
+          "examples_learner_behavior": [
+            "Plannen, toegang organiseren (V_M/V_A)"
+          ],
+          "risks_flags": [
+            "⚠ Onderbenutting AI → leereffect nihil"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI ondersteunt activering van voorkennis of oriëntatie op thema.",
+          "microdescriptors": [
+            "Min: Trigger zonder feedback",
+            "Max: Oriëntatie op voorkennis"
+          ],
+          "examples_ai_role": [
+            "Brainstormprompt, quiz zonder uitleg"
+          ],
+          "examples_learner_behavior": [
+            "Herinneren, betekenis geven (V_C)"
+          ],
+          "risks_flags": [
+            "🔍 Mogelijkheid tot misconcepties → D_Bc ≥ 0.5"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI biedt uitleg, demonstratie of modeling van concepten.",
+          "microdescriptors": [
+            "Min: Informatieoverdracht",
+            "Max: Hardop denken of voorbeelden tonen"
+          ],
+          "examples_ai_role": [
+            "Conceptuitleg, voorbeeldanalyse"
+          ],
+          "examples_learner_behavior": [
+            "Begrijpen, analyseren, afleiden (V_C/V_M)"
+          ],
+          "risks_flags": [
+            "⚠ Copy-practice risico → reflectie vereist"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI ondersteunt toepassing, oefenen en formatieve feedback.",
+          "microdescriptors": [
+            "Min: Begeleide toepassing",
+            "Max: Adaptieve terugkoppeling"
+          ],
+          "examples_ai_role": [
+            "Oefensystemen, foutanalysebots"
+          ],
+          "examples_learner_behavior": [
+            "Toepassen, bijsturen, zelf controleren (V_C/V_M/V_A)"
+          ],
+          "risks_flags": [
+            "🔍 Over-scaffolding → agencyverlies bij TD > 0.6"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI beïnvloedt beoordeling, certificering of beslissingen over leerloop.",
+          "microdescriptors": [
+            "Min: Feedback met impliciete beoordeling",
+            "Max: Summatieve scoring of afsluitende evaluatie"
+          ],
+          "examples_ai_role": [
+            "AI-correctie, rubricscoring, outputclassificatie"
+          ],
+          "examples_learner_behavior": [
+            "Evalueren, leerstatus bepalen, reflecteren (V_M/V_A)"
+          ],
+          "risks_flags": [
+            "🚨 Beslissingsmacht bij AI → D_Bc ≥ 0.9 vereist"
+          ]
+        }
+      ],
+      "key_points": [
+        "P heeft een signaalfunctie. Een hoge P betekent niet automatisch 'goed' gebruik, maar een hogere verantwoordelijkheid voor verantwoorde inzet."
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Hattie, J. (2009). Visible learning: A synthesis of over 800 meta-analyses relating to achievement. Routledge.",
+          "relevance": "Impact van instructie- en feedbackfasen op leerwinst. Cruciale fasen vragen nauwgezette ondersteuning en evaluatie."
+        },
+        {
+          "source": "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work: An analysis of the failure of constructivist, discovery, problem-based, experiential, and inquiry-based teaching. Educational Psychologist, 41(2), 75-86.",
+          "relevance": "Minimal guidance instruction werkt negatief: begeleide toepassing is noodzakelijk bij complexe taken."
+        },
+        {
+          "source": "Clark, R. C., & Mayer, R. E. (2016). E-learning and the science of instruction. Wiley.",
+          "relevance": "Actieve verwerking van instructie is noodzakelijk voor effectieve overdracht."
+        },
+        {
+          "source": "Surma, T., Vanhoyweghen, K., Sluijsmans, D., Camp, G., Muijs, D., & Kirschner, P. A. (2019). Wijze lessen: 12 bouwstenen voor effectieve didactiek. Ten Brink Uitgevers.",
+          "relevance": "Verduidelijkt onderwijsfasen en didactische effectiviteit van AI-ondersteuning."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan leerdoelen rond fasering en adaptieve ondersteuning."
+    }
+  ]
+}

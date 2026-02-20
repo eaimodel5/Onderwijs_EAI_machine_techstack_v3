@@ -1,0 +1,14 @@
+{"seed": "title:\"FortiGate SSL VPN\" country:\"NL\"", "where": "shodan", "priority": 0.9, "why": "Fortinet edge portals presence (NL)"}
+{"seed": "services.software.vendor:\"Citrix\" AND country:NL", "where": "censys", "priority": 0.8, "why": "Citrix ADC/NetScaler presence (NL)"}
+{"seed": "NCSC-NL/citrix-2025 \"live-host-bash-check\"", "where": "github", "priority": 0.7, "why": "Script updates timeline (mirror vs live)"}
+{"seed": "blob.core.windows.net?sv=", "where": "urlscan", "priority": 0.9, "why": "Azure SAS token presence in scans/logs (NL context likely)"}
+{"seed": "x-amz-signature=", "where": "urlscan", "priority": 0.7, "why": "AWS pre-signed URL presence"}
+{"seed": "X-Goog-Signature=", "where": "urlscan", "priority": 0.7, "why": "GCS Signed URL presence"}
+{"seed": "\"token.actions.githubusercontent.com\" \"aud\"", "where": "github", "priority": 0.8, "why": "OIDC trust policies in public repos"}
+{"seed": "\"sts.amazonaws.com\" \"sub\":\"repo:\"", "where": "github", "priority": 0.7, "why": "Subject mis-scopes visible in IaC/policies"}
+{"seed": "openid-configuration", "where": "censys", "priority": 0.6, "why": "Issuer endpoints inventory (presence only)"}
+{"seed": "port:1883 MQTT country:NL", "where": "shodan", "priority": 0.8, "why": "Open brokers meta/banners (NL)"}
+{"seed": "allow_anonymous true", "where": "leakix", "priority": 0.7, "why": "Config traces indicating anonymous access"}
+{"seed": "\"Index of\" mqtt", "where": "urlscan", "priority": 0.6, "why": "Open directories with MQTT configs/logs"}
+{"seed": "https://web.archive.org/cdx/search/cdx?url=*citrix*&output=json", "where": "wayback", "priority": 0.8, "why": "Mirror presence (release notes/configs)"}
+{"seed": "site:readthedocs.io \"FortiGate\" config", "where": "web", "priority": 0.5, "why": "Doc mirrors likely reused by admins"}

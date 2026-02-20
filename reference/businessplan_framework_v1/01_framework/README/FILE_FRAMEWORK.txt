@@ -1,0 +1,32 @@
+File framework (vendor-neutraal)
+
+00_businessplan
+- Het businessplan in Word.
+
+01_framework
+- schemas: JSON schema's voor cards, runlogs en exports.
+- templates: prompt-pack templates met placeholders.
+- modules: herbruikbare guardrails en myth-avoidance modules.
+- mappings: beslisregels die TD-flags koppelen aan controles.
+- project_data: rubrics, TD-matrix en master flow uit het project.
+
+02_backend
+- services: beschrijving van services en endpoints.
+- database: vendor-neutraal datamodel (tabellen of collecties).
+- validation: validatie- en quality gate regels.
+
+03_frontend
+- pages: wireframe beschrijvingen per scherm.
+
+04_evidence
+- models: schema's voor SourceCard, Claim en Pattern.
+- seed: startdata structuur (leeg, bedoeld voor curatie).
+
+05_governance
+- reviewflow, versiebeleid, rollen en verified criteria.
+
+06_builder_pack
+- vendor-neutrale instructies om een eigen wizard of mini-platform te bouwen.
+
+07_tests
+- testvectors om TD-matrix en schema validatie te testen.

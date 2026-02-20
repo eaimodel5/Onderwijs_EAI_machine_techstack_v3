@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/design-pattern-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Design Pattern v1",
+  "required": [
+    "pattern_id",
+    "name",
+    "when_to_use",
+    "steps"
+  ],
+  "properties": {
+    "pattern_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "when_to_use": {
+      "type": "object"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mitigations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

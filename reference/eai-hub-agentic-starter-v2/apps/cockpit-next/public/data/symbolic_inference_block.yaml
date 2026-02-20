@@ -1,0 +1,28 @@
+symbolic_inference:
+  enabled: true
+  trigger_point: "post_cot_analysis"
+  required_inputs:
+    - context_scores
+    - td_score
+    - ada_status
+    - user_confirmation_required
+  actions:
+    - step: 1
+      action: "Laad regels uit symbolic_inference_rules_expanded.json"
+    - step: 2
+      action: "Voer rule-evaluatie uit met context_scores en TD"
+    - step: 3
+      action: "Log alle gematchte regels in symbolic_inference_trace.json"
+    - step: 4
+      action: "Voer acties uit (bijv. seed_injection, waarschuwing, blokkade)"
+    - step: 5
+      action: "Visualiseer actieve regels op dashboard (optioneel)"
+  logging:
+    audittrail: true
+    lim_profile: true
+    log_keys:
+      - rules_triggered
+      - symbolic_trace_written
+      - seeds_injected
+      - prompt_interventions_launched
+      - hard_block_triggered

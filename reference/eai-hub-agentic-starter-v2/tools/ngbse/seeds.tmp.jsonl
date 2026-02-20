@@ -1,0 +1,4 @@
+{"id":"S-API-URLSCAN","query":"domain:example.com","type":"ti_post","priority":0.9,"time_window_days":60}
+{"id":"S-API-GITHUB","query":"token actions.amazonaws.com","type":"code","priority":0.7,"time_window_days":60}
+{"id":"S-API-SHODAN","query":"port:443 country:NL","type":"infra","priority":0.8,"time_window_days":60}
+{"id":"S-API-LEAKIX","query":"mongodb open","type":"leak","priority":0.7,"time_window_days":60}

@@ -1,0 +1,116 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "D_Bc",
+      "name": "Correctietoezicht",
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "Geen mogelijkheid tot menselijke correctie: AI werkt volledig autonoom.",
+          "microdescriptors": [
+            "Min: Resultaten zichtbaar, maar niet aanpasbaar",
+            "Max: Geen toegang tot onderliggende processen"
+          ],
+          "examples_ai_role": [
+            "Automatisch scorende examensoftware zonder menselijke controle"
+          ],
+          "examples_learner_behavior": [
+            "Resultaten klakkeloos accepteren"
+          ],
+          "risks_flags": [
+            "🚨 Hoog risico op bias, black-box gedrag"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "Correctie alleen na afloop, en beperkt in omvang.",
+          "microdescriptors": [
+            "Min: Alleen eindresultaat corrigeerbaar",
+            "Max: Kleine onderdelen kunnen aangepast worden"
+          ],
+          "examples_ai_role": [
+            "Post-hoc scorecorrectie in summatieve toets"
+          ],
+          "examples_learner_behavior": [
+            "Achteraf marginaal aanpassen"
+          ],
+          "risks_flags": [
+            "⚠ Vertraging in probleemdetectie"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "Correctie mogelijk op voorgestelde acties vóór definitieve uitvoering.",
+          "microdescriptors": [
+            "Min: Mogelijkheid om beslissingen te overrulen",
+            "Max: Gedetailleerde interventies in actieproces"
+          ],
+          "examples_ai_role": [
+            "AI-voorstellen kunnen geaccepteerd of verworpen worden"
+          ],
+          "examples_learner_behavior": [
+            "Kritisch keuzes beoordelen"
+          ],
+          "risks_flags": [
+            "🔍 Verhoogd toezicht vereist in kritieke taken"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "Correctie actief ingebouwd tijdens proces, bij beslissingsmomenten.",
+          "microdescriptors": [
+            "Min: Signalering bij twijfelgevallen",
+            "Max: Menselijke review verplicht bij beslissingen"
+          ],
+          "examples_ai_role": [
+            "AI vraagt goedkeuring voor belangrijke stappen"
+          ],
+          "examples_learner_behavior": [
+            "Actief controleren en beslissen"
+          ],
+          "risks_flags": [
+            "⚠ Kans op alertness fatigue → toezicht spreiden"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "Volledige transparantie en onmiddellijke correctiemogelijkheid op elk niveau.",
+          "microdescriptors": [
+            "Min: Openheid over alle data en beslissingen",
+            "Max: Continue realtime menselijke validatie"
+          ],
+          "examples_ai_role": [
+            "Co-pilot systemen, explainable AI dashboards"
+          ],
+          "examples_learner_behavior": [
+            "Realtime controle, onmiddellijke correcties uitvoeren"
+          ],
+          "risks_flags": [
+            "🔍 Hoge cognitieve belasting → supportmechanismen nodig"
+          ]
+        }
+      ],
+      "definition": "D_Bc meet de mate waarin een mens actief kan corrigeren of ingrijpen in het proces of de output van een AI-toepassing.",
+      "interpretation": "Hoe hoger de D_Bc-score, hoe veiliger en uitlegbaar het AI-systeem is. Lage D_Bc-scores verhogen risico's op bias, black-box besluiten en onverantwoord gebruik.",
+      "key_points": [
+        "In kritieke fasen van het onderwijsproces (bijv. toetsing) moet D_Bc idealiter ≥ 0.8 liggen om ethische en educatieve veiligheid te waarborgen."
+      ],
+      "scientific_rationale": [
+        {
+          "source": "European Commission. (2021). Proposal for a Regulation laying down harmonised rules on Artificial Intelligence (Artificial Intelligence Act).",
+          "relevance": "Verplicht menselijk toezicht ('human-in-the-loop') voor hoog-risico AI-toepassingen, inclusief educatie."
+        },
+        {
+          "source": "UNESCO. (2021). Artificial Intelligence and Education: Guidance for Policy-makers.",
+          "relevance": "Verantwoorde AI in onderwijs vereist actieve controleerbaarheid en mogelijkheid tot menselijke interventie."
+        },
+        {
+          "source": "Doshi-Velez, F., & Kim, B. (2017). Towards a rigorous science of interpretable machine learning. arXiv preprint arXiv:1702.08608.",
+          "relevance": "Interpreteerbare AI-systemen zijn essentieel om correcties en verantwoorde besluitvorming mogelijk te maken."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan leerdoelen rond ethiek en verantwoord gebruik."
+    }
+  ]
+}

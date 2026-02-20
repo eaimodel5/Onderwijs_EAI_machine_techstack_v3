@@ -1,0 +1,116 @@
+{
+  "rubric_version": "E_AI 5.6",
+  "parameters": [
+    {
+      "id": "A",
+      "name": "Autonomiecoëfficiënt",
+      "score_bands": [
+        {
+          "range": "0.1–0.2",
+          "description": "AI voert opdrachten alleen uit na volledige expliciete instructie.",
+          "microdescriptors": [
+            "Min: Alleen uitvoeren na commando",
+            "Max: Volledige input nodig per stap"
+          ],
+          "examples_ai_role": [
+            "Simpele chatbots, geprogrammeerde scripts"
+          ],
+          "examples_learner_behavior": [
+            "Volledige controle houden over elke stap"
+          ],
+          "risks_flags": [
+            "⚠ Laag risico, maar inefficiënt gebruik mogelijk"
+          ]
+        },
+        {
+          "range": "0.3–0.4",
+          "description": "AI kan beperkte suggesties geven, maar geen zelfstandige acties initiëren.",
+          "microdescriptors": [
+            "Min: Keuze-opties aanbieden",
+            "Max: Suggesties bij vragen"
+          ],
+          "examples_ai_role": [
+            "Keuzehulp-systemen, eenvoudige recommenders"
+          ],
+          "examples_learner_behavior": [
+            "Selecteren uit voorgestelde opties"
+          ],
+          "risks_flags": [
+            "🔍 Kans op voorkeurbias door framing van suggesties"
+          ]
+        },
+        {
+          "range": "0.5–0.6",
+          "description": "AI initieert acties binnen strikte kaders of templates.",
+          "microdescriptors": [
+            "Min: Acties alleen binnen afgebakend domein",
+            "Max: Matige beslissingsvrijheid binnen richtlijnen"
+          ],
+          "examples_ai_role": [
+            "LMS-tutors die vervolgactiviteiten voorstellen"
+          ],
+          "examples_learner_behavior": [
+            "Reageren op AI-initiatieven, beperkte eigen inbreng"
+          ],
+          "risks_flags": [
+            "⚠ Afhankelijkheidsrisico → agency-monitoring aanbevolen"
+          ]
+        },
+        {
+          "range": "0.7–0.8",
+          "description": "AI neemt beslissingen binnen gedefinieerde doelstellingen, met beperkte supervisie.",
+          "microdescriptors": [
+            "Min: Aanpassingen aan leerroute binnen gestelde doelen",
+            "Max: Automatische aanbevelingen voor individuele voortgang"
+          ],
+          "examples_ai_role": [
+            "Adaptieve leersystemen, tutoringagents"
+          ],
+          "examples_learner_behavior": [
+            "Acceptatie van AI-gestuurde wijzigingen"
+          ],
+          "risks_flags": [
+            "🔍 Verlies van inzicht mogelijk → check expliciete doelen"
+          ]
+        },
+        {
+          "range": "0.9–1.0",
+          "description": "AI neemt breed autonoom beslissingen en beïnvloedt leerproces substantieel.",
+          "microdescriptors": [
+            "Min: Zelfstandig aanpassen aan leerlingniveau zonder bevestiging",
+            "Max: Ongevraagde bijsturing en contentcreatie"
+          ],
+          "examples_ai_role": [
+            "Volledig zelfsturende leerplatformen"
+          ],
+          "examples_learner_behavior": [
+            "Passief volgen van AI-interventies"
+          ],
+          "risks_flags": [
+            "🚨 Hoog risico op agencyverlies → verplicht menselijk toezicht (D_Bc ≥ 0.8)"
+          ]
+        }
+      ],
+      "definition": "A meet de mate waarin de AI zelfstandig kan handelen en beslissingen nemen in het leerproces zonder menselijke interventie.",
+      "interpretation": "Een hogere A-score verhoogt de noodzaak voor bewuste supervisie en agency-bewaking om autonomie en kritisch denken bij de leerling te behouden.",
+      "key_points": [
+        "Maximale autonomie (A ≥ 0.9) zonder toezicht is in educatieve context vrijwel altijd onwenselijk vanwege risico’s op afhankelijkheid en bias."
+      ],
+      "scientific_rationale": [
+        {
+          "source": "Russell, S., & Norvig, P. (2022). Artificial Intelligence: A Modern Approach (4th ed.). Pearson.",
+          "relevance": "Autonome AI-systemen moeten transparant, uitlegbaar en controleerbaar blijven, zeker in gevoelige domeinen zoals onderwijs."
+        },
+        {
+          "source": "UNESCO. (2021). Artificial Intelligence and Education: Guidance for Policy-makers.",
+          "relevance": "Hoge autonomie vereist verhoogde ethische borging om agencyverlies en bias te voorkomen."
+        },
+        {
+          "source": "Doshi-Velez, F., & Kim, B. (2017). Towards a rigorous science of interpretable machine learning. arXiv preprint arXiv:1702.08608.",
+          "relevance": "Beslissingen van autonome systemen moeten altijd uitlegbaar en corrigeerbaar zijn ('right to explanation')."
+        }
+      ],
+      "learning_objectives_link": "Koppeling aan leerdoelen rond zelfregulatie en kritisch denken."
+    }
+  ]
+}

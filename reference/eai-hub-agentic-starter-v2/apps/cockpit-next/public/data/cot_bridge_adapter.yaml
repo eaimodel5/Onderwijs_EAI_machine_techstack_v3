@@ -1,0 +1,33 @@
+# Nesy AI Model 6.5 - Chain-of-Thought Bridge Adapter
+# Nederlandse Configuratie voor Onderwijscontext
+
+nesy_runtime:
+  version: "6.5"
+  language: "nl"
+  context: "onderwijs"
+  
+reflection_engine:
+  name: "NesyReflectRuntime"
+  max_depth: 3
+  timeout_seconds: 300
+  
+seed_management:
+  default_ttl_days: 30
+  max_active_seeds: 50
+  cleanup_interval: "daily"
+  
+didactic_framework:
+  focus: "leerling_centraal"
+  ai_role: "ondersteunend"
+  transparency: "volledig"
+  
+compliance:
+  framework: "EU_AI_Act"
+  education_specific: true
+  dutch_privacy_law: true
+  
+branding:
+  system_name: "EAI Model 6.5"
+  runtime_name: "NesyReflect"
+  primary_color: "lime"
+  theme_support: true

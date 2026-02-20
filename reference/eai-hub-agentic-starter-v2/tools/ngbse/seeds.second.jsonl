@@ -1,0 +1,7 @@
+{"query": "services.service_name:HTTPS AND location.country:NL", "type": "infra", "priority": 0.7, "id": "S-A345DF53", "time_window_days": 60}
+{"query": "mongodb open", "type": "leak", "priority": 0.7, "id": "S-C9EFF029", "time_window_days": 60}
+{"id": "S-81182198", "query": "title:\"FortiGate SSL VPN\" country:\"NL\"", "type": "infra", "priority": 0.9, "time_window_days": 60}
+{"id": "S-23B50A80", "query": "services.software.vendor:\"Citrix\" AND country:NL", "type": "infra", "priority": 0.8, "time_window_days": 60}
+{"id": "S-ADD2A9FE", "query": "openid-configuration", "type": "infra", "priority": 0.6, "time_window_days": 60}
+{"id": "S-B4533423", "query": "port:1883 MQTT country:NL", "type": "infra", "priority": 0.8, "time_window_days": 60}
+{"id": "S-C9E57CF0", "query": "allow_anonymous true", "type": "leak", "priority": 0.7, "time_window_days": 60}

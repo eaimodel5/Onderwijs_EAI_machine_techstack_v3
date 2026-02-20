@@ -1,0 +1,539 @@
+[
+  {
+    "pattern_id": "retrieval_practice",
+    "name": "Retrieval practice met gecontroleerde AI-hulp",
+    "purpose": "Leerling laat kennis actief ophalen en controleren, zonder dat AI antwoorden voordoet.",
+    "when_to_use": "Oefenen en consolidatie, vooral bij feiten- of procedurele kennis waarbij je procesbewijs wilt.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Laat de leerling eerst zelf antwoorden of een oplossing schetsen."
+      },
+      {
+        "step": 2,
+        "instruction": "Laat AI alleen vragen stellen of hints geven, geen volledige oplossing."
+      },
+      {
+        "step": 3,
+        "instruction": "Gebruik succescriteria: wat moet er in een correct antwoord zitten?"
+      },
+      {
+        "step": 4,
+        "instruction": "Laat de leerling de verbeterde versie formuleren en kort uitleggen wat veranderde."
+      }
+    ],
+    "risks": [
+      "AI geeft toch het antwoord, waardoor retrieval verdwijnt",
+      "Te moeilijke vragen geven demotivatie"
+    ],
+    "mitigations": [
+      "Gebruik expliciete verboden output (geen eindantwoord zonder eigen poging)",
+      "Start met lage moeilijkheid en verhoog adaptief"
+    ],
+    "claim_links": [
+      "CLM_RETRIEVAL_PRACTICE"
+    ],
+    "confidence": "high",
+    "tags": [
+      "oefenen",
+      "formatief",
+      "procesbewijs"
+    ]
+  },
+  {
+    "pattern_id": "feed_up_back_forward",
+    "name": "Feedback: doel, status, volgende stap",
+    "purpose": "Feedback structureren zodat de leerling weet waar hij naartoe werkt en wat de volgende stap is.",
+    "when_to_use": "Bij feedback op werk, zowel formatief als bij dooroefenen op zwakke punten.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Feed up: maak het doel en de succescriteria expliciet."
+      },
+      {
+        "step": 2,
+        "instruction": "Feedback: beschrijf wat nu al klopt en wat nog ontbreekt."
+      },
+      {
+        "step": 3,
+        "instruction": "Feed forward: geef één concrete volgende stap en een korte oefenopdracht."
+      }
+    ],
+    "risks": [
+      "Te veel feedback tegelijk overbelast",
+      "Feedback blijft algemeen en niet activerend"
+    ],
+    "mitigations": [
+      "Beperk tot 1-3 punten per ronde",
+      "Maak elke feedbackregel toetsbaar via succescriteria"
+    ],
+    "claim_links": [
+      "CLM_FEEDBACK_SPECIFIC"
+    ],
+    "confidence": "high",
+    "tags": [
+      "feedback",
+      "formatief"
+    ]
+  },
+  {
+    "pattern_id": "worked_examples",
+    "name": "Worked example met fading",
+    "purpose": "Beginners ondersteunen met uitgewerkte voorbeelden en geleidelijk afbouwen naar zelfstandig oplossen.",
+    "when_to_use": "Bij nieuwe procedurele vaardigheden of complexe problemen met hoge cognitieve belasting.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Toon één uitgewerkt voorbeeld met toelichting per stap."
+      },
+      {
+        "step": 2,
+        "instruction": "Laat de leerling een vergelijkbare opgave doen met een gedeeltelijke uitwerking (fading)."
+      },
+      {
+        "step": 3,
+        "instruction": "Laat de leerling daarna zelfstandig oplossen, met checklists en korte hints."
+      }
+    ],
+    "risks": [
+      "Leerling kopieert stappen zonder begrip",
+      "AI maakt de complete uitwerking en leerling blijft passief"
+    ],
+    "mitigations": [
+      "Verplicht uitleg in eigen woorden per stap",
+      "Beperk taakdichtheid via SSOT logic gates bij K1"
+    ],
+    "claim_links": [
+      "CLM_COG_LOAD_NOVICE"
+    ],
+    "confidence": "high",
+    "tags": [
+      "beginners",
+      "cognitive load"
+    ]
+  },
+  {
+    "pattern_id": "guided_practice",
+    "name": "Geleide oefening met evidence checkpoints",
+    "purpose": "AI ondersteunt als coach door te vragen en checkpoints af te dwingen.",
+    "when_to_use": "Bij oefenen waarin je zeker wilt zijn dat de leerling stappen zelf doet en fouten herstelt.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Start met 2 verhelderende vragen over aanpak en voorkennis."
+      },
+      {
+        "step": 2,
+        "instruction": "Laat de leerling stap 1 uitvoeren en vastleggen."
+      },
+      {
+        "step": 3,
+        "instruction": "Geef feedback op stap 1, laat corrigeren, ga dan pas naar stap 2."
+      },
+      {
+        "step": 4,
+        "instruction": "Sluit af met reflectie: wat ging fout, wat werkt nu, wat is de volgende oefening?"
+      }
+    ],
+    "risks": [
+      "AI gaat te snel naar het antwoord",
+      "Te veel stappen kunnen irritatie geven"
+    ],
+    "mitigations": [
+      "Gebruik procesbewijs-tabel als output contract",
+      "Houd stappen kort en herhaalbaar"
+    ],
+    "claim_links": [
+      "CLM_COG_LOAD_NOVICE"
+    ],
+    "confidence": "high",
+    "tags": [
+      "oefenen",
+      "coach"
+    ]
+  },
+  {
+    "pattern_id": "explain_your_reasoning",
+    "name": "Leg je redenering uit",
+    "purpose": "Leerling maakt denkstappen expliciet om begrip te verdiepen en misvattingen zichtbaar te maken.",
+    "when_to_use": "Bij begripstoetsing, redeneren, bewijsvoering, en wanneer ‘mooie antwoorden’ misleidend kunnen zijn.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Vraag de leerling om de redenering in 3-5 zinnen te beschrijven."
+      },
+      {
+        "step": 2,
+        "instruction": "Laat AI één doorvraag stellen op een zwak punt of sprong in redenering."
+      },
+      {
+        "step": 3,
+        "instruction": "Laat de leerling een verbeterde redenering schrijven."
+      }
+    ],
+    "risks": [
+      "Leerling schrijft oppervlakkig",
+      "AI vult redenering in"
+    ],
+    "mitigations": [
+      "Verplicht eigen formulering",
+      "AI mag alleen vragen stellen, geen redenering toevoegen"
+    ],
+    "claim_links": [
+      "CLM_ICAP_CONSTRUCTIVE"
+    ],
+    "confidence": "medium",
+    "tags": [
+      "redeneren",
+      "procesbewijs"
+    ]
+  },
+  {
+    "pattern_id": "compare_and_justify",
+    "name": "Vergelijk en beargumenteer",
+    "purpose": "Leerling vergelijkt opties en onderbouwt keuzes, waardoor begrip en transfer stijgen.",
+    "when_to_use": "Bij conceptuele onderwerpen, schrijfopdrachten, of ontwerpen waar meerdere oplossingen mogelijk zijn.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Laat de leerling twee opties noemen of krijgen (zonder oordeel)."
+      },
+      {
+        "step": 2,
+        "instruction": "Laat de leerling per optie 2 argumenten geven."
+      },
+      {
+        "step": 3,
+        "instruction": "Laat de leerling kiezen en de keuze koppelen aan succescriteria."
+      }
+    ],
+    "risks": [
+      "AI dicteert de keuze",
+      "Argumenten blijven algemeen"
+    ],
+    "mitigations": [
+      "Verplicht koppeling aan succescriteria",
+      "AI mag alleen vragen stellen en structureren"
+    ],
+    "claim_links": [
+      "CLM_ICAP_CONSTRUCTIVE"
+    ],
+    "confidence": "medium",
+    "tags": [
+      "transfer",
+      "denken"
+    ]
+  },
+  {
+    "pattern_id": "feedback_loop",
+    "name": "Korte feedbacklus na eigen poging",
+    "purpose": "Leerling levert eerst eigen werk, krijgt korte feedback, past toe, en reflecteert. AI ondersteunt zonder over te nemen.",
+    "when_to_use": "Bij oefenen, huiswerk, formatieve checks en dooroefenen op fouten.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Eigen poging vastleggen"
+      },
+      {
+        "step": 2,
+        "instruction": "Feedback op 1-3 punten"
+      },
+      {
+        "step": 3,
+        "instruction": "Herstel en herformulering door leerling"
+      },
+      {
+        "step": 4,
+        "instruction": "Nieuwe korte oefening"
+      }
+    ],
+    "risks": [
+      "Feedback wordt te uitgebreid",
+      "AI herschrijft het werk"
+    ],
+    "mitigations": [
+      "Cap feedbackpunten per ronde",
+      "Verplicht leerling-herformulering"
+    ],
+    "claim_links": [
+      "CLM_RETRIEVAL_PRACTICE"
+    ],
+    "confidence": "high",
+    "tags": [
+      "feedback",
+      "oefenen"
+    ]
+  },
+  {
+    "pattern_id": "success_criteria",
+    "name": "Succescriteria als normatief contract",
+    "purpose": "Maakt expliciet wat ‘goed’ is, zodat feedback en beoordeling toetsbaar worden.",
+    "when_to_use": "Bij elke taak waar je kwaliteit wilt borgen of waar ‘mooie tekst’ kan misleiden.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Formuleer 3-6 succescriteria"
+      },
+      {
+        "step": 2,
+        "instruction": "Koppel criteria aan rubric-banden"
+      },
+      {
+        "step": 3,
+        "instruction": "Laat leerling zelfcheck doen"
+      },
+      {
+        "step": 4,
+        "instruction": "Gebruik criteria in feedbackformat"
+      }
+    ],
+    "risks": [
+      "Criteria blijven vaag",
+      "Te veel criteria overbelast"
+    ],
+    "mitigations": [
+      "Gebruik voorbeelden en anti-voorbeelden",
+      "Houd criteria kort en observeerbaar"
+    ],
+    "claim_links": [
+      "CLM_FEEDBACK_SPECIFIC"
+    ],
+    "confidence": "high",
+    "tags": [
+      "rubrics",
+      "kwaliteit"
+    ]
+  },
+  {
+    "pattern_id": "spaced_practice",
+    "name": "Spaced practice (gespreid oefenen)",
+    "purpose": "Verhoogt retentie door oefenmomenten te spreiden in de tijd.",
+    "when_to_use": "Bij elke vaardigheid die je wilt laten beklijven, vooral feiten en procedures.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Plan meerdere korte oefenmomenten"
+      },
+      {
+        "step": 2,
+        "instruction": "Varieer items licht (interleaving waar passend)"
+      },
+      {
+        "step": 3,
+        "instruction": "Evalueer fouten en herhaal zwakke items later"
+      }
+    ],
+    "risks": [
+      "Te snel herhalen voelt saai",
+      "Planning wordt niet volgehouden"
+    ],
+    "mitigations": [
+      "Gebruik korte sessies en micro-quiz",
+      "Automatiseer planning in platform"
+    ],
+    "claim_links": [
+      "CLM_SPACING"
+    ],
+    "confidence": "high",
+    "tags": [
+      "spaced",
+      "planning"
+    ]
+  },
+  {
+    "pattern_id": "practice_schedule",
+    "name": "Oefenplanning op basis van zwakke punten",
+    "purpose": "Stuurt dooroefenen adaptief op basis van fouten, met een eenvoudig herhaalplan.",
+    "when_to_use": "In oefenplatformen, bij remediëring en gepersonaliseerde oefenroutes.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Analyseer fouten per rubric-dimensie"
+      },
+      {
+        "step": 2,
+        "instruction": "Kies 1-2 focuspunten"
+      },
+      {
+        "step": 3,
+        "instruction": "Plan herhaalopgaven in tijd"
+      },
+      {
+        "step": 4,
+        "instruction": "Her-evalueer na elke ronde"
+      }
+    ],
+    "risks": [
+      "Over-adaptatie op kleine fouten",
+      "Leerling voelt zich gecontroleerd"
+    ],
+    "mitigations": [
+      "Gebruik drempels en meerdere datapunten",
+      "Leg keuzes transparant uit"
+    ],
+    "claim_links": [
+      "CLM_SPACING"
+    ],
+    "confidence": "medium",
+    "tags": [
+      "adaptief",
+      "oefenen"
+    ]
+  },
+  {
+    "pattern_id": "metacognitive_prompts",
+    "name": "Metacognitieve prompts",
+    "purpose": "Activeert zelfregulatie door leerling te laten plannen, monitoren en reflecteren.",
+    "when_to_use": "Bij K3 taken, reflectie, en wanneer afhankelijkheid van AI dreigt.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Vraag: wat is je plan?"
+      },
+      {
+        "step": 2,
+        "instruction": "Vraag: wat is je zekerheid en waarom?"
+      },
+      {
+        "step": 3,
+        "instruction": "Vraag: welke stap is onduidelijk?"
+      },
+      {
+        "step": 4,
+        "instruction": "Sluit af met: wat neem je mee?"
+      }
+    ],
+    "risks": [
+      "Prompts worden routineus",
+      "AI gaat reflectie invullen"
+    ],
+    "mitigations": [
+      "Varieer prompts en koppel aan concrete taak",
+      "Verplicht eigen antwoord vóór AI feedback"
+    ],
+    "claim_links": [
+      "CLM_SRL_PROMPTS"
+    ],
+    "confidence": "medium",
+    "tags": [
+      "zelfregulatie",
+      "reflectie"
+    ]
+  },
+  {
+    "pattern_id": "plan_monitor_evaluate",
+    "name": "Plan-monitor-evalueer cyclus",
+    "purpose": "Structureert zelfregulatie in drie herhaalbare stappen met bewijs.",
+    "when_to_use": "Bij leerstrategieën, projectwerk, of langere opdrachten.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Plan: kies aanpak en succescriteria"
+      },
+      {
+        "step": 2,
+        "instruction": "Monitor: check voortgang tegen criteria"
+      },
+      {
+        "step": 3,
+        "instruction": "Evalueer: wat werkte, wat niet, volgende stap"
+      }
+    ],
+    "risks": [
+      "Te abstract voor beginners",
+      "Wordt administratie"
+    ],
+    "mitigations": [
+      "Gebruik korte templates",
+      "Combineer met guided practice bij beginners"
+    ],
+    "claim_links": [
+      "CLM_SRL_PROMPTS"
+    ],
+    "confidence": "medium",
+    "tags": [
+      "SRL",
+      "proces"
+    ]
+  },
+  {
+    "pattern_id": "verification_checklist",
+    "name": "Verificatiechecklist voor AI-claims",
+    "purpose": "Voorkomt hallucinaties en foutieve uitleg door expliciete checks.",
+    "when_to_use": "Bij feitelijke claims, bronnen, definities, data, of wanneer fouten hoge impact hebben.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Markeer welke claims feitelijk zijn"
+      },
+      {
+        "step": 2,
+        "instruction": "Check 2 onafhankelijke bronnen of methode"
+      },
+      {
+        "step": 3,
+        "instruction": "Noteer onzekerheid en beperkingen"
+      },
+      {
+        "step": 4,
+        "instruction": "Leg vast wat gecontroleerd is"
+      }
+    ],
+    "risks": [
+      "Te veel tijd",
+      "Schijnzekerheid door slechte bron"
+    ],
+    "mitigations": [
+      "Pas toe op kernclaims",
+      "Gebruik kwaliteitsfilters voor bronnen"
+    ],
+    "claim_links": [
+      "CLM_GAI_RISK_VERIFY"
+    ],
+    "confidence": "high",
+    "tags": [
+      "verificatie",
+      "veiligheid"
+    ]
+  },
+  {
+    "pattern_id": "source_trace",
+    "name": "Bronverwijzing en traceerbaarheid",
+    "purpose": "Maakt herleidbaar waar informatie vandaan komt en wat gecontroleerd is.",
+    "when_to_use": "Bij evidence informed werken, beleid, of wanneer je auditbaarheid nodig hebt.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Koppel claim aan bron-id"
+      },
+      {
+        "step": 2,
+        "instruction": "Noteer datum en context"
+      },
+      {
+        "step": 3,
+        "instruction": "Bewaar korte samenvatting en relevantie"
+      },
+      {
+        "step": 4,
+        "instruction": "Herzie periodiek"
+      }
+    ],
+    "risks": [
+      "Bron is niet relevant",
+      "Overload aan bronnen"
+    ],
+    "mitigations": [
+      "Gebruik een evidence pack met curated bronnen",
+      "Beperk tot load-bearing bronnen"
+    ],
+    "claim_links": [
+      "CLM_GAI_RISK_VERIFY"
+    ],
+    "confidence": "high",
+    "tags": [
+      "evidence",
+      "audit"
+    ]
+  }
+]

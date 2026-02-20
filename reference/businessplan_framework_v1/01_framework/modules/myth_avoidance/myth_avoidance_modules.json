@@ -1,0 +1,302 @@
+[
+  {
+    "id": "MYTH_01",
+    "label": "⚠ Afhankelijkheidsrisico → agency-monitoring aanbevolen",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_02",
+    "label": "⚠ Black-box denken zonder inzicht of checkmechanismen",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_03",
+    "label": "⚠ Copy-practice risico → reflectie vereist",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_04",
+    "label": "⚠ Echokamer-activiteit, geen interactief leren",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_05",
+    "label": "⚠ Externe motivatie zonder duurzame betrokkenheid",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_06",
+    "label": "⚠ Fragmentarische ontwikkeling; TD > 0.6 → risico op misvatting van groei.",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_07",
+    "label": "⚠ Fragmentatie zonder samenhang",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_08",
+    "label": "⚠ Gaten in minder bekende biasdomeinen blijven bestaan",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_09",
+    "label": "⚠ Gedeeltelijke afhankelijkheid van AI-sturing",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_10",
+    "label": "⚠ Geen bijdrage aan cognitieve groei mogelijk",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_11",
+    "label": "⚠ Geen denkactivatie",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_12",
+    "label": "⚠ Geen vaardigheidswinst mogelijk, ook niet bij actieve leerling.",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_13",
+    "label": "⚠ Hoge kans op afhakende gebruikers",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_14",
+    "label": "⚠ Impulsief leren, kans op burn-out",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_15",
+    "label": "⚠ Kans op alertness fatigue → toezicht spreiden",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_16",
+    "label": "⚠ Kans op oppervlakkige toepassing",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_17",
+    "label": "⚠ Laag risico, maar inefficiënt gebruik mogelijk",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_18",
+    "label": "⚠ Motivatie fragiel bij beperkte autonomie",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_19",
+    "label": "⚠ Onderbenutting AI → leereffect nihil",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_20",
+    "label": "⚠ Overschatting begrip",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_21",
+    "label": "⚠ Passiviteit",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_22",
+    "label": "⚠ Reflectie zonder diepgaande aanpassing van leerstrategie",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_23",
+    "label": "⚠ Slechts oppervlakkige conceptontwikkeling zonder transfer",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_24",
+    "label": "⚠ Structurele misvorming van kennis",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_25",
+    "label": "⚠ Validatie van AI-logica vereist",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_26",
+    "label": "⚠ Vertraging in probleemdetectie",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_27",
+    "label": "🔍 Agency-check vereist bij TD > 0.6 → overondersteuning.",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_28",
+    "label": "🔍 Cognitieve belasting door continue correcties",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_29",
+    "label": "🔍 Conflictmijding of dominantie via AI-sturing",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_30",
+    "label": "🔍 Efficiëntieverlies, foutgevoeligheid",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_31",
+    "label": "🔍 Fragmentatie in zelfregulatiecyclus",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_32",
+    "label": "🔍 Hoge cognitieve belasting → supportmechanismen nodig",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_33",
+    "label": "🔍 Illusie van begrip; structuur zonder inhoud",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_34",
+    "label": "🔍 Illusie van neutraliteit",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_35",
+    "label": "🔍 Integratie vereist",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_36",
+    "label": "🔍 Kans op voorkeurbias door framing van suggesties",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_37",
+    "label": "🔍 Mogelijkheid tot misconcepties → D_Bc ≥ 0.5",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_38",
+    "label": "🔍 Oppervlakkige interactie, bevestiging zoeken",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_39",
+    "label": "🔍 Oppervlakkige kennisstructuren, risico op schijnparticipatie.",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_40",
+    "label": "🔍 Oppervlakkige verwerking",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_41",
+    "label": "🔍 Over-scaffolding → agencyverlies bij TD > 0.6",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_42",
+    "label": "🔍 Overafhankelijkheid",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_43",
+    "label": "🔍 Overmatige afhankelijkheid van AI voor zelfinzicht",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_44",
+    "label": "🔍 Overname redeneerstappen → TD-check vereist",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_45",
+    "label": "🔍 Risico op overbelasting bij zwakke zelfregulatie",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_46",
+    "label": "🔍 Verhoogd toezicht vereist in kritieke taken",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_47",
+    "label": "🔍 Verhoogde databelasting vereist dataprivacy-check",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_48",
+    "label": "🔍 Verlies van inzicht mogelijk → check expliciete doelen",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_49",
+    "label": "🔍 Vervreemding van leerdoelen mogelijk",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_50",
+    "label": "🚨 Agencyverlies",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_51",
+    "label": "🚨 Agencyverlies bij oversupport → leerling volgt AI zonder eigenaarschap",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_52",
+    "label": "🚨 Beslissingsmacht bij AI → D_Bc ≥ 0.9 vereist",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_53",
+    "label": "🚨 Groepsdenken of conformisme → agencyverlies bij AI-dominantie",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_54",
+    "label": "🚨 Hoog risico op 'overcoaching' → bij TD > 0.6 treedt agencyverlies op, F_TD-correctie noodzakelijk.",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_55",
+    "label": "🚨 Hoog risico op agencyverlies → verplicht menselijk toezicht (D_Bc ≥ 0.8)",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_56",
+    "label": "🚨 Hoog risico op bias, black-box gedrag",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_57",
+    "label": "🚨 Hoog risico op black-box denken bij passieve leerlingactiviteit",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_58",
+    "label": "🚨 Hoog risico op dataverslaving → sterke ethische borging nodig",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_59",
+    "label": "🚨 Perfectionisme, faalangst of uitputting → welzijnsbewaking vereist",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  },
+  {
+    "id": "MYTH_60",
+    "label": "🚨 Vertrouwen op AI zonder eigen kritische controle vermijden",
+    "message": "Gebruik deze waarschuwing in de EAI-card wanneer relevant. Tekst komt uit rubric-risico of wordt door curatie verfijnd."
+  }
+]

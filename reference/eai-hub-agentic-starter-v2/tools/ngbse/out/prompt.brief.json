@@ -1,0 +1,83 @@
+{
+  "instruction": "Schrijf een beknopte NL BLUF (2-3 zinnen) + 3 acties. Wees feitelijk, geen geheimen.",
+  "top_assets": [
+    {
+      "asset": "leakix.net",
+      "avg_eai": 0.61
+    },
+    {
+      "asset": "urlscan.io",
+      "avg_eai": 0.54
+    },
+    {
+      "asset": "github.com",
+      "avg_eai": 0.4
+    },
+    {
+      "asset": "shodan.io",
+      "avg_eai": 0.4
+    }
+  ],
+  "examples": [
+    {
+      "asset": "shodan.io",
+      "type": "infra",
+      "url": "https://shodan.io",
+      "e_ai_star": 0.4
+    },
+    {
+      "asset": "urlscan.io",
+      "type": "ti_post",
+      "url": "https://urlscan.io",
+      "e_ai_star": 0.54
+    },
+    {
+      "asset": "shodan.io",
+      "type": "infra",
+      "url": "https://shodan.io",
+      "e_ai_star": 0.4
+    },
+    {
+      "asset": "github.com",
+      "type": "code",
+      "url": "https://github.com",
+      "e_ai_star": 0.4
+    },
+    {
+      "asset": "shodan.io",
+      "type": "infra",
+      "url": "https://shodan.io",
+      "e_ai_star": 0.4
+    },
+    {
+      "asset": "github.com",
+      "type": "code",
+      "url": "https://github.com",
+      "e_ai_star": 0.4
+    },
+    {
+      "asset": "urlscan.io",
+      "type": "ti_post",
+      "url": "https://urlscan.io",
+      "e_ai_star": 0.54
+    },
+    {
+      "asset": "urlscan.io",
+      "type": "ti_post",
+      "url": "https://urlscan.io",
+      "e_ai_star": 0.54
+    },
+    {
+      "asset": "github.com",
+      "type": "code",
+      "url": "https://github.com",
+      "e_ai_star": 0.4
+    },
+    {
+      "asset": "leakix.net",
+      "type": "leak",
+      "url": "https://leakix.net",
+      "e_ai_star": 0.61
+    }
+  ]
+}

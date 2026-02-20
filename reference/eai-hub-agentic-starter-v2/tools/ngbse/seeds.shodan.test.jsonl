@@ -1,0 +1,1 @@
+{"id":"S-API-SHODAN","query":"http.title:\"Index of\" country:NL port:80","type":"infra","priority":0.8,"time_window_days":60}

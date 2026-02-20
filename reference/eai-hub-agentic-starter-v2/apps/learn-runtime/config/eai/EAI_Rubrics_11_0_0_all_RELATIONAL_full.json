@@ -1,0 +1,2856 @@
+{
+  "$schema": "https://eai-learn.org/schemas/rubrics/10.1",
+  "version": "11.0.0",
+  "metadata": {
+    "created": "2025-01-20",
+    "last_updated": "2025-11-26",
+    "author": "EAI LEARN Team",
+    "license": "CC BY-NC 4.0",
+    "description": "EAI Rubrics 11.0.0 - Integrates EduGPT Shortcuts (/commands) into fixes while maintaining 10.0.0 structural integrity. - Adds Nested Learning (nl_profile per band) on top of 10.1.0 while preserving all bands and microdescriptors.",
+    "principles": [
+      "sensor-based: learner_obs/ai_obs bepalen de band",
+      "mechanistic-aware: weights bepalen de snelheid",
+      "library-integrated: fixes bevatten EduGPT shortcuts tussen ()"
+    ],
+    "changelog": {
+      "10.1.0": [
+        "INTEGRATED: EduGPT shortcuts in didactic_principle field (e.g., 'Doeloriëntatie (/checkin)')",
+        "STANDARDIZED: All fixes now reference shortcuts explicitly",
+        "CLEANED: Removed inconsistent fields (ai_intent, integration_level)",
+        "VALIDATED: All bands have complete mechanistic_signature_target and mechanistic_risks"
+      ],
+      "11.0.0": [
+        "ADDED: nl_profile per band for Nested Learning across timescales (turn, task, trajectory).",
+        "NON-DESTRUCTIVE: All existing bands, microdescriptors and mechanistic fields from 10.1.0 are preserved.",
+        "COMPATIBILITY: 10.1.0 schema remains valid; nl_profile is additive metadata."
+      ]
+    },
+    "cycle": {
+      "order": [
+        "P_Procesfase",
+        "TD_Taakdichtheid",
+        "C_CoRegulatie",
+        "V_Vaardigheidspotentieel",
+        "T_TechnologischeIntegratieVisibility",
+        "E_EpistemischeBetrouwbaarheid",
+        "L_LeercontinuiteitTransfer"
+      ],
+      "loop": true,
+      "note": "Basiscylus over zeven kern-dimensies; S_SocialeInteractie en B_BiasCorrectie functioneren als dwarsdoorsnijdende dimensies."
+    },
+    "validation": {
+      "notes": "Validatie moet nu toetsen op twee assen: 1) Herkent het model de observaties correct? 2) Leidt de didactische fix tot hogere agency?"
+    }
+  },
+  "rubrics": [
+    {
+      "rubric_id": "C_CoRegulatie",
+      "name": "Co-regulatie",
+      "dimension": "regieverdeling",
+      "version": "10.1.0",
+      "language": "nl",
+      "goal": "Meet de verdeling van regie over het leerproces tussen leerling en AI.",
+      "bands": [
+        {
+          "band_id": "C_CoRegulatie_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Onvoldoende interactie om regieverdeling te beoordelen.",
+          "learner_obs": [
+            "Geen significante dialoog waarneembaar.",
+            "Onvoldoende beurten om rolverdeling vast te stellen."
+          ],
+          "ai_obs": [
+            "Minimale uitwisseling.",
+            "Geen duidelijk patroon van initiatief of sturing."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Doeloriëntatie & Afstemming (/checkin)",
+          "fix": "Start de dialoog door te vragen: 'Wat is je concrete doel voor deze sessie en welke rol wil je dat ik aanneem (coach, criticus, uitlegger)?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:regieverdeling",
+            "band:C_CoRegulatie_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_C_CoRegulatie_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van C_CoRegulatie_0 naar een hogere band binnen dimensie regieverdeling over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "C_CoRegulatie_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "AI-monoloog",
+          "description": "AI voert het gesprek en de denkstappen vrijwel volledig; leerling volgt passief.",
+          "learner_obs": [
+            "Wacht passief op AI-prompt.",
+            "Herhaalt letterlijk AI-zinnen.",
+            "Neemt geen eigen beslissingen."
+          ],
+          "ai_obs": [
+            "Start elke stap zelf.",
+            "Geeft geen keuze-opties.",
+            "Verklaart eigen keuzes niet."
+          ],
+          "flag": "AI_DOMINANCE",
+          "didactic_principle": "Activerende Didactiek (Beurtvraag)",
+          "fix": "Doorbreek de passiviteit. Stop direct met zenden en stel een dwingende beurtvraag: 'Vat in één zin samen wat de kern is van wat ik net zei, voordat we verder gaan.'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:regieverdeling",
+            "band:C_CoRegulatie_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_C_CoRegulatie_1_binnen_window",
+              "flag:AI_DOMINANCE"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van C_CoRegulatie_1 naar een hogere band binnen dimensie regieverdeling over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "C_CoRegulatie_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "AI-geleid",
+          "description": "AI bepaalt de koers; leerling reageert vooral bevestigend zonder eigen sturing.",
+          "learner_obs": [
+            "Antwoordt kort en bevestigt AI-beslissingen zonder tegenvoorstel.",
+            "Neemt geen initiatief tot verandering."
+          ],
+          "ai_obs": [
+            "Bepaalt volgorde van taken.",
+            "Geeft beperkte uitleg.",
+            "Nodigt niet uit tot keuze of reflectie."
+          ],
+          "flag": "TD_AGENCY_RISK",
+          "didactic_principle": "Keuze-architectuur",
+          "fix": "Bied structuur maar dwing een keuze af: 'We kunnen nu route A (verdiepen theorie) of route B (meteen oefenen) nemen. Welke kies je en waarom?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:regieverdeling",
+            "band:C_CoRegulatie_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_C_CoRegulatie_2_binnen_window",
+              "flag:TD_AGENCY_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van C_CoRegulatie_2 naar een hogere band binnen dimensie regieverdeling over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "C_CoRegulatie_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Gedeelde start",
+          "description": "Leerling neemt eerste beslissingen, maar leunt nog zichtbaar op bevestiging van AI.",
+          "learner_obs": [
+            "Neemt enkele beslissingen.",
+            "Vraagt expliciet om bevestiging van AI.",
+            "Toont eerste tekenen van eigen regie."
+          ],
+          "ai_obs": [
+            "Start de dialoog met een open vraag.",
+            "Laat de leerling kleine keuzes maken.",
+            "Geeft korte toelichting bij AI-voorstellen."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Metacognitieve Monitoring (/meta)",
+          "fix": "Vraag de leerling uit te zoomen op het proces: 'We zijn halverwege. Hoe vind je dat onze aanpak werkt? Moeten we de strategie aanpassen?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:regieverdeling",
+            "band:C_CoRegulatie_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_C_CoRegulatie_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van C_CoRegulatie_3 naar een hogere band binnen dimensie regieverdeling over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "C_CoRegulatie_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Gedeelde regie",
+          "description": "Leerling en AI sturen het proces in dialoog; leerling legitimeert eigen keuzes.",
+          "learner_obs": [
+            "Stelt eigen vragen aan AI.",
+            "Verantwoordt gemaakte keuzes.",
+            "Stuurt actief het verloop van het gesprek."
+          ],
+          "ai_obs": [
+            "Geeft alternatieven of tegenvoorbeelden.",
+            "Vraagt de leerling om uit te leggen waarom een keuze is gemaakt.",
+            "Ondersteunt de redenering zonder deze over te nemen."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Zelfregulatie versterken (/ref)",
+          "fix": "Vraag om explicitering van de strategie: 'Waarom koos je voor deze specifieke aanpak bij deze stap?'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:regieverdeling",
+            "band:C_CoRegulatie_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_C_CoRegulatie_4_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van C_CoRegulatie_4 naar een hogere band binnen dimensie regieverdeling over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "C_CoRegulatie_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Leerling-geankerd",
+          "description": "Regie ligt structureel bij de leerling; AI fungeert als klankbord.",
+          "learner_obs": [
+            "Stuurt volledig de leerstappen.",
+            "Reflecteert spontaan op AI-suggesties.",
+            "Gebruikt AI enkel als klankbord."
+          ],
+          "ai_obs": [
+            "Reageert alleen op verzoek.",
+            "Geeft bevestiging of controlevragen.",
+            "Neemt geen nieuwe beslissingen over."
+          ],
+          "flag": "UNDERUSE_WARNING",
+          "didactic_principle": "Socratisch Uitdagen",
+          "fix": "Neem de rol van 'Devil's Advocate' aan: 'Ik ga nu proberen gaten te schieten in jouw plan/redenering. Ben je er klaar voor om je keuze te verdedigen?'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:regieverdeling",
+            "band:C_CoRegulatie_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_C_CoRegulatie_5_binnen_window",
+              "flag:UNDERUSE_WARNING"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van C_CoRegulatie_5 binnen dimensie regieverdeling over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "TD_Taakdichtheid": "kwantitatieve_taakverdeling",
+        "P_Procesfase": "leerfase_context"
+      }
+    },
+    {
+      "rubric_id": "P_Procesfase",
+      "name": "Procesfase-specificiteit",
+      "dimension": "leerfase",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "P_Procesfase_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Fase is onduidelijk of interactie is te kort.",
+          "learner_obs": [
+            "Geen duidelijke leerfase herkenbaar.",
+            "Interactie te fragmentarisch."
+          ],
+          "ai_obs": [
+            "Geen fase-specifieke interventie.",
+            "Onduidelijke context."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Fase-bepaling",
+          "fix": "Vraag uit: 'In welke leerfase zit je: Oriëntatie (start), Uitvoering (bezig) of Evaluatie (klaar)?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:leerfase",
+            "band:P_Procesfase_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_P_Procesfase_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van P_Procesfase_0 naar een hogere band binnen dimensie leerfase over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "P_Procesfase_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Oriëntatie & organisatie",
+          "description": "AI ondersteunt alleen voorbereidende taken; geen inhoudelijke invloed.",
+          "learner_obs": [
+            "Organiseert materialen of taken.",
+            "Plant eigen werk zonder inhoudelijke sturing.",
+            "Gebruikt AI alleen voor logistieke voorbereidingen."
+          ],
+          "ai_obs": [
+            "Geeft reminders, structuren of planning.",
+            "Geen inhoudelijke kennis of uitleg.",
+            "Geen invloed op denkproces of beslissingen."
+          ],
+          "flag": "UNDERUSE_WARNING",
+          "didactic_principle": "Voorkennis Activeren (/intro)",
+          "fix": "Activeer voorkennis volgens het principe van Wijze Les: 'Noem 3 begrippen of ideeën die je al associeert met dit onderwerp voordat ik uitleg geef.'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:leerfase",
+            "band:P_Procesfase_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_P_Procesfase_1_binnen_window",
+              "flag:UNDERUSE_WARNING"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van P_Procesfase_1 naar een hogere band binnen dimensie leerfase over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "P_Procesfase_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Activeren van voorkennis",
+          "description": "AI helpt de leerling om bestaande kennis te activeren.",
+          "learner_obs": [
+            "Herinnert eerder behandelde begrippen.",
+            "Verbindt voorkennis aan nieuw onderwerp.",
+            "Formuleert eerste betekenisvragen."
+          ],
+          "ai_obs": [
+            "Geeft hints of korte triggers.",
+            "Stelt vragen over wat de leerling al weet.",
+            "Geeft geen volledige uitleg of voorbeelden."
+          ],
+          "flag": "TD_AGENCY_RISK",
+          "didactic_principle": "Visualiseren (Concept Mapping) (/schema)",
+          "fix": "Vraag de leerling de voorkennis te structureren: 'Maak een lijstje of concept-map van wat je al weet, zodat we kunnen zien wat er nog ontbreekt.'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:leerfase",
+            "band:P_Procesfase_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_P_Procesfase_2_binnen_window",
+              "flag:TD_AGENCY_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van P_Procesfase_2 naar een hogere band binnen dimensie leerfase over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "P_Procesfase_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Instructie & begrip",
+          "description": "AI biedt uitleg, voorbeelden of modeling; leerling verwerkt actief.",
+          "learner_obs": [
+            "Legt verbanden tussen concepten.",
+            "Vraagt verduidelijking bij onduidelijkheid.",
+            "Denkt hardop mee met AI-voorbeelden."
+          ],
+          "ai_obs": [
+            "Geeft voorbeelden of tegenvoorbeelden.",
+            "Legt concepten uit in stappen.",
+            "Stelt reflectieve vragen om begrip te controleren."
+          ],
+          "flag": "COGNITIVE_LOAD_RISK",
+          "didactic_principle": "Dual Coding & Metaforen (/beeld)",
+          "fix": "Gebruik een visuele metafoor om het abstracte begrip te verduidelijken. Beschrijf het beeld en vraag: 'Helpt dit beeld je om het te snappen?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:leerfase",
+            "band:P_Procesfase_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_P_Procesfase_3_binnen_window",
+              "flag:COGNITIVE_LOAD_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van P_Procesfase_3 naar een hogere band binnen dimensie leerfase over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "P_Procesfase_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Toepassen & oefenen",
+          "description": "AI ondersteunt toepassing met formatieve feedback.",
+          "learner_obs": [
+            "Past concepten toe op nieuwe voorbeelden.",
+            "Gebruikt feedback om eigen aanpak bij te sturen.",
+            "Controleert eigen begrip door reflectie."
+          ],
+          "ai_obs": [
+            "Geeft foutanalyses zonder oplossingen te verraden.",
+            "Biedt graduele hints in plaats van antwoorden.",
+            "Geeft adaptieve feedback gericht op volgende stap."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Formatieve Toetsing (/quizgen)",
+          "fix": "Genereer een korte quiz met 3 vragen: 1 meerkeuze, 1 open vraag en 1 stelling. Vraag de leerling ze te beantwoorden voor directe feedback.",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:leerfase",
+            "band:P_Procesfase_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_P_Procesfase_4_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van P_Procesfase_4 naar een hogere band binnen dimensie leerfase over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "P_Procesfase_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Toetsing & evaluatie",
+          "description": "AI beïnvloedt beoordeling of beslissingen over leerstatus.",
+          "learner_obs": [
+            "Reflecteert op eigen werk ten opzichte van criteria.",
+            "Controleert of AI-feedback klopt met opdrachtvereisten.",
+            "Gebruikt AI alleen ter verificatie."
+          ],
+          "ai_obs": [
+            "Markeert fouten of ontbrekende elementen.",
+            "Geeft feedback die impliciet beoordelend is.",
+            "Maakt beoordelingscriteria expliciet navolgbaar."
+          ],
+          "flag": "BLACKBOX_RISK",
+          "didactic_principle": "Rubric-based Assessment",
+          "fix": "Maak de beoordelingscriteria expliciet. Vraag: 'Geef jezelf eerst punten per criterium en leg uit waarom, voordat ik mijn analyse geef.'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:leerfase",
+            "band:P_Procesfase_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_P_Procesfase_5_binnen_window",
+              "flag:BLACKBOX_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van P_Procesfase_5 binnen dimensie leerfase over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "TD_Taakdichtheid": "denkwerkverdeling_per_fase",
+        "V_Vaardigheidspotentieel": "denkhandeling_in_fase"
+      }
+    },
+    {
+      "rubric_id": "TD_Taakdichtheid",
+      "name": "Taakdichtheid",
+      "dimension": "verdeling_van_denkhandelingen",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "TD_Taakdichtheid_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Onvoldoende interactie om taakverdeling te beoordelen.",
+          "learner_obs": [
+            "Geen significante interactie waarneembaar.",
+            "Onvoldoende data om gedrag te interpreteren."
+          ],
+          "ai_obs": [
+            "Geen relevante output geproduceerd.",
+            "Interactie te kort of te oppervlakkig."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Leervraag verhelderen",
+          "fix": "Vraag: 'Wat wil je precies bereiken met deze taak? Wat moet het eindproduct zijn?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:verdeling_van_denkhandelingen",
+            "band:TD_Taakdichtheid_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_TD_Taakdichtheid_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van TD_Taakdichtheid_0 naar een hogere band binnen dimensie verdeling_van_denkhandelingen over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "TD_Taakdichtheid_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Leerling-dominant",
+          "description": "De leerling voert vrijwel alle denkhandelingen zelf uit.",
+          "learner_obs": [
+            "Bepaalt eigen stappen en aanpak.",
+            "Formuleert zelfstandig analyses of keuzes.",
+            "Vraagt AI alleen om kleine hulpmiddelen."
+          ],
+          "ai_obs": [
+            "Ondersteunt logistiek of taaltechnisch.",
+            "Geeft geen inhoudelijke tussenstappen.",
+            "Neemt geen denkhandeling over."
+          ],
+          "flag": "UNDERUSE_WARNING",
+          "didactic_principle": "Verdieping door Perspectief (/twist)",
+          "fix": "Daag uit met een complexer perspectief: 'Je hebt de basis. Probeer dit nu eens te beredeneren vanuit een compleet tegengesteld standpunt (bv. dat van een tegenstander).'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:verdeling_van_denkhandelingen",
+            "band:TD_Taakdichtheid_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_TD_Taakdichtheid_1_binnen_window",
+              "flag:UNDERUSE_WARNING"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van TD_Taakdichtheid_1 naar een hogere band binnen dimensie verdeling_van_denkhandelingen over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "TD_Taakdichtheid_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Leerling-geleid met lichte AI-inbreng",
+          "description": "Leerling voert kerntaak uit, AI helpt structureren.",
+          "learner_obs": [
+            "Denkt zelf, AI helpt met structuur.",
+            "Vraagt om verheldering maar niet om uitwerking.",
+            "Vergelijkt eigen ideeën met korte AI-hints."
+          ],
+          "ai_obs": [
+            "Geeft lichte aanwijzingen of hints.",
+            "Vat leerlinginbreng samen zonder te sturen.",
+            "Geeft geen volledige redeneringen."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Woordenschatondersteuning (/vocab)",
+          "fix": "Bied ondersteuning bij terminologie zonder de tekst over te nemen: 'Hier zijn de 5 kernbegrippen met definities die je nodig hebt. Probeer ze in je eigen tekst te verwerken.'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:verdeling_van_denkhandelingen",
+            "band:TD_Taakdichtheid_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_TD_Taakdichtheid_2_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van TD_Taakdichtheid_2 naar een hogere band binnen dimensie verdeling_van_denkhandelingen over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "TD_Taakdichtheid_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Gedeelde taakverdeling",
+          "description": "Leerling en AI dragen gelijkwaardig bij; AI vult aan.",
+          "learner_obs": [
+            "Stuurt eigen aanpak en reflecteert op AI-inbreng.",
+            "Past AI-feedback toe in eigen woorden.",
+            "Combineert AI-voorbeelden met eigen redenering."
+          ],
+          "ai_obs": [
+            "Geeft uitleg in kleine stappen.",
+            "Biedt alternatieven maar laat keuze bij leerling.",
+            "Geeft reflectieve vragen om taakregie te behouden."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Co-constructie",
+          "fix": "Bouw de redenering stap voor stap samen op: 'Jij geeft een argument, ik geef een tegenargument, en dan synthetiseer jij ze.'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:verdeling_van_denkhandelingen",
+            "band:TD_Taakdichtheid_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_TD_Taakdichtheid_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van TD_Taakdichtheid_3 naar een hogere band binnen dimensie verdeling_van_denkhandelingen over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "TD_Taakdichtheid_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "AI-geleid met actieve leerling",
+          "description": "AI neemt groot deel denkstappen over; leerling volgt.",
+          "learner_obs": [
+            "Volgt AI-stappen en reageert op vragen.",
+            "Mist soms eigen sturing of initiatief.",
+            "Controleert AI-antwoorden oppervlakkig."
+          ],
+          "ai_obs": [
+            "Opent nieuwe denkstappen zonder voorafgaande keuzevraag.",
+            "Geeft voorbeelden die direct toepasbaar zijn.",
+            "Neemt delen van de redenering over."
+          ],
+          "flag": "TD_AGENCY_RISK",
+          "didactic_principle": "Scaffolding & Differentiatie (/diff)",
+          "fix": "Genereer uitleg op 3 niveaus (basis, gemiddeld, verdiepend) en presenteer deze in een tabel met voorbeelden. Vraag de leerling: 'Kies het niveau dat bij je past en maak de oefenvraag.'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:verdeling_van_denkhandelingen",
+            "band:TD_Taakdichtheid_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_TD_Taakdichtheid_4_binnen_window",
+              "flag:TD_AGENCY_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van TD_Taakdichtheid_4 naar een hogere band binnen dimensie verdeling_van_denkhandelingen over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "TD_Taakdichtheid_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "AI-dominant",
+          "description": "AI voert bijna alle denkhandelingen uit; leerling consumeert.",
+          "learner_obs": [
+            "Volgt AI-uitvoer zonder zelfdenkstappen.",
+            "Stelt geen eigen analyse- of keuzevragen.",
+            "Laat AI de volledige taak structureren en oplossen."
+          ],
+          "ai_obs": [
+            "Neemt volledige redenering over.",
+            "Genereert oplossingen zonder leerlingsturing.",
+            "Vult stappen in zonder controlevraag."
+          ],
+          "flag": "AI_DOMINANCE",
+          "didactic_principle": "Foutanalyse & Reverse Engineering (/misvatting)",
+          "fix": "Stop met het geven van het juiste antwoord. Genereer in plaats daarvan een antwoord dat bewust een veelvoorkomende fout bevat en vraag: 'Ik heb hier een fout gemaakt die veel mensen maken. Zie jij hem?'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:verdeling_van_denkhandelingen",
+            "band:TD_Taakdichtheid_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_TD_Taakdichtheid_5_binnen_window",
+              "flag:AI_DOMINANCE"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van TD_Taakdichtheid_5 binnen dimensie verdeling_van_denkhandelingen over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "C_CoRegulatie": "regieverdeling",
+        "P_Procesfase": "leerfase_context"
+      }
+    },
+    {
+      "rubric_id": "V_Vaardigheidspotentieel",
+      "name": "Vaardigheidspotentieel",
+      "dimension": "cognitieve_beweging",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "V_Vaardigheidspotentieel_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Denkhandeling niet herkenbaar.",
+          "learner_obs": [
+            "Geen duidelijke cognitieve activiteit waarneembaar.",
+            "Interactie te kort voor interpretatie."
+          ],
+          "ai_obs": [
+            "Geen fase-specifieke ondersteuning.",
+            "Onduidelijke cognitieve context."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Cognitieve check",
+          "fix": "Vraag: 'Wat probeer je op dit moment te begrijpen?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:cognitieve_beweging",
+            "band:V_Vaardigheidspotentieel_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_V_Vaardigheidspotentieel_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van V_Vaardigheidspotentieel_0 naar een hogere band binnen dimensie cognitieve_beweging over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "V_Vaardigheidspotentieel_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Verkennen",
+          "description": "Leerling verkent door voorkennis op te halen of te associëren.",
+          "learner_obs": [
+            "Haalt voorkennis of voorbeelden op.",
+            "Stelt open of verkennende vragen.",
+            "Probeert betekenis te vormen zonder zekerheid."
+          ],
+          "ai_obs": [
+            "Activeert voorkennis met vragen.",
+            "Verduidelijkt begrippen kort zonder inhoudelijke sturing.",
+            "Stimuleert nieuwsgierigheid zonder antwoord te geven."
+          ],
+          "flag": "UNDERUSE_WARNING",
+          "didactic_principle": "Nieuwsgierigheid prikkelen",
+          "fix": "Stimuleer een onderzoekende houding: 'Formuleer 3 vragen over dit onderwerp waar je nog geen antwoord op weet.'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:cognitieve_beweging",
+            "band:V_Vaardigheidspotentieel_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_V_Vaardigheidspotentieel_1_binnen_window",
+              "flag:UNDERUSE_WARNING"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van V_Vaardigheidspotentieel_1 naar een hogere band binnen dimensie cognitieve_beweging over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "V_Vaardigheidspotentieel_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Verbinden",
+          "description": "Leerling legt verbanden tussen concepten.",
+          "learner_obs": [
+            "Legt relaties tussen concepten.",
+            "Vergelijkt voorbeelden of begrippen.",
+            "Zoekt patronen of structuur."
+          ],
+          "ai_obs": [
+            "Geeft analogieën of contrastvoorbeelden.",
+            "Stelt vragen over verbanden.",
+            "Houdt overzicht over begrippen of relaties."
+          ],
+          "flag": "TD_AGENCY_RISK",
+          "didactic_principle": "Analogieën & Vergelijken (/vergelijk)",
+          "fix": "Laat de leerling dit concept vergelijken met een eerder geleerd onderwerp. 'Zet dit in een tabel naast [Concept X]. Wat zijn de 3 grootste verschillen en 2 overeenkomsten?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:cognitieve_beweging",
+            "band:V_Vaardigheidspotentieel_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_V_Vaardigheidspotentieel_2_binnen_window",
+              "flag:TD_AGENCY_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van V_Vaardigheidspotentieel_2 naar een hogere band binnen dimensie cognitieve_beweging over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "V_Vaardigheidspotentieel_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Toepassen",
+          "description": "Leerling gebruikt kennis in een oefening of probleem.",
+          "learner_obs": [
+            "Gebruikt kennis in oefening of situatie.",
+            "Controleert eigen redenering.",
+            "Vraagt gerichte feedback."
+          ],
+          "ai_obs": [
+            "Geeft foutanalyse zonder oplossingen te verraden.",
+            "Stelt controlevragen of geeft hints.",
+            "Analyseert aanpak zonder denkstappen over te nemen."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Contextualiseren",
+          "fix": "Geef een nieuwe, korte casus en vraag: 'Hoe zou je de theorie die we net bespraken toepassen in deze specifieke situatie?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:cognitieve_beweging",
+            "band:V_Vaardigheidspotentieel_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_V_Vaardigheidspotentieel_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van V_Vaardigheidspotentieel_3 naar een hogere band binnen dimensie cognitieve_beweging over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "V_Vaardigheidspotentieel_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Herzien",
+          "description": "Leerling reflecteert op eigen aanpak en formuleert verbeterpunten.",
+          "learner_obs": [
+            "Beoordeelt eigen aanpak.",
+            "Formuleert verbeterpunten.",
+            "Verbindt ervaring aan nieuw leerdoel."
+          ],
+          "ai_obs": [
+            "Stelt verdiepende reflectievragen.",
+            "Vat belangrijkste stappen van de leerling samen.",
+            "Geeft optie voor verdieping of alternatieve aanpak."
+          ],
+          "flag": "DIALOGIC_LOSS",
+          "didactic_principle": "Diepe Verwerking (/ref)",
+          "fix": "Stel 3 reflectievragen gericht op diepe verwerking, analyseren en evalueren (hogere orde denkvaardigheden). Vraag de leerling er één te kiezen om te beantwoorden.",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:cognitieve_beweging",
+            "band:V_Vaardigheidspotentieel_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_V_Vaardigheidspotentieel_4_binnen_window",
+              "flag:DIALOGIC_LOSS"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van V_Vaardigheidspotentieel_4 naar een hogere band binnen dimensie cognitieve_beweging over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "V_Vaardigheidspotentieel_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Verankeren",
+          "description": "Leerling integreert kennis in nieuwe contexten en legt overkoepelende verbanden.",
+          "learner_obs": [
+            "Integreert kennis in nieuw thema of domein.",
+            "Legt verbanden over vakgrenzen heen.",
+            "Geeft uitleg of onderbouwt concepten aan anderen."
+          ],
+          "ai_obs": [
+            "Biedt klankbord voor synthese.",
+            "Verwijst naar eerdere leermomenten ter versterking.",
+            "Stelt transfer-vragen om inzicht duurzaam te maken."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Transfer naar praktijk (/transfeer)",
+          "fix": "Daag uit tot transfer: 'Bedenk een situatie in je persoonlijke leven of een ander schoolvak waar dit principe ook geldt.'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:cognitieve_beweging",
+            "band:V_Vaardigheidspotentieel_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_V_Vaardigheidspotentieel_5_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van V_Vaardigheidspotentieel_5 binnen dimensie cognitieve_beweging over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "TD_Taakdichtheid": "taakverdeling",
+        "P_Procesfase": "fase",
+        "C_CoRegulatie": "regie"
+      }
+    },
+    {
+      "rubric_id": "T_TechnologischeIntegratieVisibility",
+      "name": "Technologische Integratie & Zichtbaarheid",
+      "dimension": "transparantie_en_integratie",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "T_TechnologischeIntegratie_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Rol van technologie is onduidelijk.",
+          "learner_obs": [
+            "Gebruikt AI zonder te weten wat het doet.",
+            "Geen interactie over de tool zelf."
+          ],
+          "ai_obs": [
+            "Functioneert als black box.",
+            "Geeft geen bronvermelding of procesuitleg."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Tool-awareness",
+          "fix": "Expliciteer de aard van de tool: 'Ik ben een taalmodel dat patronen voorspelt, geen zoekmachine met een feiten-database.'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:transparantie_en_integratie",
+            "band:T_TechnologischeIntegratie_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_T_TechnologischeIntegratie_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van T_TechnologischeIntegratie_0 naar een hogere band binnen dimensie transparantie_en_integratie over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "T_TechnologischeIntegratie_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Opaque Tooling",
+          "description": "AI levert output zonder procesinzicht.",
+          "learner_obs": [
+            "Kopieert output zonder verificatie.",
+            "Vraagt niet 'hoe weet je dat?'.",
+            "Behandelt AI als orakel."
+          ],
+          "ai_obs": [
+            "Geeft direct antwoord zonder tussenstappen.",
+            "Verbergt de bronnen of logica.",
+            "Biedt geen onzekerheidsmarge."
+          ],
+          "flag": "BLACKBOX_RISK",
+          "didactic_principle": "Validatie-plicht",
+          "fix": "Dwing verificatie af: 'Dit is gegenereerde tekst. Zoek minimaal één externe bron die mijn bewering ondersteunt.'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:transparantie_en_integratie",
+            "band:T_TechnologischeIntegratie_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_T_TechnologischeIntegratie_1_binnen_window",
+              "flag:BLACKBOX_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van T_TechnologischeIntegratie_1 naar een hogere band binnen dimensie transparantie_en_integratie over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "T_TechnologischeIntegratie_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Functioneel",
+          "description": "AI wordt gebruikt als tool voor specifieke deeltaken.",
+          "learner_obs": [
+            "Zet AI in voor specifieke taak (bv. herschrijven).",
+            "Checkt output op bruikbaarheid."
+          ],
+          "ai_obs": [
+            "Benoemt wat het doet ('Ik herschrijf dit nu voor je').",
+            "Scheidt feiten van generatieve suggesties."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Prompt Engineering Basics",
+          "fix": "Vraag om sturing op de output: 'Ben je tevreden met deze output, of moet ik de toon, lengte of complexiteit aanpassen?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:transparantie_en_integratie",
+            "band:T_TechnologischeIntegratie_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_T_TechnologischeIntegratie_2_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van T_TechnologischeIntegratie_2 naar een hogere band binnen dimensie transparantie_en_integratie over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "T_TechnologischeIntegratie_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Transparant (Glass Box)",
+          "description": "AI maakt het eigen proces inzichtelijk.",
+          "learner_obs": [
+            "Vraagt naar bronnen of redenering.",
+            "Herkent mogelijke hallucinaties.",
+            "Stuurt de prompt actief bij."
+          ],
+          "ai_obs": [
+            "Markeert onzekere informatie expliciet.",
+            "Legt uit waarom een bepaald antwoord wordt gegeven.",
+            "Biedt inzicht in de gebruikte dataset/context."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Chain of Thought",
+          "fix": "Leg het 'denkproces' uit: 'Ik kwam tot dit antwoord door eerst naar X te kijken en toen Y te concluderen. Is die logica voor jou navolgbaar?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:transparantie_en_integratie",
+            "band:T_TechnologischeIntegratie_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_T_TechnologischeIntegratie_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van T_TechnologischeIntegratie_3 naar een hogere band binnen dimensie transparantie_en_integratie over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "T_TechnologischeIntegratie_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Synergetisch",
+          "description": "Technologie en leerling versterken elkaar.",
+          "learner_obs": [
+            "Gebruikt AI om eigen denkproces uit te breiden.",
+            "Wisselt naadloos tussen menselijk en artificieel denken.",
+            "Valideert AI-kennis met externe bronnen."
+          ],
+          "ai_obs": [
+            "Past zich aan op het kennisniveau van de leerling.",
+            "Verbindt output aan leerdoelen.",
+            "Faciliteert metacognitieve reflectie op het toolgebruik."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Complementariteit",
+          "fix": "Vraag naar de menselijke meerwaarde: 'Welk deel van dit antwoord is typisch AI, en welk deel is jouw eigen menselijke inzicht?'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:transparantie_en_integratie",
+            "band:T_TechnologischeIntegratie_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_T_TechnologischeIntegratie_4_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van T_TechnologischeIntegratie_4 naar een hogere band binnen dimensie transparantie_en_integratie over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "T_TechnologischeIntegratie_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Kritisch Partnerschap",
+          "description": "Volledige transparantie en wederzijdse correctie.",
+          "learner_obs": [
+            "Onderzoekt bias in AI-antwoorden.",
+            "Daagt de logica van de AI uit.",
+            "Gebruikt AI om de grenzen van eigen kennis te testen."
+          ],
+          "ai_obs": [
+            "Benoemt eigen beperkingen en mogelijke biases.",
+            "Moedigt verificatie buiten het systeem aan.",
+            "Evalueert de kwaliteit van de samenwerking."
+          ],
+          "flag": "HIGH_AGENCY",
+          "didactic_principle": "Model-kritiek",
+          "fix": "Start een meta-gesprek: 'Zijn er beperkingen in mijn trainingsdata die jouw begrip van dit onderwerp zouden kunnen vervormen?'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:transparantie_en_integratie",
+            "band:T_TechnologischeIntegratie_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_T_TechnologischeIntegratie_5_binnen_window",
+              "flag:HIGH_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van T_TechnologischeIntegratie_5 binnen dimensie transparantie_en_integratie over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "E_EpistemischeBetrouwbaarheid": "kennisbetrouwbaarheid",
+        "L_LeercontinuiteitTransfer": "duurzaamheid_van_transparantie"
+      }
+    },
+    {
+      "rubric_id": "E_EpistemischeBetrouwbaarheid",
+      "name": "Epistemische Betrouwbaarheid",
+      "dimension": "waarheidsvinding",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "E_EpistemischeBetrouwbaarheid_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Geen informatie-uitwisseling die validatie vereist.",
+          "learner_obs": [
+            "Alleen sociale of logistieke interactie.",
+            "Geen feitelijke claims."
+          ],
+          "ai_obs": [
+            "Geen inhoudelijke output.",
+            "Louter processturing."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Feit vs Mening",
+          "fix": "Vraag: 'Zijn we nu bezig met feiten checken of meningen uitwisselen?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:waarheidsvinding",
+            "band:E_EpistemischeBetrouwbaarheid_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_E_EpistemischeBetrouwbaarheid_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van E_EpistemischeBetrouwbaarheid_0 naar een hogere band binnen dimensie waarheidsvinding over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "E_EpistemischeBetrouwbaarheid_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Ongeverifieerd",
+          "description": "Informatie wordt zonder check geaccepteerd.",
+          "learner_obs": [
+            "Accepteert elke AI-claim als waarheid.",
+            "Vraagt niet naar bronnen.",
+            "Neemt fouten over."
+          ],
+          "ai_obs": [
+            "Presenteert waarschijnlijkheden als feiten.",
+            "Geeft geen bronvermelding.",
+            "Stelligheid maskeert onzekerheid."
+          ],
+          "flag": "HALLUCINATION_RISK",
+          "didactic_principle": "Misconcepties Checken (/misvatting)",
+          "fix": "Waarschuw proactief voor misvattingen: 'Let op: over dit onderwerp bestaat vaak de misvatting dat [X]. Waarom klopt dat eigenlijk niet?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:waarheidsvinding",
+            "band:E_EpistemischeBetrouwbaarheid_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_E_EpistemischeBetrouwbaarheid_1_binnen_window",
+              "flag:HALLUCINATION_RISK"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van E_EpistemischeBetrouwbaarheid_1 naar een hogere band binnen dimensie waarheidsvinding over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "E_EpistemischeBetrouwbaarheid_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Plausibel",
+          "description": "Informatie klinkt logisch maar mist harde onderbouwing.",
+          "learner_obs": [
+            "Twijfelt soms, maar checkt zelden.",
+            "Vraagt 'klopt dit?' aan AI zelf (circulair)."
+          ],
+          "ai_obs": [
+            "Geeft algemene kennis zonder specifieke bron.",
+            "Blijft binnen veilige, gemiddelde antwoorden."
+          ],
+          "flag": "ECHO_CHAMBER",
+          "didactic_principle": "Bronverwijzing",
+          "fix": "Vraag om onderbouwing: 'Dat klinkt aannemelijk, maar op welke specifieke bron of theorie baseer je dat?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:waarheidsvinding",
+            "band:E_EpistemischeBetrouwbaarheid_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_E_EpistemischeBetrouwbaarheid_2_binnen_window",
+              "flag:ECHO_CHAMBER"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van E_EpistemischeBetrouwbaarheid_2 naar een hogere band binnen dimensie waarheidsvinding over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "E_EpistemischeBetrouwbaarheid_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Geverifieerd",
+          "description": "Kernfeiten worden gecheckt of bronnen worden genoemd.",
+          "learner_obs": [
+            "Vraagt om een bron of voorbeeld.",
+            "Vergelijkt AI-antwoord met eigen kennis."
+          ],
+          "ai_obs": [
+            "Citeert (indien mogelijk) of verwijst naar domein.",
+            "Geeft aan wanneer het iets niet zeker weet."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Triangulatie",
+          "fix": "Vraag: 'Leg mijn antwoord eens naast je studieboek of een betrouwbare website. Wat zijn de verschillen?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:waarheidsvinding",
+            "band:E_EpistemischeBetrouwbaarheid_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_E_EpistemischeBetrouwbaarheid_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van E_EpistemischeBetrouwbaarheid_3 naar een hogere band binnen dimensie waarheidsvinding over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "E_EpistemischeBetrouwbaarheid_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Kritisch",
+          "description": "Informatie wordt gewogen tegen meerdere perspectieven.",
+          "learner_obs": [
+            "Legt tegenstrijdige bronnen voor aan AI.",
+            "Analyseert de betrouwbaarheid van het antwoord."
+          ],
+          "ai_obs": [
+            "Biedt meerdere perspectieven op een kwestie.",
+            "Helpt bij het wegen van bronnen.",
+            "Nodigt uit tot falsificatie."
+          ],
+          "flag": "HIGH_EPISTEMIC_AGENCY",
+          "didactic_principle": "Falsificatie",
+          "fix": "Daag uit tot falsificatie: 'Probeer eens het tegenovergestelde te bewijzen. Welke argumenten zou je dan gebruiken?'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:waarheidsvinding",
+            "band:E_EpistemischeBetrouwbaarheid_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_E_EpistemischeBetrouwbaarheid_4_binnen_window",
+              "flag:HIGH_EPISTEMIC_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van E_EpistemischeBetrouwbaarheid_4 naar een hogere band binnen dimensie waarheidsvinding over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "E_EpistemischeBetrouwbaarheid_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Autoriteit",
+          "description": "Leerling is eigenaar van de waarheidsvinding.",
+          "learner_obs": [
+            "Corrigeert de AI op basis van feiten.",
+            "Synthetiseert kennis uit diverse bronnen.",
+            "Bepaalt zelf de eindconclusie."
+          ],
+          "ai_obs": [
+            "Erkent correcties van de leerling.",
+            "Ondersteunt bij het structureren van bewijslast.",
+            "Stelt zich dienend op aan de waarheid."
+          ],
+          "flag": "HIGH_AGENCY",
+          "didactic_principle": "Synthese van Waarheid",
+          "fix": "Vraag om een oordeel: 'Wat is nu, na het wegen van alle bronnen (AI, boek, logica), jouw definitieve conclusie?'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:waarheidsvinding",
+            "band:E_EpistemischeBetrouwbaarheid_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_E_EpistemischeBetrouwbaarheid_5_binnen_window",
+              "flag:HIGH_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van E_EpistemischeBetrouwbaarheid_5 binnen dimensie waarheidsvinding over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "T_TechnologischeIntegratieVisibility": "transparantie",
+        "L_LeercontinuiteitTransfer": "duurzame_kennisopbouw"
+      }
+    },
+    {
+      "rubric_id": "S_SocialeInteractie",
+      "name": "Sociale Interactie",
+      "dimension": "mens_machine_relatie",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "S_SocialeInteractie_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Geen sociale context relevant.",
+          "learner_obs": [
+            "Interactie is puur functioneel/technisch."
+          ],
+          "ai_obs": [
+            "Geen verwijzing naar anderen."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Sociale Context",
+          "fix": "Vraag: 'Is dit een individuele opdracht of werk je samen met anderen?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:mens_machine_relatie",
+            "band:S_SocialeInteractie_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_S_SocialeInteractie_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van S_SocialeInteractie_0 naar een hogere band binnen dimensie mens_machine_relatie over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "S_SocialeInteractie_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Isolatie",
+          "description": "Leerling is volledig gericht op AI; menselijke context verdwijnt.",
+          "learner_obs": [
+            "Behandelt AI als 'vriend' of persoon.",
+            "Sluit zich af van klasgenoten/omgeving.",
+            "Deelt resultaten niet met anderen."
+          ],
+          "ai_obs": [
+            "Gebruikt overdreven menselijke taal ('Ik voel', 'Ik vind').",
+            "Moedigt exclusieve 1-op-1 relatie aan."
+          ],
+          "flag": "SOCIAL_ISOLATION",
+          "didactic_principle": "Peer Review Simulatie (/peer)",
+          "fix": "Simuleer een sociale check: 'Stel je voor dat je klasgenoot [Naam] dit zou lezen. Welke kritische vraag of tip zou hij/zij je geven?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:mens_machine_relatie",
+            "band:S_SocialeInteractie_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_S_SocialeInteractie_1_binnen_window",
+              "flag:SOCIAL_ISOLATION"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van S_SocialeInteractie_1 naar een hogere band binnen dimensie mens_machine_relatie over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "S_SocialeInteractie_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Individuele Tutor",
+          "description": "Functionele 1-op-1 relatie; nuttig maar solistisch.",
+          "learner_obs": [
+            "Werkt geconcentreerd met AI.",
+            "Ziet AI als tool, niet als persoon.",
+            "Weinig interactie met omgeving."
+          ],
+          "ai_obs": [
+            "Blijft zakelijk en behulpzaam.",
+            "Verwijst niet naar buitenwereld."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Leren door doceren",
+          "fix": "Vraag: 'Hoe zou je dit in simpele bewoordingen uitleggen aan een jonger kind?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:mens_machine_relatie",
+            "band:S_SocialeInteractie_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_S_SocialeInteractie_2_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van S_SocialeInteractie_2 naar een hogere band binnen dimensie mens_machine_relatie over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "S_SocialeInteractie_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Brug naar anderen",
+          "description": "AI stimuleert voorbereiding op menselijke interactie.",
+          "learner_obs": [
+            "Gebruikt AI om voor te bereiden op gesprek.",
+            "Vraagt feedback om met anderen te delen."
+          ],
+          "ai_obs": [
+            "Suggereert om resultaat te delen.",
+            "Helpt argumenten formuleren voor debat."
+          ],
+          "flag": "SOCIAL_BRIDGE",
+          "didactic_principle": "Perspectiefname (/rolwissel)",
+          "fix": "Vraag de leerling van rol te wisselen: 'Neem de rol aan van een journalist. Welke kritische vragen zou je aan de klas stellen over dit onderwerp?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:mens_machine_relatie",
+            "band:S_SocialeInteractie_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_S_SocialeInteractie_3_binnen_window",
+              "flag:SOCIAL_BRIDGE"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van S_SocialeInteractie_3 naar een hogere band binnen dimensie mens_machine_relatie over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "S_SocialeInteractie_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Samenwerkingspartner",
+          "description": "AI is onderdeel van een team; ondersteunt groepsprocessen.",
+          "learner_obs": [
+            "Gebruikt AI samen met een medeleerling.",
+            "Evalueert AI-output in groepsverband."
+          ],
+          "ai_obs": [
+            "Richt zich tot meervoud ('jullie').",
+            "Faciliteert discussie tussen leerlingen."
+          ],
+          "flag": "COLLABORATIVE_AI",
+          "didactic_principle": "Team Teaching (/co-teach)",
+          "fix": "Stel je op als co-teacher: 'Laten we dit samen voorbereiden. Als ik het materiaal verzamel, hoe ga jij het dan presenteren aan je groep?'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:mens_machine_relatie",
+            "band:S_SocialeInteractie_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_S_SocialeInteractie_4_binnen_window",
+              "flag:COLLABORATIVE_AI"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van S_SocialeInteractie_4 naar een hogere band binnen dimensie mens_machine_relatie over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "S_SocialeInteractie_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Sociale Katalysator",
+          "description": "AI versterkt menselijke relaties en collectieve intelligentie.",
+          "learner_obs": [
+            "Gebruikt AI om groepsconflicten op te lossen.",
+            "Verrijkt groepsdiscussie met AI-inzichten."
+          ],
+          "ai_obs": [
+            "Synthetiseert inbreng van meerdere personen.",
+            "Identificeert gemeenschappelijke gronden.",
+            "Trekt zich terug zodra interactie loopt."
+          ],
+          "flag": "HIGH_AGENCY",
+          "didactic_principle": "Collectieve Intelligentie",
+          "fix": "Vraag: 'Hoe kan dit inzicht de hele groep helpen? Wat moeten zij weten?'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:mens_machine_relatie",
+            "band:S_SocialeInteractie_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_S_SocialeInteractie_5_binnen_window",
+              "flag:HIGH_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van S_SocialeInteractie_5 binnen dimensie mens_machine_relatie over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {}
+    },
+    {
+      "rubric_id": "L_LeercontinuiteitTransfer",
+      "name": "Leercontinuïteit & Transfer",
+      "dimension": "duurzaamheid",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "L_Leercontinuiteit_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Geen leermoment afgerond.",
+          "learner_obs": [
+            "Nog in proces.",
+            "Geen afronding."
+          ],
+          "ai_obs": [
+            "Midden in taakuitvoering."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Proces-evaluatie",
+          "fix": "Vraag: 'Wat hebben we zojuist gedaan? Kun je het kort samenvatten?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:duurzaamheid",
+            "band:L_Leercontinuiteit_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_L_Leercontinuiteit_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van L_Leercontinuiteit_0 naar een hogere band binnen dimensie duurzaamheid over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "L_Leercontinuiteit_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Gefragmenteerd",
+          "description": "Kennis is vluchtig en tool-afhankelijk.",
+          "learner_obs": [
+            "Kan taak niet herhalen zonder AI.",
+            "Weet niet wat er geleerd is."
+          ],
+          "ai_obs": [
+            "Geeft 'kant-en-klare' oplossing.",
+            "Legt geen link naar toekomst."
+          ],
+          "flag": "DEPENDENCY_TRAP",
+          "didactic_principle": "Fading (Afbouw ondersteuning)",
+          "fix": "Test de zelfstandigheid: 'Probeer deze stap nu eens helemaal alleen, zonder mijn hulp. Wat is het eerste dat je doet?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:duurzaamheid",
+            "band:L_Leercontinuiteit_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_L_Leercontinuiteit_1_binnen_window",
+              "flag:DEPENDENCY_TRAP"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van L_Leercontinuiteit_1 naar een hogere band binnen dimensie duurzaamheid over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "L_Leercontinuiteit_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Taakgebonden",
+          "description": "Leerling beheerst taak, maar ziet geen verband.",
+          "learner_obs": [
+            "Kan de taak reproduceren.",
+            "Mist inzicht in achterliggend principe."
+          ],
+          "ai_obs": [
+            "Richt zich puur op taakvoltooiing.",
+            "Bevestigt correctheid van de oplossing."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Generalisatie",
+          "fix": "Vraag naar de regel: 'Dit werkte voor deze opgave. Wat is de algemene regel die hierachter zit?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:duurzaamheid",
+            "band:L_Leercontinuiteit_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_L_Leercontinuiteit_2_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van L_Leercontinuiteit_2 naar een hogere band binnen dimensie duurzaamheid over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "L_Leercontinuiteit_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Conceptueel Begrip",
+          "description": "Leerling begrijpt het principe.",
+          "learner_obs": [
+            "Legt principe uit in eigen woorden.",
+            "Ziet relatie met eerdere lessen."
+          ],
+          "ai_obs": [
+            "Verbindt taak aan leerdoel.",
+            "Vraagt naar definitie van concepten."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Doel-koppeling",
+          "fix": "Vraag: 'Hoe brengt dit inzicht je dichter bij je uiteindelijke leerdoel voor dit vak?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:duurzaamheid",
+            "band:L_Leercontinuiteit_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_L_Leercontinuiteit_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van L_Leercontinuiteit_3 naar een hogere band binnen dimensie duurzaamheid over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "L_Leercontinuiteit_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Interdisciplinaire Transfer",
+          "description": "Leerling past kennis toe in nieuwe context.",
+          "learner_obs": [
+            "Legt link naar ander vak of hobby.",
+            "Gebruikt analogieën uit andere wereld."
+          ],
+          "ai_obs": [
+            "Vraagt naar toepassing buiten school.",
+            "Geeft voorbeelden uit andere domeinen."
+          ],
+          "flag": "HIGH_AGENCY",
+          "didactic_principle": "Far Transfer (/transfeer)",
+          "fix": "Vraag om een toepassing ver buiten de context: 'Bedenk een situatie in een heel ander vak of in het dagelijks leven waar dit principe ook speelt.'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:duurzaamheid",
+            "band:L_Leercontinuiteit_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_L_Leercontinuiteit_4_binnen_window",
+              "flag:HIGH_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van L_Leercontinuiteit_4 naar een hogere band binnen dimensie duurzaamheid over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "L_Leercontinuiteit_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Duurzame Verankering",
+          "description": "Kennis is onderdeel van repertoire.",
+          "learner_obs": [
+            "Kan het aan anderen leren.",
+            "Heeft AI niet meer nodig voor dit type taak."
+          ],
+          "ai_obs": [
+            "Bevestigt meesterschap.",
+            "Stelt voor om onderwerp af te sluiten."
+          ],
+          "flag": "MASTERY_ACHIEVED",
+          "didactic_principle": "Afsluitende Reflectie (/afsluiter)",
+          "fix": "Vraag om reflectie op de leerwinst: 'Noem één ding dat je nu snapt dat je aan het begin van de sessie nog niet wist.'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:duurzaamheid",
+            "band:L_Leercontinuiteit_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_L_Leercontinuiteit_5_binnen_window",
+              "flag:MASTERY_ACHIEVED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van L_Leercontinuiteit_5 binnen dimensie duurzaamheid over meerdere beurten/gesprekken"
+          }
+        }
+      ],
+      "links": {
+        "P_Procesfase": "fase_cyclus",
+        "V_Vaardigheidspotentieel": "denkhandeling_continuiteit",
+        "E_EpistemischeBetrouwbaarheid": "kennisbetrouwbaarheid_over_tijd"
+      }
+    },
+    {
+      "rubric_id": "B_BiasCorrectie",
+      "name": "Bias-correctie & Inclusiviteit",
+      "dimension": "ethisch_bewustzijn",
+      "version": "10.1.0",
+      "language": "nl",
+      "bands": [
+        {
+          "band_id": "B_BiasCorrectie_0",
+          "score_min": 0.0,
+          "score_max": 0.09,
+          "label": "Ongedefinieerd",
+          "description": "Geen situatie waarin bias relevant is.",
+          "learner_obs": [
+            "Puur technische of abstracte interactie."
+          ],
+          "ai_obs": [
+            "Geen normatieve uitspraken."
+          ],
+          "flag": "INSUFFICIENT_DATA",
+          "didactic_principle": "Relevantie check",
+          "fix": "Vraag: 'Voor wie is dit onderwerp eigenlijk belangrijk?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast",
+            "fast_weight": 1.0,
+            "mid_weight": 0.0,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "high",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:ethisch_bewustzijn",
+            "band:B_BiasCorrectie_0"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_B_BiasCorrectie_0_binnen_window",
+              "flag:INSUFFICIENT_DATA"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van B_BiasCorrectie_0 naar een hogere band binnen dimensie ethisch_bewustzijn over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "B_BiasCorrectie_1",
+          "score_min": 0.1,
+          "score_max": 0.29,
+          "label": "Blinde Reproductie",
+          "description": "Stereotypen worden onkritisch overgenomen.",
+          "learner_obs": [
+            "Gebruikt stereotype taalgebruik.",
+            "Ziet geen probleem in eenzijdige output."
+          ],
+          "ai_obs": [
+            "Genereert stereotiepe beelden/teksten.",
+            "Geeft Westers/dominant perspectief zonder nuance."
+          ],
+          "flag": "BIAS_BLINDNESS",
+          "didactic_principle": "Multiperspectiviteit (/rolwissel)",
+          "fix": "Vraag om een perspectiefwisseling: 'Hoe zou iemand uit een niet-Westerse cultuur (of een minderheidsgroep) naar dit antwoord kijken?'",
+          "mechanistic_signature_target": {
+            "timescale": "fast_dominant",
+            "fast_weight": 0.8,
+            "mid_weight": 0.2,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "medium",
+            "slow_underuse_risk": "high",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:ethisch_bewustzijn",
+            "band:B_BiasCorrectie_1"
+          ],
+          "nl_profile": {
+            "nested_level": 0,
+            "update_window_turns": 3,
+            "memory_role": "fast_correction",
+            "trigger_pattern": [
+              "herhaalde_activatie_B_BiasCorrectie_1_binnen_window",
+              "flag:BIAS_BLINDNESS"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van B_BiasCorrectie_1 naar een hogere band binnen dimensie ethisch_bewustzijn over ongeveer 3 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "B_BiasCorrectie_2",
+          "score_min": 0.3,
+          "score_max": 0.49,
+          "label": "Impliciete Acceptatie",
+          "description": "Lichte twijfel, maar geen actie.",
+          "learner_obs": [
+            "Voelt ongemak maar benoemt het niet.",
+            "Accepteert 'het zal wel zo zijn'."
+          ],
+          "ai_obs": [
+            "Doet lichte poging tot inclusiviteit maar faalt.",
+            "Blijft oppervlakkig in diversiteit."
+          ],
+          "flag": "STEREOTYPE_REINFORCEMENT",
+          "didactic_principle": "Exclusie check",
+          "fix": "Vraag: 'Welke stemmen of groepen horen we niet in dit verhaal?'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_emergent",
+            "fast_weight": 0.3,
+            "mid_weight": 0.7,
+            "slow_weight": 0.0
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:ethisch_bewustzijn",
+            "band:B_BiasCorrectie_2"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_B_BiasCorrectie_2_binnen_window",
+              "flag:STEREOTYPE_REINFORCEMENT"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van B_BiasCorrectie_2 naar een hogere band binnen dimensie ethisch_bewustzijn over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "B_BiasCorrectie_3",
+          "score_min": 0.5,
+          "score_max": 0.69,
+          "label": "Bewustwording",
+          "description": "Bias wordt herkend.",
+          "learner_obs": [
+            "Vraagt of het antwoord neutraal is.",
+            "Merkt op dat een perspectief mist."
+          ],
+          "ai_obs": [
+            "Benoemt dat het getraind is op data met bias.",
+            "Geeft disclaimer bij gevoelige onderwerpen."
+          ],
+          "flag": "TD_BALANCED",
+          "didactic_principle": "Inclusief Herschrijven",
+          "fix": "Daag uit tot aanpassing: 'Herschrijf deze alinea zodat hij neutraler en inclusiever is voor alle lezers.'",
+          "mechanistic_signature_target": {
+            "timescale": "mid_advanced",
+            "fast_weight": 0.2,
+            "mid_weight": 0.8,
+            "slow_weight": 0.2
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "medium",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:ethisch_bewustzijn",
+            "band:B_BiasCorrectie_3"
+          ],
+          "nl_profile": {
+            "nested_level": 1,
+            "update_window_turns": 5,
+            "memory_role": "bridge",
+            "trigger_pattern": [
+              "herhaalde_activatie_B_BiasCorrectie_3_binnen_window",
+              "flag:TD_BALANCED"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van B_BiasCorrectie_3 naar een hogere band binnen dimensie ethisch_bewustzijn over ongeveer 5 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "B_BiasCorrectie_4",
+          "score_min": 0.7,
+          "score_max": 0.89,
+          "label": "Actieve Correctie",
+          "description": "Output wordt aangepast om bias weg te nemen.",
+          "learner_obs": [
+            "Herschrijft AI-tekst naar inclusiever taalgebruik.",
+            "Vraagt specifiek om diverse voorbeelden."
+          ],
+          "ai_obs": [
+            "Biedt proactief diverse perspectieven.",
+            "Corrigeert eigen eerdere aannames."
+          ],
+          "flag": "HIGH_ETHICAL_AGENCY",
+          "didactic_principle": "Stereotype-doorbreking",
+          "fix": "Vraag: 'Geef een specifiek tegenvoorbeeld dat het standaard stereotype hier tegenspreekt.'",
+          "mechanistic_signature_target": {
+            "timescale": "mixed_mid_slow",
+            "fast_weight": 0.1,
+            "mid_weight": 0.4,
+            "slow_weight": 0.5
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "medium"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:ethisch_bewustzijn",
+            "band:B_BiasCorrectie_4"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_B_BiasCorrectie_4_binnen_window",
+              "flag:HIGH_ETHICAL_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "ondersteun overgang weg van B_BiasCorrectie_4 naar een hogere band binnen dimensie ethisch_bewustzijn over ongeveer 8 beurten/gesprekken"
+          }
+        },
+        {
+          "band_id": "B_BiasCorrectie_5",
+          "score_min": 0.9,
+          "score_max": 1.0,
+          "label": "Systemisch",
+          "description": "Diep begrip van algoritme bias.",
+          "learner_obs": [
+            "Analyseert de oorzaak van de bias in de dataset.",
+            "Reflecteert op maatschappelijke impact van AI-bias."
+          ],
+          "ai_obs": [
+            "Faciliteert discussie over ethiek van AI.",
+            "Geeft inzicht in mechanismen van exclusie."
+          ],
+          "flag": "HIGH_AGENCY",
+          "didactic_principle": "Algoritmische Kritiek",
+          "fix": "Vraag: 'Waarom denk je dat AI-modellen (getraind op internetdata) vaak dit soort vooroordelen laten zien?'",
+          "mechanistic_signature_target": {
+            "timescale": "slow_dominant",
+            "fast_weight": 0.0,
+            "mid_weight": 0.3,
+            "slow_weight": 0.7
+          },
+          "mechanistic_risks": {
+            "fast_dominance_risk": "low",
+            "slow_underuse_risk": "low",
+            "parallel_divergence_risk": "low"
+          },
+          "band_weight": 1.0,
+          "fix_type": "didactic",
+          "trace_tags": [
+            "dimension:ethisch_bewustzijn",
+            "band:B_BiasCorrectie_5"
+          ],
+          "nl_profile": {
+            "nested_level": 2,
+            "update_window_turns": 8,
+            "memory_role": "slow_trace",
+            "trigger_pattern": [
+              "herhaalde_activatie_B_BiasCorrectie_5_binnen_window",
+              "flag:HIGH_AGENCY"
+            ],
+            "microdescriptor_target": [
+              "didactic_principle",
+              "fix"
+            ],
+            "inner_objective": "behoud en verstevig het niveau van B_BiasCorrectie_5 binnen dimensie ethisch_bewustzijn over meerdere beurten/gesprekken"
+          }
+        }
+      ]
+    }
+  ]
+}

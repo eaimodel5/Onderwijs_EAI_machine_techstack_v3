@@ -1,0 +1,20 @@
+{
+  "shodan.io": {
+    "avg_e_ai_star": 0.5
+  },
+  "github.com": {
+    "avg_e_ai_star": 0.5
+  },
+  "urlscan.io": {
+    "avg_e_ai_star": 0.5
+  },
+  "leakix.net": {
+    "avg_e_ai_star": 0.5
+  },
+  "archive.org": {
+    "avg_e_ai_star": 0.5
+  },
+  "readthedocs.io": {
+    "avg_e_ai_star": 0.5
+  }
+}

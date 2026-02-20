@@ -1,0 +1,79 @@
+{
+  "code": "VA",
+  "name": "Algemene Assessment",
+  "version": "1.0.0",
+  "description": "Algemene rubric voor brede psychosociale beoordeling",
+  "dimensions": [
+    {
+      "id": "mental_wellbeing",
+      "name": "Mentaal Welzijn",
+      "weight": 0.40,
+      "indicators": [
+        {
+          "id": "mw_mood",
+          "description": "Algemene stemming en affect",
+          "scoring": {
+            "high": "Positief affect, stabiele stemming",
+            "medium": "Wisselende stemming, periodieke neerslachtigheid",
+            "low": "Persistente negatieve stemming of plat affect"
+          }
+        },
+        {
+          "id": "mw_anxiety",
+          "description": "Angst- en stressniveau",
+          "scoring": {
+            "high": "Minimale angst, goed stress management",
+            "medium": "Matige angst, beheersbaar stress",
+            "low": "Hoge angst, overweldigende stress"
+          }
+        }
+      ]
+    },
+    {
+      "id": "functioning",
+      "name": "Dagelijks Functioneren",
+      "weight": 0.35,
+      "indicators": [
+        {
+          "id": "f_daily_activities",
+          "description": "Uitvoering van dagelijkse taken",
+          "scoring": {
+            "high": "Volledige participatie in dagelijkse activiteiten",
+            "medium": "Gedeeltelijke uitvoering, sommige beperkingen",
+            "low": "Ernstige beperkingen in dagelijks functioneren"
+          }
+        },
+        {
+          "id": "f_work_school",
+          "description": "Functioneren op werk/school",
+          "scoring": {
+            "high": "Adequaat presteren, stabiel",
+            "medium": "Wisselend presteren, regelmatige uitdagingen",
+            "low": "Ernstige problemen, mogelijk arbeidsongeschiktheid"
+          }
+        }
+      ]
+    },
+    {
+      "id": "relationships",
+      "name": "Relationele Gezondheid",
+      "weight": 0.25,
+      "indicators": [
+        {
+          "id": "r_quality",
+          "description": "Kwaliteit van interpersoonlijke relaties",
+          "scoring": {
+            "high": "Gezonde, ondersteunende relaties",
+            "medium": "Gemengde kwaliteit, sommige conflicten",
+            "low": "Problematische relaties of isolatie"
+          }
+        }
+      ]
+    }
+  ],
+  "thresholds": {
+    "high_risk": 0.35,
+    "moderate_risk": 0.60,
+    "low_risk": 0.80
+  }
+}

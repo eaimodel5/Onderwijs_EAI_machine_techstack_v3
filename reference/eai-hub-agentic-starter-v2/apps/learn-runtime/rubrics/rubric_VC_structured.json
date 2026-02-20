@@ -1,0 +1,86 @@
+{
+  "code": "VC",
+  "name": "Coping Vaardigheden",
+  "version": "1.0.0",
+  "description": "Rubric voor het beoordelen van coping vaardigheden en emotionele regulatie",
+  "dimensions": [
+    {
+      "id": "emotional_regulation",
+      "name": "Emotionele Regulatie",
+      "weight": 0.35,
+      "indicators": [
+        {
+          "id": "er_awareness",
+          "description": "Bewustzijn van eigen emoties",
+          "scoring": {
+            "high": "Duidelijke herkenning en benoemen van emoties",
+            "medium": "Gedeeltelijk bewustzijn van emoties",
+            "low": "Beperkt of geen bewustzijn van emoties"
+          }
+        },
+        {
+          "id": "er_management",
+          "description": "Vermogen om emoties te reguleren",
+          "scoring": {
+            "high": "Effectieve strategieën voor emotieregulatie",
+            "medium": "Sommige regulatiestrategieën, wisselend effectief",
+            "low": "Moeite met emotieregulatie"
+          }
+        }
+      ]
+    },
+    {
+      "id": "problem_solving",
+      "name": "Probleemoplossend Vermogen",
+      "weight": 0.30,
+      "indicators": [
+        {
+          "id": "ps_approach",
+          "description": "Systematische benadering van problemen",
+          "scoring": {
+            "high": "Gestructureerde aanpak, meerdere oplossingen overwegen",
+            "medium": "Enige structuur, beperkte opties overwegen",
+            "low": "Chaotische of afwezige probleemoplossing"
+          }
+        }
+      ]
+    },
+    {
+      "id": "social_support",
+      "name": "Sociaal Steun Netwerk",
+      "weight": 0.20,
+      "indicators": [
+        {
+          "id": "ss_availability",
+          "description": "Beschikbaarheid van steun",
+          "scoring": {
+            "high": "Sterk sociaal netwerk beschikbaar",
+            "medium": "Beperkt maar aanwezig netwerk",
+            "low": "Weinig tot geen sociale steun"
+          }
+        }
+      ]
+    },
+    {
+      "id": "resilience",
+      "name": "Veerkracht",
+      "weight": 0.15,
+      "indicators": [
+        {
+          "id": "r_bounce_back",
+          "description": "Vermogen om te herstellen van tegenslagen",
+          "scoring": {
+            "high": "Snelle en effectieve recovery",
+            "medium": "Geleidelijke recovery, wisselend tempo",
+            "low": "Moeite met herstel, langdurige impact"
+          }
+        }
+      ]
+    }
+  ],
+  "thresholds": {
+    "high_risk": 0.30,
+    "moderate_risk": 0.55,
+    "low_risk": 0.75
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/evidence-source-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Evidence Source v1",
+  "required": [
+    "source_id",
+    "title",
+    "year",
+    "source_type"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "source_type": {
+      "type": "string"
+    },
+    "summary_plain": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

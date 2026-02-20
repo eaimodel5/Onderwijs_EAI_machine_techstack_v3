@@ -1,0 +1,23 @@
+{
+  "theme": "Public_Code_Exposure",
+  "avg_eai_score": 0.4,
+  "evidence_count": 3,
+  "examples": [
+    {
+      "asset": "github.com",
+      "url": "https://github.com",
+      "type": "code"
+    },
+    {
+      "asset": "github.com",
+      "url": "https://github.com",
+      "type": "code"
+    },
+    {
+      "asset": "github.com",
+      "url": "https://github.com",
+      "type": "code"
+    }
+  ],
+  "instructions": "Maak een beknopte NL-samenvatting (2-3 zinnen), zonder geheimen."
+}

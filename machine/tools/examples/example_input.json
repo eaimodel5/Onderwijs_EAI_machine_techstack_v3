@@ -1,0 +1,57 @@
+{
+  "context": {
+    "audience": "student",
+    "subject": "Wiskunde B",
+    "level": "VWO 5",
+    "task_description": "Oefenen met afstand tussen punt en lijn in het vlak, met nadruk op tussenstappen en controle.",
+    "process_phase": "Oefenen en feedback",
+    "assessment_stakes": "medium",
+    "language": "nl-NL",
+    "constraints": [
+      "Geen volledige einduitwerking voordat ik zelf een poging heb gedaan",
+      "Gebruik alleen begrippen uit de methode van deze week"
+    ]
+  },
+  "bands": {
+    "K": {
+      "code": "K2",
+      "label": "Procedurele kennis"
+    },
+    "P": {
+      "code": "P3",
+      "label": "Oefenen"
+    },
+    "TD": {
+      "code": "TD5",
+      "label": "Hoge taakdichtheid"
+    },
+    "C": {
+      "code": "C2",
+      "label": "Gedeelde regulatie"
+    },
+    "V": {
+      "code": "V3",
+      "label": "Analytisch en redenerend"
+    },
+    "T": {
+      "code": "T2",
+      "label": "AI zichtbaar en begrensd"
+    },
+    "E": {
+      "code": "E2",
+      "label": "Medium epistemische betrouwbaarheid"
+    },
+    "L": {
+      "code": "L3",
+      "label": "Transfer binnen domein"
+    },
+    "S": {
+      "code": "S2",
+      "label": "Dialoog"
+    },
+    "B": {
+      "code": "B2",
+      "label": "Bias awareness"
+    }
+  }
+}

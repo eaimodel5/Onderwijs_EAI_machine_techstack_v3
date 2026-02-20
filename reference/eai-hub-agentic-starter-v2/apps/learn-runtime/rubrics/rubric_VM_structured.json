@@ -1,0 +1,79 @@
+{
+  "code": "VM",
+  "name": "Motivatie Assessment",
+  "version": "1.0.0",
+  "description": "Rubric voor het beoordelen van motivatie en veranderingsbereidheid",
+  "dimensions": [
+    {
+      "id": "change_readiness",
+      "name": "Veranderingsbereidheid",
+      "weight": 0.40,
+      "indicators": [
+        {
+          "id": "cr_awareness",
+          "description": "Bewustzijn van noodzaak tot verandering",
+          "scoring": {
+            "high": "Duidelijk inzicht in noodzaak en bereidheid",
+            "medium": "Enig inzicht, ambivalentie aanwezig",
+            "low": "Geen of minimaal inzicht in veranderingsbehoefte"
+          }
+        },
+        {
+          "id": "cr_commitment",
+          "description": "Commitment aan veranderingsproces",
+          "scoring": {
+            "high": "Sterke toewijding, concrete stappen gezet",
+            "medium": "Matige toewijding, overwegend maar niet handelend",
+            "low": "Geen commitment, weerstand tegen verandering"
+          }
+        }
+      ]
+    },
+    {
+      "id": "goal_orientation",
+      "name": "Doelgerichtheid",
+      "weight": 0.35,
+      "indicators": [
+        {
+          "id": "go_clarity",
+          "description": "Duidelijkheid van doelen",
+          "scoring": {
+            "high": "Specifieke, meetbare doelen geformuleerd",
+            "medium": "Algemene doelen, beperkte specificiteit",
+            "low": "Vage of afwezige doelstellingen"
+          }
+        },
+        {
+          "id": "go_persistence",
+          "description": "Doorzettingsvermogen",
+          "scoring": {
+            "high": "Consistent volhouden ondanks obstakels",
+            "medium": "Wisselend volhouden, soms opgeven",
+            "low": "Snel opgeven bij tegenslag"
+          }
+        }
+      ]
+    },
+    {
+      "id": "self_efficacy",
+      "name": "Zelfeffectiviteit",
+      "weight": 0.25,
+      "indicators": [
+        {
+          "id": "se_belief",
+          "description": "Geloof in eigen kunnen",
+          "scoring": {
+            "high": "Sterk geloof in eigen competenties",
+            "medium": "Gemiddeld zelfvertrouwen, situatie-afhankelijk",
+            "low": "Laag zelfvertrouwen, twijfel aan eigen capaciteiten"
+          }
+        }
+      ]
+    }
+  ],
+  "thresholds": {
+    "high_risk": 0.30,
+    "moderate_risk": 0.55,
+    "low_risk": 0.75
+  }
+}

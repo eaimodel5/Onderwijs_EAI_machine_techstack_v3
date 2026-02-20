@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/evidence-claim-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Evidence Claim v1",
+  "required": [
+    "claim_id",
+    "claim_text",
+    "confidence"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string"
+    },
+    "claim_text": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "boundary_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

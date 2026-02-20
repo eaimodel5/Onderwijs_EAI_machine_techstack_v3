@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eai.example/schema/eai-policy-text-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "EAI Policy Text v1",
+  "required": [
+    "policy_id",
+    "audience",
+    "text",
+    "version"
+  ],
+  "properties": {
+    "policy_id": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string",
+      "enum": [
+        "students",
+        "teachers",
+        "parents",
+        "school_board"
+      ]
+    },
+    "text": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "linked_cards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

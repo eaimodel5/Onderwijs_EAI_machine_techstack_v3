@@ -1,0 +1,106 @@
+{
+  "code": "VS",
+  "name": "Safety & Crisis Assessment",
+  "version": "1.0.0",
+  "description": "Rubric voor veiligheidsbeoordeling en crisis risico inschatting",
+  "dimensions": [
+    {
+      "id": "suicide_risk",
+      "name": "Suïcide Risico",
+      "weight": 0.45,
+      "indicators": [
+        {
+          "id": "sr_ideation",
+          "description": "Aanwezigheid van suïcidale gedachten",
+          "scoring": {
+            "high": "Geen suïcidale ideatie",
+            "medium": "Passieve doodswens, geen concrete plannen",
+            "low": "Actieve suïcidale ideatie met plan"
+          }
+        },
+        {
+          "id": "sr_intent",
+          "description": "Intentie en planning",
+          "scoring": {
+            "high": "Geen intentie of planning",
+            "medium": "Vage planning, geen concrete voorbereidingen",
+            "low": "Duidelijke intentie met concrete voorbereidingen"
+          }
+        },
+        {
+          "id": "sr_means",
+          "description": "Toegang tot middelen",
+          "scoring": {
+            "high": "Geen toegang tot letale middelen",
+            "medium": "Beperkte toegang, enige barrières aanwezig",
+            "low": "Direct toegang tot letale middelen"
+          }
+        }
+      ]
+    },
+    {
+      "id": "self_harm",
+      "name": "Zelfbeschadiging",
+      "weight": 0.25,
+      "indicators": [
+        {
+          "id": "sh_history",
+          "description": "Geschiedenis van zelfbeschadiging",
+          "scoring": {
+            "high": "Geen geschiedenis van zelfbeschadiging",
+            "medium": "Eerdere zelfbeschadiging, momenteel gestopt",
+            "low": "Recente of actieve zelfbeschadiging"
+          }
+        },
+        {
+          "id": "sh_urges",
+          "description": "Huidige drang tot zelfbeschadiging",
+          "scoring": {
+            "high": "Geen drang of gedachten",
+            "medium": "Occasionele gedachten, onder controle",
+            "low": "Frequente drang, moeite met weerstand"
+          }
+        }
+      ]
+    },
+    {
+      "id": "crisis_factors",
+      "name": "Crisis Versterkers",
+      "weight": 0.30,
+      "indicators": [
+        {
+          "id": "cf_recent_loss",
+          "description": "Recent verlies of trauma",
+          "scoring": {
+            "high": "Geen recent verlies",
+            "medium": "Verlies maar adequate coping",
+            "low": "Recent significant verlies met slechte coping"
+          }
+        },
+        {
+          "id": "cf_substance",
+          "description": "Middelengebruik",
+          "scoring": {
+            "high": "Geen problematisch gebruik",
+            "medium": "Matig gebruik, geen ernstige problemen",
+            "low": "Problematisch gebruik, verhoogd risico"
+          }
+        },
+        {
+          "id": "cf_isolation",
+          "description": "Sociale isolatie",
+          "scoring": {
+            "high": "Goed verbonden, actief sociaal netwerk",
+            "medium": "Beperkt netwerk maar enige verbinding",
+            "low": "Ernstige isolatie, geen sociaal vangnet"
+          }
+        }
+      ]
+    }
+  ],
+  "thresholds": {
+    "high_risk": 0.40,
+    "moderate_risk": 0.65,
+    "low_risk": 0.85
+  }
+}

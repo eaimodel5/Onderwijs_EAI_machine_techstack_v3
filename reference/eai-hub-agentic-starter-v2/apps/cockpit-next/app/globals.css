@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 84 81% 44%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 84 81% 44%;
+    --radius: 0.75rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 84 81% 44%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 84 81% 44%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+/* Custom lime green theme integration */
+.lime-theme {
+  --primary: 84 81% 44%;
+  --primary-foreground: 0 0% 98%;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Focus styles for accessibility */
+.focus-visible\:ring-lime-500:focus-visible {
+  --tw-ring-color: rgb(132 204 22);
+}
+
+/* Animation for loading states */
+@keyframes pulse-lime {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-lime {
+  animation: pulse-lime 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Improved tab truncation and spacing */
+.tab-truncate {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .tab-truncate {
+    max-width: 80px;
+  }
+}
+
+/* Better vertical spacing between sections */
+.section-spacing {
+  margin-bottom: 2rem;
+}
+
+.section-spacing:last-child {
+  margin-bottom: 0;
+}
+
+/* Improved card hover effects */
+.card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Task density meter specific styles */
+.td-meter-progress {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Tooltip improvements */
+.tooltip-content {
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+/* Collapsible content smooth animation */
+.collapsible-content {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Improved scrollable containers */
+.scrollable-content {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(203 213 225) transparent;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: rgb(203 213 225);
+  border-radius: 3px;
+}
+
+/* Prevent text overlap in cards */
+.card-content-spacing > * {
+  margin-bottom: 0.75rem;
+}
+
+.card-content-spacing > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Long text field improvements */
+.long-text-field {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* Modal improvements for mobile */
+@media (max-width: 768px) {
+  .feedback-modal {
+    margin: 1rem;
+    max-height: 90vh;
+  }
+}
+
+/* TTL status indicators */
+.ttl-expired {
+  animation: pulse-red 2s infinite;
+}
+
+.ttl-warning {
+  animation: pulse-yellow 2s infinite;
+}
+
+@keyframes pulse-red {
+  0%,
+  100% {
+    background-color: rgb(254 242 242);
+  }
+  50% {
+    background-color: rgb(252 165 165);
+  }
+}
+
+@keyframes pulse-yellow {
+  0%,
+  100% {
+    background-color: rgb(254 252 232);
+  }
+  50% {
+    background-color: rgb(252 211 77);
+  }
+}
