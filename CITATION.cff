@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this techstack in research or documentation, please cite it as below."
+title: "Onderwijs EAI machine techstack"
+authors:
+  - family-names: "EAI Model"
+    given-names: "Team"
+version: "3.0.0"
+date-released: "2026-02-19"
+url: "https://github.com/eaimodel5/Onderwijs_EAI_machine_techstack_v3"

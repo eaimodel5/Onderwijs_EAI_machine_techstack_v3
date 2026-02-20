@@ -1,4 +1,13 @@
-export type BandSelection = Record<string, { code: string; label: string }>;
+export type Band = { code: string; label: string };
+
+// The printer treats SSOT bands as a typed record.
+// Example:
+// {
+//   K: { code: "K2", label: "Procedurele kennis" },
+//   TD: { code: "TD5", label: "Hoge taakdichtheid" },
+//   ...
+// }
+export type BandSelection = Record<string, Band>;
 
 function tdRank(code: string): number {
   // TD1..TD8
@@ -35,7 +44,7 @@ export function enforceLogicGates(ssot: any, bands: BandSelection) {
         rule: `SSOT logic gate for ${kCode}`,
         before,
         after,
-        reason: enforcement
+        reason: enforcement,
       });
     }
   }
