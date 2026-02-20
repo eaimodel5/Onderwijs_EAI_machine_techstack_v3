@@ -1,5 +1,3 @@
-Zeker. Hier is een nette, complete update die je zo in `CHANGELOG.md` kunt plakken. Ik heb hem geschreven alsof je nu v3.1.0 uitbrengt en ik maak expliciet wat er gefixt is en wat er is toegevoegd.
-
 # Changelog
 
 ## 3.1.0 (2026-02-20)
