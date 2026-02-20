@@ -1,80 +1,38 @@
 # Owner policy voor de Onderwijs EAI machine
 # Normatief: de printer moet dit afdwingen, ook als een gebruiker iets anders kiest.
 
-version: 3
+version: 2
 date: 2026-02-20
 
 defaults:
   locale: nl-NL
   ssot_version: "15.0.0"
-  # Conflict-resolutie tussen SSOT en owner-policy
-  resolution:
-    stricter_wins: true
-    fail_closed_on_unknown_band: true
-    fail_closed_on_unknown_constraint: true
-    no_silent_downgrade: true
 
 constraints:
   # Extra bovenop SSOT interaction_protocol.logic_gates.
-  # Let op: SSOT logic gates zijn leidend; deze owner-policy kan strenger zijn.
+  # SSOT logic gates zijn leidend; owner-policy mag strenger zijn.
   max_td_by_k:
     K1: TD2
     K2: TD4
     K3: TD2
     K4: TD8
 
-  # Output contract catalog (ids moeten bestaan in machine/contracts)
-  output_contracts:
-    default: "process_evidence_table_v1"
-    allowed:
-      - "process_evidence_table_v1"
-      - "process_evidence_table_v1_compact"
-      - "audit_runlog_json_v1"
-
   strict_output_contract_when:
     - condition:
         epistemic_reliability_min: E3
       contract: "process_evidence_table_v1"
 
-trace_level:
-  default: "standard"
-  when_td_gte: TD5
-  level: "high"
-  # Minimale trace fields die altijd in runlogs moeten zitten
-  required_fields:
-    - "card_id"
-    - "card_version"
-    - "ssot_version"
-    - "bands"
-    - "td_flags"
-    - "logic_gate_changes"
-    - "quality_gates"
-    - "evidence_links"
-
-publishing:
-  immutable_when_published: true
-  require_review_for:
-    - "K1"
-    - "K3"
-  require_validation_report: true
+  # Minimale transparantie (let op: hoort onder constraints)
+  trace_level:
+    default: "standard"
+    when_td_gte: TD5
+    level: "high"
 
 certification:
   labels:
     - id: "CERT_CLASSROOM_PRACTICE"
       description: "Oefenen in de les, docent aanwezig, lage stakes"
-      requirements:
-        runlog_required: false
-        trace_level: "standard"
     - id: "CERT_HOMEWORK"
       description: "Huiswerk, medium stakes, extra transparantie vereist"
-      requirements:
-        runlog_required: true
-        trace_level: "high"
-        export_contract: "audit_runlog_json_v1"
     - id: "CERT_ASSESSMENT_PREP"
       description: "Toetsvoorbereiding, hoge stakes, expliciete verificatie en runlog verplicht"
-      requirements:
-        runlog_required: true
-        trace_level: "high"
-        export_contract: "audit_runlog_json_v1"
-        require_verification_step: true
